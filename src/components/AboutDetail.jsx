@@ -94,12 +94,12 @@ export default function AboutDetail({
               {aboutSection.points.map((point, index) => (
                 <div
                   key={point}
-                  className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 md:grid-cols-[2.5rem_minmax(0,1fr)] md:gap-4"
+                  className="grid items-start grid-cols-[1.65rem_minmax(0,1fr)] gap-0 md:grid-cols-[2rem_minmax(0,1fr)] md:gap-0"
                 >
-                  <span className="pt-0.5 text-[1rem] font-semibold leading-none text-white md:text-[1.05rem]">
+                  <span className="pt-[6px] text-left text-[1rem] font-semibold leading-none text-white md:text-[1.05rem]">
                     {index + 1}.
                   </span>
-                  <p className="text-[1rem] font-medium leading-[1.9] tracking-[-0.01em] md:text-[1.05rem]">
+                  <p className="text-[16px] font-medium leading-[1.9] tracking-[-0.01em]">
                     <HighlightedPoint text={point} />
                   </p>
                 </div>
