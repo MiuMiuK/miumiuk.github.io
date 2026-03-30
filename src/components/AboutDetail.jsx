@@ -1,6 +1,41 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
+const pointHighlights = [
+  '9+年',
+  '3年设计管理',
+  'SaaS 企业服务',
+  '7年',
+  '独立负责 0-1、1-N 的企业级项目',
+  '海外项目经验',
+  '0-1 构建设计系统',
+  '实战经验',
+  'AI 项目交互设计经验',
+  'AIGC 创新大赛',
+  '建设、管理设计团队',
+  '迅速适应多变项目业务场景和需求',
+];
+
+function HighlightedPoint({ text }) {
+  const escapedPhrases = pointHighlights.map((phrase) =>
+    phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  );
+  const pattern = new RegExp(`(${escapedPhrases.join('|')})`, 'g');
+
+  return text.split(pattern).filter(Boolean).map((segment, index) => {
+    const isHighlight = pointHighlights.includes(segment);
+
+    return (
+      <span
+        key={`${segment}-${index}`}
+        className={isHighlight ? 'font-semibold text-[#D4FF00]' : 'text-neutral-400'}
+      >
+        {segment}
+      </span>
+    );
+  });
+}
+
 export default function AboutDetail({
   aboutSection,
   profileTags,
@@ -13,103 +48,88 @@ export default function AboutDetail({
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-      className="fixed inset-0 z-[60] overflow-y-auto bg-white text-black"
+      className="fixed inset-0 z-[60] overflow-y-auto bg-[#050505] text-white"
     >
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-24 md:px-12">
         <button
           type="button"
           onClick={onBack}
-          className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-black/10 bg-white p-2 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#D4FF00] md:left-12 md:p-3"
+          className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-white/12 bg-black/70 p-2 text-xs font-black uppercase tracking-widest text-white backdrop-blur transition hover:border-[#D4FF00] hover:bg-[#D4FF00] hover:text-black md:left-12 md:p-3"
         >
           <ArrowRight size={14} className="rotate-180" />
           Back
         </button>
 
-        <div className="mb-16 flex items-center gap-4 border-b border-black/10 pb-6">
-          <span className="text-4xl">{aboutSection.icon}</span>
+        <div className="mb-14 flex items-center gap-4 border-b border-white/10 pb-6">
+          <span className="text-[2.2rem] leading-none md:text-[2.9rem]">{aboutSection.icon}</span>
           <div>
-            <p className="mb-2 text-[10px] font-black uppercase tracking-[0.35em] text-black/35">
-              Editorial Profile
-            </p>
-            <h2 className="text-4xl font-black uppercase tracking-tighter">
+            <h2 className="text-[2.6rem] font-black tracking-[-0.06em] md:text-[3.6rem]">
               {aboutSection.title}
             </h2>
           </div>
         </div>
 
-        <div className="grid gap-16 md:gap-24 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <div className="mb-10 max-w-sm">
-                  <p className="text-sm leading-7 text-neutral-500">
-                A compact snapshot of how I lead design: balancing system thinking,
-                business clarity, and an obsession with product details.
-              </p>
-            </div>
-
-                <h3 className="mb-8 border-l-4 border-[#D4FF00] pl-4 text-2xl font-black uppercase tracking-widest">
-                  {aboutSection.tagsTitle}
-                </h3>
-            <div className="flex flex-wrap gap-3">
+        <div className="grid gap-12 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-20">
+          <div>
+            <h3 className="mb-8 text-[1.2rem] font-bold tracking-[-0.03em] text-white md:text-[1.35rem]">
+              {aboutSection.tagsTitle}
+            </h3>
+            <div className="flex flex-wrap gap-3 lg:flex-col lg:items-start">
               {profileTags.map((tag) => (
                 <span
                   key={tag.label}
-                    className={`rounded-full border px-4 py-2 text-[11px] font-bold uppercase tracking-[0.24em] transition duration-300 hover:-translate-y-0.5 ${tag.color}`}
-                    >
-                      {tag.label}
-                    </span>
+                  className={`rounded-[0.85rem] border px-3 py-2 text-[11px] font-semibold tracking-[0.04em] transition duration-300 hover:-translate-y-0.5 ${tag.color}`}
+                >
+                  {tag.label}
+                </span>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-8">
-            <h3 className="mb-8 border-l-4 border-[#D4FF00] pl-4 text-2xl font-black uppercase tracking-widest">
+          <div>
+            <h3 className="mb-8 text-[1.2rem] font-bold tracking-[-0.03em] text-white md:text-[1.35rem]">
               {aboutSection.pointsTitle}
             </h3>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-4">
               {aboutSection.points.map((point, index) => (
                 <div
                   key={point}
-                    className="group rounded-[1.5rem] border border-black/10 bg-black/[0.02] p-6 transition duration-300 hover:border-[#D4FF00]/40 hover:bg-[#D4FF00]/[0.04]"
-                  >
-                  <span className="mb-6 block text-3xl font-black leading-none text-[#D4FF00] opacity-80">
-                    {String(index + 1).padStart(2, '0')}
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4 md:grid-cols-[2.5rem_minmax(0,1fr)] md:gap-4"
+                >
+                  <span className="pt-0.5 text-[1rem] font-semibold leading-none text-white md:text-[1.05rem]">
+                    {index + 1}.
                   </span>
-                      <p className="text-base font-medium leading-8 text-neutral-600 transition group-hover:text-black">
-                        {point}
-                      </p>
+                  <p className="text-[1rem] font-medium leading-[1.9] tracking-[-0.01em] md:text-[1.05rem]">
+                    <HighlightedPoint text={point} />
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <section className="mt-20 border-t border-black/10 pt-12">
+        <section className="mt-24 border-t border-white/10 pt-12">
           <div className="mb-10 flex items-center gap-4">
-            <span className="text-3xl">💼</span>
-            <div>
-              <p className="mb-2 text-[10px] font-black uppercase tracking-[0.35em] text-black/35">
-                Experience
-              </p>
-              <h3 className="text-3xl font-black tracking-tight">
-                {workExperience.title}
-              </h3>
-            </div>
+            <span className="text-[2.2rem] leading-none md:text-[2.9rem]">💼</span>
+            <h3 className="text-[2.6rem] font-black tracking-[-0.06em] md:text-[3.6rem]">
+              {workExperience.title}
+            </h3>
           </div>
 
           <div className="space-y-8">
             {workExperience.items.map((job) => (
               <article
                 key={`${job.company}-${job.period}`}
-                className="rounded-[1.75rem] border border-black/10 bg-black/[0.02] p-6 md:p-8"
+                className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 md:p-8"
               >
-                <div className="mb-8 grid gap-3 border-b border-black/10 pb-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+                <div className="mb-8 grid gap-3 border-b border-white/10 pb-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
                   <div>
                     <h4 className="text-2xl font-black tracking-tight">{job.company}</h4>
-                    <p className="mt-2 text-sm font-medium uppercase tracking-[0.24em] text-neutral-500">
+                    <p className="mt-2 text-sm font-medium uppercase tracking-[0.24em] text-neutral-400">
                       {job.role}
                     </p>
                   </div>
-                  <p className="text-sm font-bold tracking-[0.18em] text-neutral-500">
+                  <p className="text-sm font-bold tracking-[0.18em] text-neutral-400">
                     {job.period}
                   </p>
                 </div>
@@ -125,7 +145,7 @@ export default function AboutDetail({
                           {section.items.map((item) => (
                             <li
                               key={item}
-                            className="text-base leading-8 text-neutral-700"
+                            className="text-base leading-8 text-neutral-200"
                             >
                               {item}
                             </li>
@@ -139,7 +159,7 @@ export default function AboutDetail({
                                 href={link.href}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="rounded-full border border-black/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-600 transition hover:border-[#D4FF00] hover:text-black"
+                                className="rounded-full border border-white/12 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-300 transition hover:border-[#D4FF00] hover:bg-[#D4FF00] hover:text-black"
                               >
                                 {link.label}
                               </a>
@@ -154,7 +174,7 @@ export default function AboutDetail({
                 {job.summary ? (
                   <ul className="space-y-3">
                     {job.summary.map((item) => (
-                      <li key={item} className="text-base leading-8 text-neutral-700">
+                      <li key={item} className="text-base leading-8 text-neutral-200">
                         {item}
                       </li>
                     ))}

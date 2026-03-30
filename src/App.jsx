@@ -237,8 +237,10 @@ export default function App() {
       <AnimatePresence initial={false}>
         {selectedProject ? (
           <ProjectDetail
+            key={selectedProject.id}
             project={selectedProject}
             onBack={closeOverlay}
+            onOpenProject={openProject}
           />
         ) : null}
         {isAboutOpen ? (

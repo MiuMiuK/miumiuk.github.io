@@ -1,4 +1,4 @@
-import { workItemRefactorCaseStudy } from './caseStudies';
+import { onesAiAgentCaseStudy, workItemRefactorCaseStudy } from './caseStudies';
 
 // 以后主要维护这个文件：
 // 1. 改首页介绍、关于我、联系方式
@@ -126,46 +126,56 @@ export const projects = [
   },
   {
     id: 'synthesia-ai',
-    title: 'Synthesia AI',
-    subtitle: 'Generative interface framework for future HMI.',
-    coverMeta: '2024｜AI｜Experimental｜Multi-Modal',
-    coverSummary: '探索生成式界面如何在未来 HMI 场景中动态响应用户意图。',
+    title: 'ONES AI Agent',
+    subtitle: '企业研发管理场景下，从全局对话到可复用、可扩展 Agent 的交互设计',
+    coverMeta: '2024｜AI Agent｜Enterprise UX｜B2B',
+    coverSummary:
+      '面向企业研发管理场景，建立统一的 AI Agent 交互入口，并逐步演进为有边界、可执行、可复用的智能工作伙伴。',
     coverInfo: [
-      ['产品类型', '生成式 AI 交互实验'],
-      ['我的角色', '体验概念设计'],
-      ['项目职责', '交互框架定义、意图建模、动态界面原型、验证方案设计'],
+      ['产品类型', 'B 端研发管理 AI Agent'],
+      ['我的角色', '交互设计'],
+      ['项目职责', '交互框架梳理、范围能力设计、结构化结果与技能沉淀方案整理'],
     ],
-    category: 'AI | EXPERIMENTAL | MULTI-MODAL',
+    category: 'AI AGENT | ENTERPRISE | B2B | UX',
     year: '2024',
-    client: 'Research Lab',
-    tags: ['1. Intent Recognition', '2. Dynamic UI Generation', '3. Haptic Feedback'],
+    client: 'ONES',
+    tags: ['1. 上下文理解', '2. 范围能力', '3. 结果回传', '4. 结构化结果', '5. 技能沉淀'],
     description:
-      '探索“无界面”交互的可能性，利用生成式 AI 根据用户意图实时重构 UI 组件。',
+      '面向企业研发管理场景，建立统一的 AI Agent 交互入口，让用户通过自然语言完成查询、分析、创建、总结与结果回传。',
     overview:
-      '传统的 UI 是静态的。Synthesia 试图打破这一现状，界面不再是预设的像素，而是根据用户的认知负荷、情感状态和当前任务实时生成的“数字器官”。',
+      '项目分为两个阶段推进：一阶段聚焦搭建全局对话式交互框架，建立统一入口与基础体验；二阶段进一步扩展上下文范围、结构化结果生成、技能沉淀与场景化能力，让 Agent 从“可对话”演进为“可复用、可扩展的智能工作伙伴”。',
     process: [
       {
-        step: '意图建模',
-        details: '利用微表情和注视点追踪技术构建实时的意图预测模型。',
+        step: '问题定义',
+        details:
+          '围绕企业研发管理场景重新定义 AI 的角色，不把它当作单纯聊天入口，而是作为连接模型能力与业务上下文的智能执行单元，重点思考上下文理解、任务输入、结果回传与能力沉淀。',
       },
       {
-        step: '动态渲染',
-        details: '基于 Shader 和生成式算法，使组件呈现出如液体般流动的感官体验。',
+        step: '阶段一方案',
+        details:
+          '建立全局唤起、上下文识别、指令变量与上下文扩展机制，并通过结果回传设计让查询、创建、总结等输出进入筛选器、视图、工作项与 Wiki 等业务对象中。',
+      },
+      {
+        step: '阶段二方案',
+        details:
+          '将不同类型的上下文限定抽象为统一的范围能力，并补充 ONESql 结构化结果、技能沉淀、图表可视化、Home 智能摘要与 Demo 数据生成等能力，让 Agent 围绕明确业务范围工作。',
       },
     ],
-    results: '在复杂数据处理场景下，用户的认知负荷降低了 40%，交互错误率下降了 22%。',
+    results:
+      '项目从统一对话入口逐步演进为面向企业研发管理场景的可复用 Agent 能力体系，持续回答 AI 在复杂业务中如何“有边界、可执行、可追溯、可复用”地工作。',
     bgClass: 'bg-[#D4FF00]',
     coverImage: '/images/projects/synthesia-ai-cover.svg',
-    coverAlt: 'Synthesia AI cover',
+    coverAlt: 'ONES AI Agent cover',
     detailImage: '/images/projects/synthesia-ai-detail.svg',
-    detailAlt: 'Synthesia AI detail banner',
+    detailAlt: 'ONES AI Agent detail banner',
     hoverFacts: [
-      ['产品类型', '生成式 AI 交互实验'],
-      ['服务对象', '未来人机交互探索场景'],
-      ['项目角色', '体验概念设计'],
-      ['我的职责', '交互框架定义、意图建模、动态界面原型、验证方案设计'],
-      ['协作对象', '研究、算法、交互与视觉团队'],
+      ['产品类型', 'B 端研发管理 AI Agent'],
+      ['服务对象', '企业产研协作团队'],
+      ['项目角色', '交互设计'],
+      ['我的职责', '交互框架梳理、范围能力设计、结构化结果与技能沉淀方案整理'],
+      ['项目重点', '上下文理解、结果回传、能力复用'],
     ],
+    caseStudy: onesAiAgentCaseStudy,
   },
 ];
 
@@ -187,13 +197,14 @@ export const aboutSection = {
   tagsTitle: 'Tags on me',
   pointsTitle: 'How I see',
   points: [
-    '9+ 年设计经验，其中包括 3 年设计管理经验，深耕 SaaS 企业服务领域达 7 年的产品体验设计师。',
-    '能够独立负责 0-1、1-N 的企业级项目，如企业级项目管理系统、ERP 和 OA 等大型复杂项目。',
-    '具备海外项目经验，为不同国家和地区的业务需求提供设计支撑，并处理国际化多语言体验适配。',
-    '拥有从 0-1 构建设计系统并成功实施的实战经验，显著提高产品设计一致性和产研团队效率。',
-    '参与 AIGC 创新大赛，贡献方案思路，运用 AI 工具提高 UED 团队工作效率。',
-    '具备建设和管理设计团队的经验，指导初中级设计师成长，并优化团队协作流程。',
-    '能迅速适应多变项目业务场景和需求，关注产品设计细节。',
+    '9+年设计经验，其中包括 3年设计管理经验，深耕 SaaS 企业服务领域达 7年的产品体验设计师；',
+    '能够独立负责 0-1、1-N 的企业级项目，如企业级项目管理系统、ERP 和 OA 等大型复杂项目，擅长项目规划、进度控制、质量保证和风险管理；',
+    '具备海外项目经验，为不同国家/地区的业务需求提供设计支撑，针对产品国际化中的多语言体验适配问题，提出并实施通用解决方案；',
+    '拥有从 0-1 构建设计系统 并成功实施的 实战经验，显著提高产品设计一致性和产研团队效率；',
+    '具备 AI 项目交互设计经验，推动 AI 能力与研发管理场景结合，使其能够基于项目、Wiki 等业务上下文完成分析、内容生成与能力复用；',
+    '参与 AIGC 创新大赛，贡献方案思路，运用 AI 工具提高 UED 团队工作效率；',
+    '具备 建设、管理设计团队（10 人左右）的经验；指导初、中级设计师成长；优化团队和跨部门协作流程，培养专业导师和面试官；',
+    '能 迅速适应多变项目业务场景和需求，关注产品设计细节。',
   ],
 };
 

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { projects } from '../data/siteContent';
 
 const overlayTransition = {
   duration: 0.34,
@@ -18,6 +19,39 @@ const sidebarTransition = {
   ease: [0.22, 1, 0.36, 1],
   delay: 0.12,
 };
+
+function NextProjectBlock({ project, onOpenProject }) {
+  if (!project) {
+    return null;
+  }
+
+  const summary = project.coverSummary ?? project.description;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpenProject(project)}
+      className="group mt-16 w-full rounded-[2rem] border border-black/10 bg-white px-6 py-8 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10 md:mt-20 md:px-8 md:py-10"
+    >
+      <p className="mb-4 text-[10px] font-black uppercase tracking-[0.35em] text-neutral-400 transition group-hover:text-black">
+        Next Project
+      </p>
+      <h3 className="max-w-4xl text-3xl font-black leading-[1.02] tracking-[-0.05em] text-black md:text-5xl">
+        {project.title}
+      </h3>
+      <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-600 md:text-base md:leading-8">
+        {summary}
+      </p>
+      <div className="mt-8 flex items-center gap-3 text-sm font-black uppercase tracking-[0.22em] text-black">
+        <span>View Project</span>
+        <ArrowRight
+          size={16}
+          className="transition-transform duration-300 group-hover:translate-x-1"
+        />
+      </div>
+    </button>
+  );
+}
 
 function FigureBlock({ block }) {
   return (
@@ -171,7 +205,13 @@ function ContentBlock({ block }) {
   return null;
 }
 
-export default function ProjectDetail({ project, onBack }) {
+export default function ProjectDetail({ project, onBack, onOpenProject }) {
+  const currentProjectIndex = projects.findIndex((item) => item.id === project.id);
+  const nextProject =
+    currentProjectIndex === -1
+      ? null
+      : projects[(currentProjectIndex + 1) % projects.length];
+
   if (project.caseStudy) {
     const containerRef = useRef(null);
     const outline = project.caseStudy.blocks
@@ -345,6 +385,8 @@ export default function ProjectDetail({ project, onBack }) {
 
                   return <ContentBlock key={`${project.id}-case-${index}`} block={block} />;
                 })}
+
+                <NextProjectBlock project={nextProject} onOpenProject={onOpenProject} />
               </div>
             </motion.div>
 
@@ -354,7 +396,7 @@ export default function ProjectDetail({ project, onBack }) {
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, x: 8, filter: 'blur(6px)' }}
                 transition={sidebarTransition}
-                className="fixed top-[8.125rem] max-h-[calc(100vh-10.75rem)] border-l border-black/10 pl-4 md:top-[8.625rem] md:pl-5"
+                className="fixed top-[3.75rem] max-h-[calc(100vh-10.75rem)] border-l border-black/10 pl-4 md:top-[4.25rem] md:pl-5"
                 style={{
                   width: 'clamp(9rem, 18vw, 15.5rem)',
                   right: 'clamp(0.75rem, calc((100vw - 96rem) / 2 + 1.5rem), 4rem)',
@@ -501,6 +543,8 @@ export default function ProjectDetail({ project, onBack }) {
                   {project.results}
                 </p>
               </section>
+
+              <NextProjectBlock project={nextProject} onOpenProject={onOpenProject} />
             </div>
           </motion.div>
 
@@ -510,7 +554,7 @@ export default function ProjectDetail({ project, onBack }) {
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, x: 8, filter: 'blur(6px)' }}
                 transition={sidebarTransition}
-                className="fixed top-[8.125rem] max-h-[calc(100vh-10.75rem)] border-l border-black/10 pl-4 md:top-[8.625rem] md:pl-5"
+                className="fixed top-[3.75rem] max-h-[calc(100vh-10.75rem)] border-l border-black/10 pl-4 md:top-[4.25rem] md:pl-5"
                 style={{
                   width: 'clamp(9rem, 18vw, 15.5rem)',
                 right: 'clamp(0.75rem, calc((100vw - 96rem) / 2 + 1.5rem), 4rem)',
