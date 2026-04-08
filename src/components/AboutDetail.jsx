@@ -41,6 +41,8 @@ export default function AboutDetail({
   profileTags,
   workExperience,
   onBack,
+  isCaptureMode = false,
+  preserveCaptureChrome = false,
 }) {
   return (
     <motion.div
@@ -48,17 +50,23 @@ export default function AboutDetail({
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-      className="fixed inset-0 z-[60] overflow-y-auto bg-[#050505] text-white"
+      className={
+        isCaptureMode
+          ? 'relative min-h-screen bg-[#050505] text-white'
+          : 'fixed inset-0 z-[60] overflow-y-auto bg-[#050505] text-white'
+      }
     >
       <div className="mx-auto max-w-7xl px-6 pb-16 pt-24 md:px-12">
-        <button
-          type="button"
-          onClick={onBack}
-          className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-white/12 bg-black/70 p-2 text-xs font-black uppercase tracking-widest text-white backdrop-blur transition hover:border-[#D4FF00] hover:bg-[#D4FF00] hover:text-black md:left-12 md:p-3"
-        >
-          <ArrowRight size={14} className="rotate-180" />
-          Back
-        </button>
+        {isCaptureMode && !preserveCaptureChrome ? null : (
+          <button
+            type="button"
+            onClick={onBack}
+            className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-white/12 bg-black/70 p-2 text-xs font-black uppercase tracking-widest text-white backdrop-blur transition hover:border-[#D4FF00] hover:bg-[#D4FF00] hover:text-black md:left-12 md:p-3"
+          >
+            <ArrowRight size={14} className="rotate-180" />
+            Back
+          </button>
+        )}
 
         <div className="mb-14 flex items-center gap-4 border-b border-white/10 pb-6">
           <span className="text-[2.2rem] leading-none md:text-[2.9rem]">{aboutSection.icon}</span>

@@ -28,16 +28,6 @@ body {
     sans-serif;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(rgba(17, 17, 17, 0.018) 1px, transparent 1px);
-  background-size: 100% 32px;
-  opacity: 0.08;
-}
-
 button,
 a {
   -webkit-tap-highlight-color: transparent;

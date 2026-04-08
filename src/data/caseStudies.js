@@ -467,10 +467,12 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-03.png',
+              src: '/images/projects/work-item-refactor/work-item-refactor-motion-search-resource.webp',
               alt: '搜索资源并定位到对应的位置',
               caption: '▵ 表单配置页面 - 搜索资源并定位到对应的位置',
               assetName: 'attachment:750afc13-d3a7-4fc2-95c6-ae764d92f3f3:image.png',
+              kind: 'motion-placeholder',
+              format: 'webp',
             },
           ],
         },
@@ -491,10 +493,12 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-02.png',
+              src: '/images/projects/work-item-refactor/work-item-refactor-motion-custom-tabs.webp',
               alt: '自定义标签页',
               caption: '表单配置页面-自定义标签页',
               assetName: 'attachment:0cf6a81c-5855-4971-9474-c661e0701345:image.png',
+              kind: 'motion-placeholder',
+              format: 'webp',
             },
             {
               type: 'figure',
@@ -608,61 +612,49 @@ export const workItemRefactorCaseStudy = {
     },
     {
       type: 'chapter',
-      title: '六、结果怎么样',
+      title: '六、项目结果与价值',
       blocks: [
         {
           type: 'html',
-          html: '<p>这次项目采用分阶段推进的方式，先上线高优先级、低迁移成本的能力，再逐步验证和推进影响更大的框架调整。</p>',
+          html: '<p>这次项目没有采用一次性推翻重做的方式，而是按“先解决高频问题，再验证底层方向”的思路分阶段推进。从结果来看，这种推进方式是有效的：既保证了短期可落地，也为后续结构升级争取了验证空间。</p>',
         },
         {
           type: 'sectionTitle',
-          text: '已上线的能力',
+          text: '项目结果',
         },
         {
           type: 'html',
-          html: '<p>第一阶段已经完成并上线的能力包括：</p>',
+          html: '<p>第一阶段，表单资源库、自定义标签页与分组、信息重组、必填标识优化、编辑器升级、多语言适配优化等能力已经上线，优先缓解了信息查找、配置效率和内容编辑上的高频问题。</p><p>第二阶段，围绕详情载体解耦、浏览方式优化、动态区域调整等方向完成了 Demo 设计与可用性验证。</p>',
         },
         {
           type: 'list',
           ordered: false,
           items: [
-            '✅ 表单资源库',
-            '✅ 自定义标签页与分组',
-            '✅ 信息重组与视觉减负',
-            '✅ 必填标识优化',
-            '✅ 编辑器能力升级',
-            '✅ 多语言适配优化',
+            '第一阶段关键能力已上线，覆盖配置、浏览与编辑等高频场景',
+            '第二阶段关键方向已完成 Demo 验证，为后续框架升级提供了依据',
+            '可用性测试中，Demo 评分由线上现状的 3.2 提升至 4.4',
           ],
         },
         {
           type: 'html',
-          html: '<p>这部分方案优先解决了信息查找、配置效率和内容编辑的高频问题，也为后续更深层的结构升级打下了基础。</p>',
+          html: '<p>从测试反馈来看，多数用户认可新方案在连续浏览、信息定位、结构清晰度和协作内容阅读空间上的改善，说明这次重构不只是“界面变了”，而是真正提高了复杂协作场景下的使用效率。</p>',
         },
         {
           type: 'sectionTitle',
-          text: '已验证的方向',
+          text: '项目价值',
         },
         {
           type: 'html',
-          html: '<p>针对详情载体解耦、浏览方式优化、动态区域调整等第二阶段方向，我通过 Demo 和可用性测试完成了初步验证。</p><p>测试结果显示：</p>',
-        },
-        {
-          type: 'list',
-          ordered: false,
-          items: ['Demo 用户评分：4.4', '线上现状评分：3.2'],
-        },
-        {
-          type: 'html',
-          html: '<p>多数用户认可新方案在以下方面的改善：</p>',
+          html: '<p>这个项目更重要的价值，不只是完成了一次详情页改版，而是重新定义了工作项详情在复杂业务场景中的角色。</p>',
         },
         {
           type: 'list',
           ordered: false,
           items: [
-            '连续浏览工作项时更顺畅',
-            '属性与内容的组织更清晰',
-            '高密度信息下的查找效率更高',
-            '协作内容的阅读空间更合理',
+            '对用户来说，工作项详情从“信息堆叠的查看页”变成了更适合查找、阅读和连续处理任务的协作界面',
+            '对产品来说，这次重构补上了标签页、分组、配置组织、详情载体等关键能力，为后续复杂场景扩展提供了更清晰的框架基础',
+            '对项目推进来说，分阶段落地降低了改动风险，也让团队能够在上线与验证之间取得平衡',
+            '对我个人来说，这个项目体现了我从问题定义、研究分析到方案设计和可用性验证的完整推动能力，而不只是单点交互优化能力',
           ],
         },
       ],

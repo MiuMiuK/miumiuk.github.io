@@ -1,20 +1,22 @@
 import { motion } from 'framer-motion';
 
-export default function Marquee({ items }) {
+export default function Marquee({ items, className = '', itemClassName = '', duration = 24 }) {
   return (
-    <div className="flex overflow-hidden whitespace-nowrap border-y-2 border-black bg-[#D4FF00] py-3">
+    <div
+      className={`flex overflow-hidden whitespace-nowrap border-y-[3px] border-black bg-[#D4FF00] py-3 ${className}`}
+    >
       <motion.div
         initial={{ x: 0 }}
         animate={{ x: '-50%' }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-        className="flex text-2xl font-black uppercase tracking-tighter text-black md:text-4xl"
+        transition={{ duration, repeat: Infinity, ease: 'linear' }}
+        className={`flex text-[1.6rem] font-black uppercase tracking-[-0.08em] text-black md:text-[2.15rem] ${itemClassName}`}
       >
         {[...Array(8)].map((_, groupIndex) => (
           <span key={groupIndex} className="flex items-center">
             {items.map((item) => (
               <span key={`${groupIndex}-${item}`} className="flex items-center">
                 {item}
-                <span className="mx-8">•</span>
+                <span className="mx-5 md:mx-7">•</span>
               </span>
             ))}
           </span>

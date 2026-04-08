@@ -1,4 +1,4 @@
-import { onesAiAgentCaseStudy, workItemRefactorCaseStudy } from './caseStudies';
+import { workItemRefactorCaseStudy } from './caseStudies';
 
 // 以后主要维护这个文件：
 // 1. 改首页介绍、关于我、联系方式
@@ -6,10 +6,10 @@ import { onesAiAgentCaseStudy, workItemRefactorCaseStudy } from './caseStudies';
 // 3. 新增项目时直接复制 projects 里任意一项即可
 
 export const heroSection = {
-  eyebrow: 'Product Designer / Design Lead / Strategy',
+  eyebrow: '产品设计师 / 设计主管',
   navBrand: 'UX Design',
   name: 'MIAO KE',
-  portrait: '/images/profile/portrait.jpg',
+  portrait: '/images/home/portrait.jpg',
   portraitAlt: 'Miao Ke portrait',
   intro: [
     '👋 Hi，我是柯苗，一名产品体验设计师。',
@@ -23,161 +23,67 @@ export const projects = [
   {
     id: 'spotify-live',
     title: '工作项详情重构',
+    titleLines: ['工作项详情', '重构'],
     subtitle: '面向研发协作场景的信息结构与配置体验优化',
-    coverMeta: '2024｜B2B｜Enterprise UX｜Configuration',
+    coverMeta: '2025 / B端项目管理协作工具 / 交互设计主导',
     coverSummary: '面向研发协作场景的信息结构与配置体验优化。',
-    coverInfo: [
-      ['产品类型', 'B 端项目管理协作工具'],
-      ['我的角色', '交互设计主导'],
-      ['项目职责', '问题定义、用户研究、方案设计、可用性验证'],
-    ],
-    category: 'B2B | ENTERPRISE | UX | CONFIGURATION',
+    coverTags: ['问题定义', '用户研究', '方案设计', '可用性验证'],
+    category: 'B 端项目管理协作工具',
     year: '2024',
+    homeYear: '2025',
     client: 'ONES',
-    tags: [
-      '1. 问题定义',
-      '2. 用户研究',
-      '3. 竞品分析',
-      '4. 交互方案设计',
-      '5. 可用性验证',
-    ],
     description:
       '面向中大型企业客户，重构工作项详情的信息结构与配置框架，提升多角色协作下的信息查找效率与任务处理效率。',
-    overview:
-      '随着客户使用深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。这次改版的目标不只是优化某个页面，而是重新梳理工作项详情在复杂业务场景下的使用方式，让它既能提升当前效率，也能支撑未来产品持续演进。',
-    process: [
-      {
-        step: '问题确认',
-        details:
-          '从 20000+ 用户反馈、体验走查、用户研究和竞品分析中交叉验证问题广度与严重性，确认详情页问题已持续影响核心客户体验，并收敛出信息查找困难、结构难适配复杂场景、配置能力不足三类核心矛盾。',
-      },
-      {
-        step: '研究洞察',
-        details:
-          '覆盖产品经理、项目经理、研发、测试、运维等多角色开展情景观察、深度访谈与问卷调研，确认不同角色在同一工作项中关注的信息差异显著，用户更关注成组信息，并且连续处理任务与聚焦阅读任务对详情载体有不同需求。',
-      },
-      {
-        step: '方案设计',
-        details:
-          '按“先解决高频效率问题，再逐步调整底层框架”的思路分阶段推进：第一阶段重构表单配置能力，引入表单资源库、自定义标签页与分组、信息重组与编辑器升级；第二阶段探索详情载体与列表布局解耦，支持弹窗与抽屉两种浏览方式。',
-      },
-      {
-        step: '方案验证',
-        details:
-          '围绕详情载体、属性分组、信息浏览方式、动态区域调整等设计点输出多组 Demo，并通过可用性测试验证设计方向；测试中 Demo 评分由线上现状的 3.2 提升至 4.4，验证了连续浏览、信息查找和结构清晰度的改善。',
-      },
-    ],
-    results:
-      '第一阶段已上线表单资源库、自定义标签页与分组、信息重组、编辑器升级等能力；第二阶段围绕详情载体解耦与浏览方式优化完成 Demo 验证，可用性测试评分从 3.2 提升至 4.4。',
-    bgClass: 'bg-[#1DB954]',
     coverImage: '/images/projects/spotify-live-cover.svg',
     coverAlt: '工作项详情重构 cover',
-    detailImage: '/images/projects/spotify-live-detail.svg',
-    detailAlt: '工作项详情重构 detail banner',
-    hoverFacts: [
-      ['产品类型', 'B 端项目管理协作工具'],
-      ['服务对象', '中大型企业产研团队'],
-      ['项目角色', '交互设计主导'],
-      ['我的职责', '问题定义、用户研究、竞品分析、交互方案设计、可用性验证'],
-      ['协作对象', '产品、研发、业务、解决方案专家'],
-    ],
+    imageBackground: '#FFD7C0',
+    detailImage: '/images/home/work-item-refactor-detail.svg',
+    detailAlt: '工作项详情重构 detail support graphic',
     caseStudy: workItemRefactorCaseStudy,
   },
   {
-    id: 'nexus-os',
-    title: 'Nexus Design System',
-    subtitle: 'Scaling products through unified visual language.',
-    coverMeta: '2022-2023｜System｜Infrastructure｜Tooling',
-    coverSummary: '通过统一的视觉语言与组件体系，支撑多产品协同扩展。',
-    coverInfo: [
-      ['产品类型', '跨产品设计系统'],
-      ['我的角色', '设计系统主导'],
-      ['项目职责', '组件体系设计、设计 Token、文档规范、协作流程搭建'],
-    ],
-    category: 'SYSTEM | INFRASTRUCTURE | TOOLING',
-    year: '2022-2023',
-    client: 'Google',
-    tags: ['1. Component Library', '2. Design Tokens', '3. Documentation Hub'],
-    description: '为 40 多个产品团队构建可扩展的设计语言。',
-    overview: '从零到一构建了一套跨平台的原子化设计系统。',
-    process: [
-      {
-        step: '审计',
-        details: '对现有 2000 多个 UI 组件进行了分类和合并。',
-      },
-      {
-        step: '自动化',
-        details: '建立了从 Figma 到代码库的自动化同步流水线。',
-      },
-    ],
-    results: '开发效率提升 45%，设计决策时间减少 60%。',
-    bgClass: 'bg-[#0F766E]',
-    coverImage: '/images/projects/nexus-os-cover.svg',
-    coverAlt: 'Nexus Design System cover',
-    detailImage: '/images/projects/nexus-os-detail.svg',
-    detailAlt: 'Nexus Design System detail banner',
-    hoverFacts: [
-      ['产品类型', '跨产品设计系统'],
-      ['服务对象', '40+ 产品与设计研发团队'],
-      ['项目角色', '设计系统主导'],
-      ['我的职责', '组件体系设计、设计 Token、文档规范、协作流程搭建'],
-      ['协作对象', '设计、前端、产品平台团队'],
-    ],
-  },
-  {
-    id: 'synthesia-ai',
-    title: 'ONES AI Agent',
-    subtitle: '企业研发管理场景下，从全局对话到可复用、可扩展 Agent 的交互设计',
-    coverMeta: '2024｜AI Agent｜Enterprise UX｜B2B',
-    coverSummary:
-      '面向企业研发管理场景，建立统一的 AI Agent 交互入口，并逐步演进为有边界、可执行、可复用的智能工作伙伴。',
-    coverInfo: [
-      ['产品类型', 'B 端研发管理 AI Agent'],
-      ['我的角色', '交互设计'],
-      ['项目职责', '交互框架梳理、范围能力设计、结构化结果与技能沉淀方案整理'],
-    ],
-    category: 'AI AGENT | ENTERPRISE | B2B | UX',
-    year: '2024',
+    id: 'ones-assistant',
+    title: 'ONES Assistant',
+    titleLines: ['ONES', 'Assistant'],
+    subtitle: '企业研发管理场景下，从全局对话到可复用、可扩展的 Agent',
+    coverMeta: '2025-2026 / AI 智能体',
+    coverSummary: '企业研发管理场景下，从全局对话到可复用、可扩展的 Agent',
+    coverTags: ['AI Agent'],
+    category: 'AI 智能体',
+    year: '2025-2026',
     client: 'ONES',
-    tags: ['1. 上下文理解', '2. 范围能力', '3. 结果回传', '4. 结构化结果', '5. 技能沉淀'],
-    description:
-      '面向企业研发管理场景，建立统一的 AI Agent 交互入口，让用户通过自然语言完成查询、分析、创建、总结与结果回传。',
-    overview:
-      '项目分为两个阶段推进：一阶段聚焦搭建全局对话式交互框架，建立统一入口与基础体验；二阶段进一步扩展上下文范围、结构化结果生成、技能沉淀与场景化能力，让 Agent 从“可对话”演进为“可复用、可扩展的智能工作伙伴”。',
-    process: [
-      {
-        step: '问题定义',
-        details:
-          '围绕企业研发管理场景重新定义 AI 的角色，不把它当作单纯聊天入口，而是作为连接模型能力与业务上下文的智能执行单元，重点思考上下文理解、任务输入、结果回传与能力沉淀。',
-      },
-      {
-        step: '阶段一方案',
-        details:
-          '建立全局唤起、上下文识别、指令变量与上下文扩展机制，并通过结果回传设计让查询、创建、总结等输出进入筛选器、视图、工作项与 Wiki 等业务对象中。',
-      },
-      {
-        step: '阶段二方案',
-        details:
-          '将不同类型的上下文限定抽象为统一的范围能力，并补充 ONESql 结构化结果、技能沉淀、图表可视化、Home 智能摘要与 Demo 数据生成等能力，让 Agent 围绕明确业务范围工作。',
-      },
-    ],
-    results:
-      '项目从统一对话入口逐步演进为面向企业研发管理场景的可复用 Agent 能力体系，持续回答 AI 在复杂业务中如何“有边界、可执行、可追溯、可复用”地工作。',
-    bgClass: 'bg-[#D4FF00]',
+    description: '企业研发管理场景下，从全局对话到可复用、可扩展的 Agent',
     coverImage: '/images/projects/synthesia-ai-cover.svg',
-    coverAlt: 'ONES AI Agent cover',
-    detailImage: '/images/projects/synthesia-ai-detail.svg',
-    detailAlt: 'ONES AI Agent detail banner',
-    hoverFacts: [
-      ['产品类型', 'B 端研发管理 AI Agent'],
-      ['服务对象', '企业产研协作团队'],
-      ['项目角色', '交互设计'],
-      ['我的职责', '交互框架梳理、范围能力设计、结构化结果与技能沉淀方案整理'],
-      ['项目重点', '上下文理解、结果回传、能力复用'],
-    ],
-    caseStudy: onesAiAgentCaseStudy,
+    coverAlt: 'ONES Assistant cover',
+    imageBackground: '#EBE2FF',
   },
 ];
+
+export const thinkingSection = {
+  title: 'UX THINKING MATTERS.',
+  titleLines: ['UX', 'THINKING', 'MATTERS.'],
+  keywords: ['产品策略', '设计系统', '0-1产品', '交互'],
+  description:
+    '我不仅设计界面，更设计逻辑与体验。我专注于利用 AI 技术加速产品开发，并在直觉与数据之间寻找最佳平衡。',
+  ctaText: '查看完整 About',
+};
+
+export const footerSection = {
+  marqueeText: 'Let’s build better product experiences.',
+  title: 'LET’S TALK.',
+  informationLabel: 'information',
+  fields: [
+    ['Base', '深圳 · 广东'],
+    ['Phone', '17727589307'],
+    ['Education', '本科 · 艺术与设计'],
+    ['Wechat', 'Mius_k'],
+    ['Email', 'miuskeee@gmail.com'],
+  ],
+  navigationLabel: 'NAVIGATE',
+  navigationItems: ['Home', 'About', 'Experience', 'Contact'],
+  copyright: '© 2025 MIAO KE',
+  backToTop: 'Back to top',
+};
 
 export const profileTags = [
   { label: '设计体系负责人', color: 'border-red-400/30 bg-red-400/5 text-red-400' },
@@ -312,14 +218,4 @@ export const workExperience = {
   ],
 };
 
-export const contactSection = {
-  title: 'Want to',
-  highlight: 'Collaborate?',
-  email: 'hello@miaoke.design',
-  copyright: '© 2024 MIAO KE — ALL RIGHTS RESERVED',
-  socialLinks: [
-    { label: 'LinkedIn', href: 'https://linkedin.com' },
-    { label: 'Medium', href: 'https://medium.com' },
-    { label: 'Dribbble', href: 'https://dribbble.com' },
-  ],
-};
+export const contactSection = footerSection;
