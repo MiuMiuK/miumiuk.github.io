@@ -56,18 +56,24 @@ function renderHeroParagraph(line, index) {
 
 function ActionButton({ button, onNavigate }) {
   const isPrimary = button.variant === 'primary';
+  const isDark = button.variant === 'secondary-dark';
 
   return (
     <button
       type="button"
       onClick={() => onNavigate(button.target)}
-      className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold text-black transition ${
-        isPrimary ? 'bg-[#D4FF00] hover:bg-[#E7FF5F]' : 'bg-[#E2E2E2] hover:bg-[#D6D6D6]'
+      className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[20px] font-bold transition ${
+        isPrimary
+          ? 'bg-[#D4FF00] text-black hover:bg-[#E7FF5F]'
+          : isDark
+            ? 'bg-black text-[#D4FF00] hover:bg-neutral-900'
+            : 'bg-[#E2E2E2] text-black hover:bg-[#D6D6D6]'
       }`}
     >
       <span className="inline-flex items-center gap-5">
+        {isDark ? <ArrowRight className="rotate-180" size={17} strokeWidth={2.5} /> : null}
         <span>{button.label}</span>
-        <ArrowRight size={17} strokeWidth={2.5} />
+        {isDark ? null : <ArrowRight size={17} strokeWidth={2.5} />}
       </span>
     </button>
   );
@@ -101,33 +107,35 @@ export default function AboutPage({
       {showChrome ? <Navbar brand={brand} onNavigate={onNavigate} activeItem="about" /> : null}
 
       <div className={showChrome ? 'pt-[72px] md:pt-[91px]' : ''}>
+        {showChrome ? (
+          <button
+            type="button"
+            onClick={onBack}
+            className="fixed left-5 top-[6.5rem] z-[70] flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white px-[16px] text-[12px] font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00] md:left-[3.75rem] md:top-[121px]"
+          >
+            <ArrowRight size={12} className="rotate-180" />
+            <span>{aboutPage.backLabel}</span>
+          </button>
+        ) : null}
+
         <section className="border-t-[3px] border-t-[#D4FF00] bg-black">
           <div className="mx-auto max-w-[1440px] px-5 md:h-[699px] md:px-[3.75rem]">
             <div className="h-full py-[30px]">
-            {showChrome ? (
-              <button
-                type="button"
-                onClick={onBack}
-                className="flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#C2BFBF] bg-white text-[12px] font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00]"
-              >
-                <ArrowRight size={12} className="rotate-180" />
-                <span>{aboutPage.backLabel}</span>
-              </button>
-            ) : null}
+              <div className="h-[103px]" />
 
-            <div className="mt-12 md:mt-[60px]">
-              <h1 className="max-w-[1320px] text-[4.5rem] font-black uppercase leading-[0.9] tracking-[0.01em] text-white md:w-[1320px] md:text-[100px] md:leading-[90px] md:tracking-[1px]">
-                {aboutPage.heroTitleLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </h1>
-            </div>
+              <div className="md:mt-[17px]">
+                <h1 className="max-w-[1320px] text-[4.5rem] font-black uppercase leading-[0.9] tracking-[0.01em] text-white md:w-[1320px] md:text-[100px] md:leading-[90px] md:tracking-[1px]">
+                  {aboutPage.heroTitleLines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </h1>
+              </div>
 
-            <div className="mt-12 max-w-[82.5rem] md:mt-[60px] md:w-[1320px]">
-              {aboutPage.heroParagraphs.map(renderHeroParagraph)}
-            </div>
+              <div className="mt-12 max-w-[82.5rem] md:mt-[60px] md:w-[1320px]">
+                {aboutPage.heroParagraphs.map(renderHeroParagraph)}
+              </div>
             </div>
           </div>
         </section>

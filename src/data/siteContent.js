@@ -6,11 +6,13 @@ import { workItemRefactorCaseStudy } from './caseStudies';
 // 3. 新增项目时直接复制 projects 里任意一项即可
 
 export const heroSection = {
-  eyebrow: '产品设计师 / 设计主管',
+  eyebrow: '产品设计师',
   navBrand: 'UX Design',
   name: 'MIAO KE',
   portrait: '/images/home/portrait.jpg',
   portraitAlt: 'Miao Ke portrait',
+  ctaText: '查看完整 Experience',
+  ctaTarget: 'experience',
   intro: [
     '👋 Hi，我是柯苗，一名产品体验设计师。',
     '过去 9+ 年里，我一直在和复杂业务场景打交道，深耕 SaaS 企业服务领域 7 年，擅长企业级产品体验设计、设计系统搭建、复杂流程梳理与国际化适配，做过从 0-1 到 1-N 的产品设计。',
@@ -87,6 +89,7 @@ export const thinkingSection = {
   description:
     '我不仅设计界面，更设计逻辑与体验。我专注于将 AI 协作融入产品设计研发工作流，并在直觉与数据之间寻找设计的最佳平衡。',
   ctaText: '查看完整 About',
+  ctaTarget: 'about',
 };
 
 export const footerSection = {
@@ -153,12 +156,12 @@ export const aboutPage = {
   backLabel: 'Back',
   ctaButtons: [
     {
-      label: '查看精选项目',
+      label: '浏览精选项目',
       target: 'projects',
-      variant: 'secondary',
+      variant: 'secondary-dark',
     },
     {
-      label: '查看工作经历',
+      label: '查看完整 Experience',
       target: 'experience',
       variant: 'primary',
     },
@@ -172,6 +175,7 @@ export const workExperience = {
       company: '深圳复临科技有限公司',
       role: '资深用户体验设计师',
       period: '2018.08 ~ 至今',
+      badges: ['UX 核心成员', '0-1 构建体系', 'AI 探索', '管理职能'],
       sections: [
         {
           title: '核心项目',
@@ -233,16 +237,33 @@ export const workExperience = {
       company: '广东兴奇集团',
       role: 'UI/UX 设计师',
       period: '2017.05 ~ 2018.08',
-      summary: [
-        '早期作为 UI 设计师，负责「兴奇 OA」门户的 App 和 Web 端版本迭代，跟进界面交互优化，熟练掌握相关多端设计规范，为后续实际落地设计系统打下坚实基础。',
-        '中期开始多线程参与集团旗下「天奇 ERP 有色金属信息平台」「兴奇人事系统」「兴奇 OA」多个业务线的版本增量业务迭代，逐步深入了解用户体验。',
-        '后期从 0-1 独立负责「日昌盛小额贷款业务系统」项目（包含 App 和 Web 端），前期跟产品经理一起跟进需求情况，项目过程中跟进开发进度，保障项目方案设计成功落地。',
+      badges: ['UI 设计', '系统重构'],
+      sections: [
+        {
+          title: '早期',
+          items: [
+            '作为 UI 设计师，负责「兴奇 OA」门户的 App 和 Web 端版本迭代，跟进界面交互优化，熟练掌握相关多端设计规范，为后续实际落地设计系统打下坚实基础。',
+          ],
+        },
+        {
+          title: '中期',
+          items: [
+            '开始多线程参与集团旗下「天奇 ERP 有色金属信息平台」「兴奇人事系统」「兴奇 OA」多个业务线的版本增量业务迭代，逐步深入了解用户体验。',
+          ],
+        },
+        {
+          title: '后期',
+          items: [
+            '从 0-1 独立负责「日昌盛小额贷款业务系统」项目（包含 App 和 Web 端），前期跟产品经理一起跟进需求情况，项目过程中跟进开发进度，保障项目方案设计成功落地。',
+          ],
+        },
       ],
     },
     {
       company: '武汉锐智天成有限公司',
       role: 'UI 设计师',
       period: '2014.11 ~ 2016.10',
+      badges: ['早期积累', '视觉表现'],
       sections: [
         {
           title: '初期负责画册、海报等物料设计',
@@ -260,8 +281,9 @@ export const workExperience = {
     },
     {
       company: '湖北省标识行业协会',
-      role: '平面设计师（实习）',
+      role: '平面设计师',
       period: '2014.05 ~ 2014.09',
+      badges: ['实习'],
       summary: [
         '管理湖北省标识行业协会网站后台维护，以及微信公众号管理与发布，还有其他各类宣传物料、海报、易拉宝等设计。',
       ],
@@ -270,8 +292,7 @@ export const workExperience = {
 };
 
 export const experiencePage = {
-  icon: '💼',
-  title: 'Experience',
+  barTitle: 'WORK HISTORY · CAREER PATH',
   ctaButtons: [
     {
       label: '查看完整 About',
@@ -279,7 +300,7 @@ export const experiencePage = {
       variant: 'secondary-dark',
     },
     {
-      label: '查看精选项目',
+      label: '浏览精选项目',
       target: 'projects',
       variant: 'primary',
     },

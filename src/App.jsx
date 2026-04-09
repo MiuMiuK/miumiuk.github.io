@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Marquee from './components/Marquee';
 import ProjectCard from './components/ProjectCard';
@@ -231,43 +232,58 @@ export default function App() {
             <div className="flex flex-col">
               <div className="h-10 md:h-[95px]" />
 
-              <div className="grid items-start gap-10 xl:grid-cols-[minmax(0,1fr)_12rem]">
-                <div className="space-y-[4.6875rem]">
+              <div className="relative md:h-[496px]">
+                <div className="grid items-start gap-10 md:grid-cols-[674px_1fr] md:gap-0">
                   <div>
-                    <p className="mb-5 text-[10px] font-black uppercase tracking-[0.42em] text-neutral-500 md:text-[0.95rem] md:leading-none">
-                      {heroSection.eyebrow}
-                    </p>
-                    <h1 className="text-[4.3rem] font-black uppercase leading-[0.9] tracking-[-0.08em] text-black md:text-[10rem] md:leading-[0.83]">
-                      {heroSection.name.split(' ').map((part) => (
-                        <span key={part} className="mr-[0.06em] inline-block">
-                          {part}
-                        </span>
-                      ))}
-                    </h1>
-                  </div>
+                    <div className="md:h-[168px]">
+                      <p className="text-[10px] font-black uppercase tracking-[0.42em] text-neutral-500 md:text-[0.95rem] md:leading-none">
+                        {heroSection.eyebrow}
+                      </p>
+                      <h1 className="mt-5 text-[4.3rem] font-black uppercase leading-[0.9] tracking-[-0.08em] text-black md:text-[10rem] md:leading-[0.83]">
+                        {heroSection.name.split(' ').map((part) => (
+                          <span key={part} className="mr-[0.06em] inline-block">
+                            {part}
+                          </span>
+                        ))}
+                      </h1>
+                    </div>
 
-                  <div className="grid gap-5 md:grid-cols-[6px_1033px] md:gap-8">
-                    <div className="hidden rounded-full bg-[#D4FF00] md:block md:h-[161px]" />
-                    <div className="space-y-4">
-                      {heroSection.intro.map((paragraph) => (
-                        <p
-                          key={paragraph}
-                          className="max-w-[65rem] text-[1rem] font-medium leading-[1.95] tracking-[-0.01em] text-neutral-800 md:text-[1.28rem] md:leading-[1.58]"
-                        >
-                          {renderHighlightedIntro(paragraph)}
-                        </p>
-                      ))}
+                    <div className="mt-10 md:mt-[75px]">
+                      <div className="grid gap-5 md:grid-cols-[6px_1033px] md:gap-8">
+                        <div className="hidden rounded-full bg-[#D4FF00] md:block md:h-[161px]" />
+                        <div className="space-y-4">
+                          {heroSection.intro.map((paragraph) => (
+                            <p
+                              key={paragraph}
+                              className="max-w-[65rem] text-[1rem] font-medium leading-[1.95] tracking-[-0.01em] text-neutral-800 md:text-[1.28rem] md:leading-[1.58]"
+                            >
+                              {renderHighlightedIntro(paragraph)}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => handleNavigate(heroSection.ctaTarget)}
+                        className="mt-8 inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition hover:bg-neutral-900 md:mt-[50px] md:w-[195px]"
+                      >
+                        <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00]">
+                          <span>{heroSection.ctaText}</span>
+                          <ArrowRight size={10} strokeWidth={2.5} />
+                        </span>
+                      </button>
                     </div>
                   </div>
-                </div>
 
-                <div className="justify-self-start pt-2 md:justify-self-end md:pt-[6.25rem]">
-                  <div className="h-36 w-36 overflow-hidden rounded-full border-[4px] border-black bg-neutral-100 md:h-44 md:w-44">
-                    <img
-                      src={heroSection.portrait}
-                      alt={heroSection.portraitAlt}
-                      className="h-full w-full object-cover"
-                    />
+                  <div className="justify-self-start pt-2 md:absolute md:left-[799px] md:top-[28px] md:pt-0">
+                    <div className="h-36 w-36 overflow-hidden rounded-full border-[4px] border-black bg-[#F5F5F5] p-1 md:h-44 md:w-44">
+                      <img
+                        src={heroSection.portrait}
+                        alt={heroSection.portraitAlt}
+                        className="h-full w-full rounded-full object-cover"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -338,7 +354,7 @@ export default function App() {
 
                   <button
                     type="button"
-                    onClick={() => handleNavigate('experience')}
+                    onClick={() => handleNavigate(thinkingSection.ctaTarget)}
                     className="inline-flex items-center justify-end gap-[0.3125rem] rounded-[3px] bg-[#D4FF00] px-5 py-2.5 text-[0.875rem] font-bold leading-[1.375rem] text-black transition hover:bg-[#E7FF5F]"
                   >
                     <span>{thinkingSection.ctaText}</span>
@@ -380,6 +396,7 @@ export default function App() {
         {activePage === 'experience' ? (
           <ExperiencePage
             brand={heroSection.navBrand}
+            heroSection={heroSection}
             experiencePage={experiencePage}
             jobs={workExperience.items}
             pageEndBar={pageEndBar}
