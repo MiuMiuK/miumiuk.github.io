@@ -4,12 +4,16 @@ import Navbar from './components/Navbar';
 import Marquee from './components/Marquee';
 import ProjectCard from './components/ProjectCard';
 import ProjectDetail from './components/ProjectDetail';
-import AboutDetail from './components/AboutDetail';
+import AboutPage from './components/AboutPage';
+import ExperiencePage from './components/ExperiencePage';
 import SiteFooter from './components/SiteFooter';
 import {
+  aboutPage,
   aboutSection,
+  experiencePage,
   footerSection,
   heroSection,
+  pageEndBar,
   profileTags,
   projects,
   thinkingSection,
@@ -34,7 +38,7 @@ const isFigmaCaptureHash = (hash) => hash.includes('figmacapture=');
 
 const getOverlayStateFromHash = () => {
   if (typeof window === 'undefined') {
-    return { selectedProject: null, isAboutOpen: false };
+    return { selectedProject: null, activePage: null };
   }
 
   const url = new URL(window.location.href);
@@ -42,32 +46,40 @@ const getOverlayStateFromHash = () => {
   const overlayFromQuery = url.searchParams.get('overlay');
 
   if (overlayFromQuery === 'about') {
-    return { selectedProject: null, isAboutOpen: true };
+    return { selectedProject: null, activePage: 'about' };
+  }
+
+  if (overlayFromQuery === 'experience') {
+    return { selectedProject: null, activePage: 'experience' };
   }
 
   if (projectIdFromQuery) {
     const matchedProject = projects.find((project) => project.id === projectIdFromQuery) ?? null;
-    return { selectedProject: matchedProject, isAboutOpen: false };
+    return { selectedProject: matchedProject, activePage: null };
   }
 
   const hash = getPrimaryHashSegment(window.location.hash);
 
   if (hash === '#about') {
-    return { selectedProject: null, isAboutOpen: true };
+    return { selectedProject: null, activePage: 'about' };
+  }
+
+  if (hash === '#experience') {
+    return { selectedProject: null, activePage: 'experience' };
   }
 
   if (hash.startsWith('#project=')) {
     const projectId = decodeURIComponent(hash.replace('#project=', ''));
     const matchedProject = projects.find((project) => project.id === projectId) ?? null;
-    return { selectedProject: matchedProject, isAboutOpen: false };
+    return { selectedProject: matchedProject, activePage: null };
   }
 
-  return { selectedProject: null, isAboutOpen: false };
+  return { selectedProject: null, activePage: null };
 };
 
 export default function App() {
   const [overlayState, setOverlayState] = useState(() => getOverlayStateFromHash());
-  const { selectedProject, isAboutOpen } = overlayState;
+  const { selectedProject, activePage } = overlayState;
   const isCaptureMode =
     typeof window !== 'undefined' ? isFigmaCaptureHash(window.location.hash) : false;
   const preserveCaptureChrome =
@@ -90,13 +102,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!selectedProject && !isAboutOpen && shouldRestoreScrollRef.current) {
+    if (!selectedProject && !activePage && shouldRestoreScrollRef.current) {
       shouldRestoreScrollRef.current = false;
       window.requestAnimationFrame(() => {
         window.scrollTo({ top: homeScrollPositionRef.current, behavior: 'auto' });
       });
     }
-  }, [selectedProject, isAboutOpen]);
+  }, [selectedProject, activePage]);
 
   const updateHash = (nextHash) => {
     if (window.location.hash === nextHash) {
@@ -137,31 +149,50 @@ export default function App() {
     updateHash('');
   };
 
+  const closeOverlayWithoutRestore = () => {
+    shouldRestoreScrollRef.current = false;
+    updateHash('');
+  };
+
+  const openPage = (page) => {
+    rememberHomeScrollPosition();
+    updateHash(page === 'experience' ? '#experience' : '#about');
+  };
+
+  const navigateHomeSection = (sectionId) => {
+    closeOverlayWithoutRestore();
+    window.requestAnimationFrame(() => {
+      if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      scrollToSection(sectionId);
+    });
+  };
+
   const handleNavigate = (id) => {
-    if (id === 'experience') {
-      rememberHomeScrollPosition();
-      updateHash('#about');
+    if (id === 'about') {
+      openPage('about');
       return;
     }
 
-    closeOverlay();
+    if (id === 'experience') {
+      openPage('experience');
+      return;
+    }
 
     if (id === 'projects') {
-      scrollToSection('work');
-      return;
-    }
-
-    if (id === 'about') {
-      scrollToSection('thinking');
+      navigateHomeSection('work');
       return;
     }
 
     if (id === 'contact') {
-      scrollToSection('contact');
+      navigateHomeSection('contact');
       return;
     }
 
-    scrollToSection('home');
+    navigateHomeSection('home');
   };
 
   const renderHighlightedIntro = (text) => {
@@ -274,35 +305,41 @@ export default function App() {
 
         <section id="thinking" className="border-t-[3px] border-t-[#D4FF00] bg-black">
           <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-[3.75rem] md:py-[6.25rem]">
-            <div className="grid gap-14 md:grid-cols-[30rem_minmax(0,1fr)] md:gap-10">
-              <div className="flex flex-col justify-between md:min-h-[29.5rem]">
-                <div>
-                  <h2 className="text-[4rem] font-black uppercase leading-[0.9] tracking-[-0.06em] text-white md:text-[5rem] md:leading-[5.625rem] md:tracking-[0.0125em]">
-                    {(thinkingSection.titleLines ?? [thinkingSection.title]).map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </h2>
-                </div>
+            <div className="flex flex-col gap-12 md:gap-[2.875rem]">
+              <h2 className="w-full max-w-[30rem] text-[4rem] font-black uppercase leading-[0.9] tracking-[-0.06em] text-white md:text-[5rem] md:leading-[5.625rem] md:tracking-[0.0125em]">
+                {(thinkingSection.titleLines ?? [thinkingSection.title]).map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
 
-                <div className="grid max-w-[26.625rem] grid-cols-2 gap-x-10 gap-y-10 pt-6 text-[1rem] font-black tracking-[-0.02em] text-white md:pt-0 md:text-[1rem] md:leading-[0.95rem] md:tracking-[0.2625rem]">
-                  {thinkingSection.keywords.map((keyword) => (
-                    <p key={keyword}>{keyword}</p>
+              <div className="grid gap-10 md:grid-cols-[34rem_42.5rem] md:items-end md:justify-between">
+                <div className="grid gap-10 md:grid-cols-2 md:grid-rows-2 md:gap-x-12 md:gap-y-[3.25rem]">
+                  {thinkingSection.capabilities.map((capability) => (
+                    <div key={capability.labelZh} className="w-full max-w-[14rem] space-y-[0.3125rem]">
+                      <p className="text-[0.875rem] font-black uppercase leading-[0.9375rem] tracking-[0.2625rem] text-[#D5FF02]">
+                        {capability.labelZh}
+                      </p>
+                      <p className="text-[1.125rem] font-semibold leading-[1.5rem] tracking-[0.0625rem] text-white">
+                        {capability.labelEn}
+                      </p>
+                      <p className="whitespace-nowrap text-[0.75rem] leading-[1rem] tracking-[0.18rem] text-[#909090]">
+                        {capability.description}
+                      </p>
+                    </div>
                   ))}
                 </div>
-              </div>
 
-              <div className="flex flex-col justify-end md:min-h-[29.5rem]">
-                <div className="max-w-[42.5rem] space-y-8 pb-1 md:space-y-[0.625rem]">
-                  <p className="text-[1.2rem] font-light leading-[2] tracking-[-0.02em] text-[#C4C4C4] md:text-[1.25rem] md:leading-[3.4375rem] md:tracking-normal">
+                <div className="flex min-h-[9.375rem] flex-col items-start justify-between gap-6">
+                  <p className="w-full max-w-[42.5rem] text-[1.25rem] font-light leading-[2.1875rem] text-[#C4C4C4]">
                     {thinkingSection.description}
                   </p>
 
                   <button
                     type="button"
                     onClick={() => handleNavigate('experience')}
-                    className="inline-flex items-center gap-[0.3125rem] text-[1rem] font-semibold tracking-[0.0625rem] text-[#D4FF00] transition hover:text-[#F1FF8A] md:text-[1rem] md:leading-[2.5rem]"
+                    className="inline-flex items-center justify-end gap-[0.3125rem] rounded-[3px] bg-[#D4FF00] px-5 py-2.5 text-[0.875rem] font-bold leading-[1.375rem] text-black transition hover:bg-[#E7FF5F]"
                   >
                     <span>{thinkingSection.ctaText}</span>
                     <span aria-hidden="true">→</span>
@@ -327,12 +364,27 @@ export default function App() {
             preserveCaptureChrome={preserveCaptureChrome}
           />
         ) : null}
-        {isAboutOpen ? (
-          <AboutDetail
+        {activePage === 'about' ? (
+          <AboutPage
+            brand={heroSection.navBrand}
+            aboutPage={aboutPage}
             aboutSection={aboutSection}
             profileTags={profileTags}
-            workExperience={workExperience}
+            pageEndBar={pageEndBar}
             onBack={closeOverlay}
+            onNavigate={handleNavigate}
+            isCaptureMode={isCaptureMode}
+            preserveCaptureChrome={preserveCaptureChrome}
+          />
+        ) : null}
+        {activePage === 'experience' ? (
+          <ExperiencePage
+            brand={heroSection.navBrand}
+            experiencePage={experiencePage}
+            jobs={workExperience.items}
+            pageEndBar={pageEndBar}
+            onBack={closeOverlay}
+            onNavigate={handleNavigate}
             isCaptureMode={isCaptureMode}
             preserveCaptureChrome={preserveCaptureChrome}
           />

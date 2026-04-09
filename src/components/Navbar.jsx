@@ -5,7 +5,7 @@ const navItems = [
   ['Contact', 'contact'],
 ];
 
-export default function Navbar({ brand, onNavigate }) {
+export default function Navbar({ brand, onNavigate, activeItem = null }) {
   const parts = brand.split(' ');
 
   return (
@@ -35,7 +35,11 @@ export default function Navbar({ brand, onNavigate }) {
             key={id}
             type="button"
             onClick={() => onNavigate(id)}
-            className="rounded-full border border-transparent px-3 py-1.5 uppercase transition hover:border-black/10 hover:bg-[#D4FF00] hover:text-black md:px-4 md:py-2"
+            className={`rounded-full border px-3 py-1.5 uppercase transition md:px-4 md:py-2 ${
+              activeItem === id
+                ? 'border-[#DFE1E5] bg-[#D4FF00] text-black'
+                : 'border-transparent hover:border-black/10 hover:bg-[#D4FF00] hover:text-black'
+            }`}
           >
             {label}
           </button>

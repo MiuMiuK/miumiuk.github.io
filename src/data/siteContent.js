@@ -62,9 +62,30 @@ export const projects = [
 export const thinkingSection = {
   title: 'UX THINKING MATTERS.',
   titleLines: ['UX', 'THINKING', 'MATTERS.'],
-  keywords: ['产品策略', '设计系统', '0-1产品', '交互'],
+  capabilities: [
+    {
+      labelZh: '产品策略',
+      labelEn: 'Product Strategy',
+      description: '从业务目标推导设计目标',
+    },
+    {
+      labelZh: '设计系统',
+      labelEn: 'Design Systems',
+      description: '构建可落地的原子级规范',
+    },
+    {
+      labelZh: '0-1产品',
+      labelEn: 'From 0 To 1',
+      description: '定义核心链路与体验闭环',
+    },
+    {
+      labelZh: '交互',
+      labelEn: 'Interaction',
+      description: '处理高复杂度的业务逻辑',
+    },
+  ],
   description:
-    '我不仅设计界面，更设计逻辑与体验。我专注于利用 AI 技术加速产品开发，并在直觉与数据之间寻找最佳平衡。',
+    '我不仅设计界面，更设计逻辑与体验。我专注于将 AI 协作融入产品设计研发工作流，并在直觉与数据之间寻找设计的最佳平衡。',
   ctaText: '查看完整 About',
 };
 
@@ -85,16 +106,21 @@ export const footerSection = {
   backToTop: 'Back to top',
 };
 
+export const pageEndBar = {
+  copyright: '© 2025 MIAO KE',
+  backToTop: 'Back to top',
+};
+
 export const profileTags = [
-  { label: '设计体系负责人', color: 'border-red-400/30 bg-red-400/5 text-red-400' },
-  { label: 'UED 团队管理', color: 'border-orange-400/30 bg-orange-400/5 text-orange-400' },
-  { label: '规范制定者', color: 'border-yellow-500/30 bg-yellow-500/5 text-yellow-500' },
-  { label: '跨团队支撑', color: 'border-purple-400/30 bg-purple-400/5 text-purple-400' },
-  { label: '问题解决能力', color: 'border-blue-400/30 bg-blue-400/5 text-blue-400' },
-  { label: '决策能力', color: 'border-pink-400/30 bg-pink-400/5 text-pink-400' },
-  { label: 'Owner 意识', color: 'border-rose-400/30 bg-rose-400/5 text-rose-400' },
-  { label: '执行力强', color: 'border-sky-400/30 bg-sky-400/5 text-sky-400' },
-  { label: '用户研究', color: 'border-violet-400/30 bg-violet-400/5 text-violet-400' },
+  { label: '设计体系负责人', color: 'border-[#F87171]/30 bg-[#F87171] text-white' },
+  { label: 'UED 团队管理', color: 'border-[#FB923C]/30 bg-[#FB923C] text-white' },
+  { label: '规范制定者', color: 'border-[#EAB308]/30 bg-[#EAB308] text-white' },
+  { label: '跨团队支撑', color: 'border-[#C084FC]/30 bg-[#C084FC] text-white' },
+  { label: '问题解决能力', color: 'border-[#60A5FA]/30 bg-[#60A5FA] text-white' },
+  { label: '决策能力', color: 'border-[#F472B6]/30 bg-[#F472B6] text-white' },
+  { label: 'Owner 意识', color: 'border-[#FB7185]/30 bg-[#FB7185] text-white' },
+  { label: '执行力强', color: 'border-[#38BDF8]/30 bg-[#38BDF8] text-white' },
+  { label: '用户研究', color: 'border-[#A78BFA]/30 bg-[#A78BFA] text-white' },
 ];
 
 export const aboutSection = {
@@ -111,6 +137,31 @@ export const aboutSection = {
     '参与 AIGC 创新大赛，贡献方案思路，运用 AI 工具提高 UED 团队工作效率；',
     '具备 建设、管理设计团队（10 人左右）的经验；指导初、中级设计师成长；优化团队和跨部门协作流程，培养专业导师和面试官；',
     '能 迅速适应多变项目业务场景和需求，关注产品设计细节。',
+  ],
+};
+
+export const aboutPage = {
+  heroTitleLines: ['UX', 'THINKING', 'MATTERS.'],
+  heroParagraphs: [
+    [{ text: '我不仅设计界面，更设计逻辑与体验。' }],
+    [
+      { text: '我专注于将 ' },
+      { text: 'AI 协作', highlight: true },
+      { text: ' 融入产品设计研发工作流，并在直觉与数据之间寻找设计的最佳平衡。' },
+    ],
+  ],
+  backLabel: 'Back',
+  ctaButtons: [
+    {
+      label: '查看精选项目',
+      target: 'projects',
+      variant: 'secondary',
+    },
+    {
+      label: '查看工作经历',
+      target: 'experience',
+      variant: 'primary',
+    },
   ],
 };
 
@@ -214,6 +265,23 @@ export const workExperience = {
       summary: [
         '管理湖北省标识行业协会网站后台维护，以及微信公众号管理与发布，还有其他各类宣传物料、海报、易拉宝等设计。',
       ],
+    },
+  ],
+};
+
+export const experiencePage = {
+  icon: '💼',
+  title: 'Experience',
+  ctaButtons: [
+    {
+      label: '查看完整 About',
+      target: 'about',
+      variant: 'secondary-dark',
+    },
+    {
+      label: '查看精选项目',
+      target: 'projects',
+      variant: 'primary',
     },
   ],
 };
