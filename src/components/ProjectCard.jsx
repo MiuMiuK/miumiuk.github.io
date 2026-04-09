@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function ProjectCard({ project, onClick, index }) {
   const isClickable = typeof onClick === 'function' && Boolean(project.caseStudy);
@@ -54,7 +54,7 @@ export default function ProjectCard({ project, onClick, index }) {
                 )}
               </div>
 
-              <p className="max-w-[14ch] text-[1.6rem] font-medium leading-[1.28] text-[#404040] md:max-w-[564px] md:text-[2.5rem] md:leading-[1.375]">
+              <p className="max-w-[14ch] text-[1.6rem] font-medium leading-[1.5] text-[#404040] md:max-w-[564px] md:text-[1.875rem] md:leading-[3.4375rem]">
                 {project.coverSummary}
               </p>
 
@@ -70,9 +70,13 @@ export default function ProjectCard({ project, onClick, index }) {
               </div>
             </div>
 
-            <div className="inline-flex items-center gap-[5px] pt-2 text-[1.3rem] font-semibold tracking-[0.02em] text-black md:mt-auto md:pt-0 md:text-[1.5rem]">
-              <span>阅读完整复盘</span>
-              <ExternalLink size={22} strokeWidth={2.2} />
+            <div className="pt-2 md:mt-auto md:pt-0">
+              <span className="inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition group-hover:bg-neutral-900">
+                <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00]">
+                  <span>阅读完整复盘</span>
+                  <ArrowRight size={10} strokeWidth={2.5} />
+                </span>
+              </span>
             </div>
           </div>
         </div>

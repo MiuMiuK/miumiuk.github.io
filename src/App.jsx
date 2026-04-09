@@ -298,7 +298,7 @@ export default function App() {
         <section id="work" className="pt-0">
           <div className="mx-auto max-w-[1440px]">
             <div className="relative h-[14.5rem] px-5 pt-10 md:h-[267px] md:px-[3.75rem] md:pt-[100px]">
-              <div className="max-w-[32rem]">
+              <div className="relative z-10 max-w-[32rem]">
                 <p className="text-[3.15rem] font-black uppercase leading-[0.9] tracking-[-0.06em] text-black md:text-[5rem]">
                   SELECTED
                 </p>
@@ -306,7 +306,7 @@ export default function App() {
                   PROJECTS.
                 </p>
               </div>
-              <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#D4FF00]" />
+              <div className="absolute inset-x-0 top-[8.45rem] h-[3px] bg-[#D4FF00] md:top-[183px]" />
             </div>
             {projects.map((project, index) => (
               <ProjectCard
