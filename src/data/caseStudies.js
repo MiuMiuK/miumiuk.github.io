@@ -12,33 +12,6 @@ export const workItemRefactorCaseStudy = {
           html: '<p>这是一次 <strong>面向中大型企业客户</strong> 的工作项详情重构项目。</p><p>随着客户使用深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。</p><p>我在项目中主要负责问题定义、研究设计、竞品分析、核心交互方案输出与验证，协同产品、研发和业务团队推动方案分阶段落地。</p>',
         },
         {
-          type: 'sectionTitle',
-          text: '项目结果摘要',
-        },
-        {
-          type: 'list',
-          ordered: false,
-          items: [
-            '第一阶段已上线表单资源库、自定义标签页与分组、信息重组、编辑器升级等能力；',
-            '第二阶段围绕详情载体解耦与浏览方式优化完成 Demo 验证；',
-            '可用性测试中，Demo 评分由线上现状的 3.2 提升至 4.4；',
-          ],
-        },
-        {
-          type: 'figure',
-          src: '/images/projects/work-item-refactor/work-item-refactor-config-before-after-01.png',
-          alt: '表单配置页面 - 前后对比',
-          caption: '▵ 表单配置页面 - 前后对比',
-          assetName: 'attachment:81e3d196-95b8-4475-aeb4-186c3e82201a:表单配置页面.png',
-        },
-        {
-          type: 'figure',
-          src: '/images/projects/work-item-refactor/work-item-refactor-detail-drawer-01.png',
-          alt: '详情弹窗-原有详情页在高信息密度和复杂协作场景下，阅读、查找和切换成本较高。',
-          caption: '▵ 详情弹窗-原有详情页在高信息密度和复杂协作场景下，阅读、查找和切换成本较高。',
-          assetName: 'attachment:3983c2fc-1a00-47fb-b210-83ffe64bccf3:1详情弹窗展示.png',
-        },
-        {
           type: 'meta',
           items: [
             ['产品类型', 'B 端项目管理协作工具'],

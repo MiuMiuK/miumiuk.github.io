@@ -373,9 +373,11 @@ export default function App() {
         {selectedProject ? (
           <ProjectDetail
             key={selectedProject.id}
+            brand={heroSection.navBrand}
             project={selectedProject}
             onBack={closeOverlay}
             onOpenProject={openProject}
+            onNavigate={handleNavigate}
             isCaptureMode={isCaptureMode}
             preserveCaptureChrome={preserveCaptureChrome}
           />

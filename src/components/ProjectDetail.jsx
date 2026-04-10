@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects } from '../data/siteContent';
+import Navbar from './Navbar';
 
 const overlayTransition = {
   duration: 0.34,
@@ -74,7 +75,7 @@ function ContentBlock({ block }) {
   if (block.type === 'html') {
     return (
       <div
-        className="prose prose-neutral max-w-none prose-p:my-0 prose-p:text-[1rem] prose-p:leading-6 prose-p:text-black prose-strong:text-black"
+        className="[&_p]:m-0 [&_p+p]:mt-[5px] [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black [&_strong]:font-bold [&_strong]:text-black"
         dangerouslySetInnerHTML={{ __html: block.html }}
       />
     );
@@ -189,38 +190,54 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
       className={
         mobile
           ? 'rounded-2xl border border-black/10 bg-white p-5'
-          : 'sticky top-28 rounded-[1.75rem] border border-black/10 bg-white/92 p-5 backdrop-blur'
+          : 'w-[276px] pl-[20px]'
       }
     >
-      <p className="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
-        Outline
-      </p>
-      <nav className="space-y-4">
+      {mobile ? (
+        <p className="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-neutral-400">
+          Outline
+        </p>
+      ) : null}
+      <nav className={mobile ? 'space-y-4' : 'space-y-[5px]'}>
         {outline.map((item) => (
           <div key={item.id}>
             <button
               type="button"
               onClick={() => onNavigate(item.id)}
-              className={`block text-left text-sm font-bold leading-6 transition ${
+              className={`block w-full text-left transition ${
                 activeOutlineId === item.id ||
                 item.children.some((child) => child.id === activeOutlineId)
-                  ? 'text-black'
-                  : 'text-neutral-600 hover:text-black'
+                  ? mobile
+                    ? 'text-black text-sm font-bold leading-6'
+                    : 'font-bold text-[14px] leading-[30px] tracking-[-0.1px] text-black'
+                  : mobile
+                    ? 'text-neutral-600 text-sm font-bold leading-6 hover:text-black'
+                    : 'font-bold text-[14px] leading-[30px] tracking-[-0.1px] text-black'
               }`}
             >
               {item.title}
             </button>
             {item.children.length ? (
-              <div className="mt-2 space-y-2 border-l border-neutral-200 pl-3">
+              <div
+                className={
+                  mobile
+                    ? 'mt-2 space-y-2 border-l border-neutral-200 pl-3'
+                    : 'mt-[5px] border-l border-[#dfe1e5] pl-[10px]'
+                }
+              >
                 {item.children.map((child) => (
                   <button
                     key={child.id}
                     type="button"
                     onClick={() => onNavigate(child.id)}
-                    className={`block text-left text-xs leading-5 transition ${
+                    className={`block w-full text-left transition ${
                       activeOutlineId === child.id
-                        ? 'font-semibold text-black'
-                        : 'text-neutral-500 hover:text-black'
+                        ? mobile
+                          ? 'text-xs font-semibold leading-5 text-black'
+                          : 'text-[14px] leading-[30px] text-black'
+                        : mobile
+                          ? 'text-xs leading-5 text-neutral-500 hover:text-black'
+                          : 'text-[14px] leading-[30px] text-[#505050]'
                     }`}
                   >
                     {child.title}
@@ -236,13 +253,22 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
 }
 
 export default function ProjectDetail({
+  brand,
   project,
   onBack,
   onOpenProject,
+  onNavigate,
   isCaptureMode = false,
   preserveCaptureChrome = false,
 }) {
   const containerRef = useRef(null);
+  const showChrome = !isCaptureMode || preserveCaptureChrome;
+  const desktopOutlineStyle = {
+    top: showChrome ? '141px' : '50px',
+    left: 'max(20px, calc(50vw - 720px + 1144px))',
+    width: '276px',
+    maxHeight: showChrome ? 'calc(100vh - 141px)' : 'calc(100vh - 70px)',
+  };
   const currentProjectIndex = projects.findIndex((item) => item.id === project.id);
   const nextProject =
     currentProjectIndex === -1 ? null : projects[(currentProjectIndex + 1) % projects.length];
@@ -326,42 +352,58 @@ export default function ProjectDetail({
           : 'fixed inset-0 z-[60] overflow-y-auto bg-white'
       }
     >
-      <div className="mx-auto max-w-[1440px] px-5 pb-20 pt-24 md:px-[3.75rem]">
-        {isCaptureMode && !preserveCaptureChrome ? null : (
-          <button
-            type="button"
-            onClick={onBack}
-            className="fixed left-5 top-4 z-[70] flex items-center gap-2 rounded-full border border-[#c2bfbf] bg-white px-4 py-2 text-xs font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00] md:left-[3.75rem]"
-          >
-            <ArrowRight size={14} className="rotate-180" />
-            Back
-          </button>
-        )}
+      {showChrome ? (
+        <Navbar
+          brand={brand}
+          onNavigate={onNavigate}
+          className="fixed left-0 top-0 z-50 flex h-[91px] w-full items-center justify-between border-b border-black/10 bg-white/95 px-5 py-5 backdrop-blur md:px-[60px] md:py-7"
+        />
+      ) : null}
+
+      <div
+        className={`mx-auto max-w-[1440px] px-5 pb-20 md:px-[60px] ${
+          showChrome ? 'pt-[91px]' : 'pt-24'
+        }`}
+      >
+        {showChrome ? (
+          <div className="h-[103px] w-[1024px] py-[30px]">
+            <button
+              type="button"
+              onClick={onBack}
+              className="flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white text-xs font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00]"
+            >
+              <ArrowRight size={14} className="rotate-180" />
+              Back
+            </button>
+          </div>
+        ) : null}
 
         <motion.div
           initial={{ opacity: 0, y: 18, filter: 'blur(10px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           exit={{ opacity: 0, y: 12, filter: 'blur(8px)' }}
           transition={contentTransition}
-          className="grid gap-10 lg:grid-cols-[minmax(0,1024px)_minmax(220px,298px)] lg:items-start"
+          className="relative lg:pr-[336px]"
         >
-          <div className="space-y-8">
-            <div className="flex flex-col gap-5 border-b border-black/10 pb-10">
-              <p className="text-[10px] font-black uppercase tracking-[0.32em] text-neutral-400">
-                {project.caseStudy.label} / {project.year}
+          <div className="w-full max-w-[1024px] space-y-0">
+            <div className="flex flex-col gap-5">
+              <p className="text-[15px] font-black uppercase tracking-[4.2px] text-[#737373]">
+                {project.detailMeta ?? `${project.caseStudy.label} / ${project.year}`}
               </p>
-              <h1 className="text-[2.9rem] font-black leading-[0.95] tracking-[-0.05em] text-black md:text-[4rem]">
+              <h1 className="text-[46px] font-black leading-[53.36px] tracking-[-2.32px] text-black">
                 {project.title}
               </h1>
-              <div className="rounded-2xl border border-[#D4FF00]/35 bg-[#D4FF00]/10 px-5 py-5">
+              <div className="rounded-[16px] border border-[#D4FF00]/35 bg-[#D4FF00]/10 px-[21px] py-5">
                 <div className="flex items-start gap-3">
-                  <p className="text-[1.8rem] leading-none">🎯</p>
-                  <p className="text-lg leading-8 text-neutral-700">{project.caseStudy.introCallout}</p>
+                  <p className="w-[30px] text-[30px] leading-7">🎯</p>
+                  <p className="flex-1 text-[20px] leading-[30px] text-[#404040]">
+                    {project.caseStudy.introCallout}
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="lg:hidden">
+            <div className="pb-[40px] pt-[40px] lg:hidden">
               <Outline
                 outline={outline}
                 activeOutlineId={activeOutlineId}
@@ -370,15 +412,19 @@ export default function ProjectDetail({
               />
             </div>
 
-            <div className="space-y-10">
+            <div className="space-y-0">
               {project.caseStudy.blocks.map((block, index) => {
                 if (block.type !== 'chapter') {
                   return <ContentBlock key={`${project.id}-case-${index}`} block={block} />;
                 }
 
                 return (
-                  <section id={`case-chapter-${index}`} key={`${project.id}-case-${index}`} className="space-y-6 pt-2">
-                    <h2 className="text-[2rem] font-black tracking-[-0.03em] text-black md:text-[2.3rem]">
+                  <section
+                    id={`case-chapter-${index}`}
+                    key={`${project.id}-case-${index}`}
+                    className="space-y-5 pt-[40px]"
+                  >
+                    <h2 className="text-[30.4px] font-black leading-[45.6px] tracking-[-0.76px] text-black">
                       {block.title}
                     </h2>
                     {block.blocks.map((child, childIndex) => {
@@ -387,9 +433,9 @@ export default function ProjectDetail({
                           <section
                             id={`case-chapter-${index}-sub-${childIndex}`}
                             key={`${block.title}-${childIndex}`}
-                            className="space-y-5"
+                            className="space-y-[10px]"
                           >
-                            <h3 className="text-[1.35rem] font-black tracking-tight text-black">
+                            <h3 className="text-[20px] font-black leading-7 tracking-[-0.5px] text-black">
                               {child.title}
                             </h3>
                             {child.blocks.map((grandChild, grandChildIndex) => (
@@ -412,23 +458,24 @@ export default function ProjectDetail({
             </div>
           </div>
 
-          <aside className={isCaptureMode && !preserveCaptureChrome ? 'hidden' : 'hidden lg:block'}>
-            <div className="space-y-5">
-              <div className="sticky top-24 overflow-hidden rounded-[2rem] bg-[#F5F5F5]">
-                <img
-                  src={project.detailImage}
-                  alt={project.detailAlt}
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-              <Outline
-                outline={outline}
-                activeOutlineId={activeOutlineId}
-                onNavigate={handleOutlineNavigate}
-              />
-            </div>
-          </aside>
         </motion.div>
+
+        <aside
+          className={
+            isCaptureMode && !preserveCaptureChrome ? 'hidden' : 'pointer-events-none hidden lg:block'
+          }
+        >
+          <div
+            className="pointer-events-auto fixed overflow-y-auto"
+            style={desktopOutlineStyle}
+          >
+            <Outline
+              outline={outline}
+              activeOutlineId={activeOutlineId}
+              onNavigate={handleOutlineNavigate}
+            />
+          </div>
+        </aside>
       </div>
     </motion.div>
   );

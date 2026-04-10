@@ -26,6 +26,7 @@ export const projects = [
     id: 'spotify-live',
     title: '工作项详情重构',
     titleLines: ['工作项详情', '重构'],
+    detailMeta: '2023-2025 / 完整研究案例 / 交互设计主导',
     subtitle: '面向研发协作场景的信息结构与配置体验优化',
     coverMeta: '2025 / B端项目管理协作工具 / 交互设计主导',
     coverSummary: '面向研发协作场景的信息结构与配置体验优化。',
