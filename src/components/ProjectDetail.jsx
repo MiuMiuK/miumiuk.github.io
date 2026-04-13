@@ -24,7 +24,7 @@ function NextProjectBlock({ project, onOpenProject }) {
     <button
       type="button"
       onClick={() => onOpenProject(project)}
-      className="mt-8 w-full rounded-[2rem] border border-black/10 bg-white px-6 py-8 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10 md:px-8 md:py-10"
+      className="mt-[40px] w-full rounded-[2rem] border border-black/10 bg-white px-6 py-8 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10 md:px-8 md:py-10"
     >
       <p className="text-[10px] font-black uppercase tracking-[0.35em] text-neutral-400">
         Next Project
@@ -44,29 +44,34 @@ function NextProjectBlock({ project, onOpenProject }) {
 }
 
 function FigureBlock({ block }) {
-  const isMotionPlaceholder = block.kind === 'motion-placeholder';
+  const isPlaceholder = block.kind === 'motion-placeholder' || block.kind === 'placeholder';
+  const captionLines = typeof block.caption === 'string' ? block.caption.split('\n').filter(Boolean) : [];
+  const figureStyle = block.height ? { height: `${block.height}px` } : undefined;
+  const figureAspectRatio = block.aspectRatio ? { aspectRatio: block.aspectRatio } : undefined;
 
   return (
     <figure className="space-y-3">
-      {isMotionPlaceholder ? (
-        <div className="relative aspect-[1024/568] overflow-hidden rounded-2xl bg-[#EDEFF2]">
-          <img src={block.src} alt={block.alt} className="h-full w-full object-cover opacity-0" />
-          <div className="absolute inset-0 flex items-center justify-center bg-[#EDEFF2] px-8 text-center">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">
-                Motion Placeholder
-              </p>
-              <p className="mt-4 text-base font-medium leading-7 text-neutral-600">{block.alt}</p>
-              <p className="mt-2 text-sm text-neutral-400">WEBP slot preserved for future animation</p>
-            </div>
-          </div>
+      {isPlaceholder ? (
+        <div
+          className="w-full overflow-hidden bg-[#EDEFF2]"
+          style={{ ...figureAspectRatio, ...figureStyle }}
+        >
+          {block.src ? (
+            <img src={block.src} alt={block.alt} className="h-full w-full object-cover opacity-0" />
+          ) : null}
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-black/10 bg-white">
+        <div className="overflow-hidden bg-white" style={{ ...figureAspectRatio, ...figureStyle }}>
           <img src={block.src} alt={block.alt} className="h-full w-full object-cover" />
         </div>
       )}
-      <figcaption className="text-sm leading-6 text-neutral-500">{block.caption}</figcaption>
+      <figcaption className="space-y-[5px] text-[14px] leading-6 text-[#737373]">
+        {captionLines.length > 1 ? (
+          captionLines.map((line) => <p key={line}>{line}</p>)
+        ) : (
+          <p>{block.caption}</p>
+        )}
+      </figcaption>
     </figure>
   );
 }
@@ -95,6 +100,53 @@ function ContentBlock({ block }) {
     );
   }
 
+  if (block.type === 'numberedCard') {
+    return (
+      <div className="rounded-[6px] border-l-[6px] border-l-[#D5FF02] bg-white">
+        <div
+          className={`rounded-[6px] border border-[#DFE1E5] px-[25px] ${
+            block.compact ? 'py-[25px]' : 'py-[25px]'
+          }`}
+        >
+          <div className={block.compact ? 'space-y-3' : 'space-y-5'}>
+            <h4 className="text-[20px] font-black leading-7 tracking-[-0.5px] text-black">
+              {block.number} {block.title}
+            </h4>
+
+            <div className={`space-y-[10px] ${block.compact ? '' : 'pl-[18px]'}`}>
+              {block.highlight ? (
+                <p className="text-[16px] leading-6 text-black">
+                  {block.highlight.includes('：') ? (
+                    <>
+                      {block.highlight.split('：')[0]}：
+                      <strong>{block.highlight.split('：').slice(1).join('：')}</strong>
+                    </>
+                  ) : (
+                    <strong>{block.highlight}</strong>
+                  )}
+                </p>
+              ) : null}
+
+              {block.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="text-[16px] leading-6 text-black">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            {block.badge ? (
+              <div className={block.compact ? '' : 'pl-[18px]'}>
+                <span className="inline-flex items-center rounded-[13.6px] border border-[#DAFF26] bg-[#F5FFC3] px-[13px] py-2 text-[14px] font-bold leading-5 tracking-[0.44px] text-black">
+                  {block.badge}
+                </span>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (block.type === 'sectionTitle') {
     return <h4 className="text-[1.35rem] font-black tracking-tight text-black">{block.text}</h4>;
   }
@@ -104,6 +156,16 @@ function ContentBlock({ block }) {
   }
 
   if (block.type === 'list') {
+    if (block.ordered) {
+      return (
+        <ol className="space-y-[5px] pl-6 text-[16px] leading-8 text-[#404040]">
+          {block.items.map((item, index) => (
+            <li key={`${item}-${index}`}>{item}</li>
+          ))}
+        </ol>
+      );
+    }
+
     return (
       <ul className="space-y-2 text-[1rem] leading-8 text-neutral-700">
         {block.items.map((item, index) => (
@@ -118,7 +180,7 @@ function ContentBlock({ block }) {
 
   if (block.type === 'meta') {
     return (
-      <div className="grid gap-5 rounded-2xl border border-black/10 bg-white/80 p-6 md:grid-cols-2">
+      <div className="grid gap-y-4 rounded-2xl border border-black/10 bg-white/80 p-6 md:grid-cols-2 md:gap-x-10">
         {block.items.map(([label, value]) => (
           <div key={label} className="space-y-2">
             <p className="text-[10px] font-black uppercase tracking-[0.32em] text-neutral-400">
@@ -126,6 +188,16 @@ function ContentBlock({ block }) {
             </p>
             <p className="text-base leading-7 text-neutral-700">{value}</p>
           </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (block.type === 'textLines') {
+    return (
+      <div className="space-y-[5px] text-[16px] leading-8 text-[#404040]">
+        {block.items.map((item) => (
+          <p key={item}>{item}</p>
         ))}
       </div>
     );
@@ -169,7 +241,7 @@ function ContentBlock({ block }) {
   if (block.type === 'details') {
     return (
       <details className="rounded-2xl border border-black/10 bg-white p-5">
-        <summary className="cursor-pointer list-none text-sm font-black uppercase tracking-[0.22em] text-neutral-600">
+        <summary className="cursor-pointer list-none text-[16px] leading-5 text-black">
           {block.summary}
         </summary>
         <div className="mt-5 space-y-5">
@@ -209,10 +281,10 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
                 item.children.some((child) => child.id === activeOutlineId)
                   ? mobile
                     ? 'text-black text-sm font-bold leading-6'
-                    : 'font-bold text-[14px] leading-[30px] tracking-[-0.1px] text-black'
+                    : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black'
                   : mobile
                     ? 'text-neutral-600 text-sm font-bold leading-6 hover:text-black'
-                    : 'font-bold text-[14px] leading-[30px] tracking-[-0.1px] text-black'
+                    : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black'
               }`}
             >
               {item.title}
@@ -264,7 +336,7 @@ export default function ProjectDetail({
   const containerRef = useRef(null);
   const showChrome = !isCaptureMode || preserveCaptureChrome;
   const desktopOutlineStyle = {
-    top: showChrome ? '141px' : '50px',
+    top: showChrome ? '121px' : '30px',
     left: 'max(20px, calc(50vw - 720px + 1144px))',
     width: '276px',
     maxHeight: showChrome ? 'calc(100vh - 141px)' : 'calc(100vh - 70px)',
@@ -370,7 +442,7 @@ export default function ProjectDetail({
             <button
               type="button"
               onClick={onBack}
-              className="flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white text-xs font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00]"
+              className="fixed left-[max(20px,calc(50vw-720px+60px))] top-[121px] z-[70] flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white text-xs font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00]"
             >
               <ArrowRight size={14} className="rotate-180" />
               Back

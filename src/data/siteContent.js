@@ -1,4 +1,4 @@
-import { workItemRefactorCaseStudy } from './caseStudies';
+import { onesAssistantCaseStudy, workItemRefactorCaseStudy } from './caseStudies';
 
 // 以后主要维护这个文件：
 // 1. 改首页介绍、关于我、联系方式
@@ -48,6 +48,7 @@ export const projects = [
     id: 'ones-assistant',
     title: 'ONES Assistant',
     titleLines: ['ONES', 'Assistant'],
+    detailMeta: '2025-2026 / B端 AI产品 / 交互设计',
     subtitle: '企业研发管理场景下，从全局对话到可复用、可扩展的 Agent',
     coverMeta: '2025-2026 / AI 智能体',
     coverSummary: '企业研发管理场景下，从全局对话到可复用、可扩展的 Agent',
@@ -59,6 +60,7 @@ export const projects = [
     coverImage: '/images/projects/synthesia-ai-cover.svg',
     coverAlt: 'ONES Assistant cover',
     imageBackground: '#EBE2FF',
+    caseStudy: onesAssistantCaseStudy,
   },
 ];
 

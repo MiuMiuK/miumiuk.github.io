@@ -55,13 +55,12 @@ export const workItemRefactorCaseStudy = {
               html: '<p>工作项详情同时承载属性、描述、动态、评论、关联内容等大量信息，但现有结构缺少清晰的分区和优先级。用户在查看和编辑时，经常需要在密集信息中来回查找，影响处理效率。</p><p>典型表现包括：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '属性过多，查找成本高',
-                '长内容会挤压其他模块的阅读空间',
-                '必填项不够明显，填写效率低',
-                '不同角色在同一页面中看到大量与自己无关的信息',
+                'a. 属性过多，查找成本高',
+                'b. 长内容会挤压其他模块的阅读空间',
+                'c. 必填项不够明显，填写效率低',
+                'd. 不同角色在同一页面中看到大量与自己无关的信息',
               ],
             },
           ],
@@ -75,13 +74,12 @@ export const workItemRefactorCaseStudy = {
               html: '<p>不同工作项类型、不同角色、不同业务流程，对详情页的信息组织方式和操作路径都有明显差异。但现有详情结构较为固定，无法根据场景进行灵活适配。</p><p>典型表现包括：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '同一结构承载所有工作项类型，缺少差异化表达',
-                '缺乏标签页、分组等信息组织能力',
-                '详情载体与列表布局强绑定，影响连续浏览',
-                '动态、评论、关联内容等协作信息缺少合理空间',
+                'a. 同一结构承载所有工作项类型，缺少差异化表达',
+                'b. 缺乏标签页、分组等信息组织能力',
+                'c. 详情载体与列表布局强绑定，影响连续浏览',
+                'd. 动态、评论、关联内容等协作信息缺少合理空间',
               ],
             },
           ],
@@ -106,13 +104,12 @@ export const workItemRefactorCaseStudy = {
               html: '<p>典型表现包括：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '无法灵活配置属性分组和标签页',
-                '无法支撑条件展示、场景化布局等复杂规则',
-                '第三方能力缺少合适的承载区域',
-                '难以满足不同团队和角色的协作差异',
+                'a. 无法灵活配置属性分组和标签页',
+                'b. 无法支撑条件展示、场景化布局等复杂规则',
+                'c. 第三方能力缺少合适的承载区域',
+                'd. 难以满足不同团队和角色的协作差异',
               ],
             },
           ],
@@ -158,11 +155,10 @@ export const workItemRefactorCaseStudy = {
               html: '<p>为了理解不同角色在工作项中的实际使用方式，我设计并执行了多轮用户研究，覆盖产品经理、项目经理、研发、测试、运维等不同职能角色，并纳入不同权限层级和经验水平的样本。</p><p>研究中我主要采用了以下方式：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '情景观察与深度访谈：理解真实工作流中的查看、编辑和切换行为',
-                '问卷调研：扩大样本范围，验证观察结论',
+                'a. 情景观察与深度访谈：理解真实工作流中的查看、编辑和切换行为',
+                'b. 问卷调研：扩大样本范围，验证观察结论',
               ],
             },
             {
@@ -170,13 +166,12 @@ export const workItemRefactorCaseStudy = {
               html: '<p>通过这些研究，我确认了几个关键事实：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '不同角色在同一工作项中关注的信息差异很大',
-                '用户更关注成组的信息，而不是单个字段',
-                '连续处理任务和聚焦阅读任务，对详情载体的需求不同',
-                '动态区域的重要性会随着协作模式变化而变化',
+                'a. 不同角色在同一工作项中关注的信息差异很大',
+                'b. 用户更关注成组的信息，而不是单个字段',
+                'c. 连续处理任务和聚焦阅读任务，对详情载体的需求不同',
+                'd. 动态区域的重要性会随着协作模式变化而变化',
               ],
             },
             {
@@ -272,12 +267,11 @@ export const workItemRefactorCaseStudy = {
               html: '<p>测试结果显示，用户对 Demo 的整体评分达到 4.4，高于线上现状的 3.2，说明新的设计方向在连续浏览、信息查找和结构清晰度上具备明显优势。</p><p>同时，Demo 测试也帮助我识别出一些需要继续权衡的问题，例如：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '抽屉模式下对列表信息的遮挡',
-                '瀑布流在高密度信息场景下的查找成本',
-                '个性化展示与团队一致性之间的平衡',
+                'a. 抽屉模式下对列表信息的遮挡',
+                'b. 瀑布流在高密度信息场景下的查找成本',
+                'c. 个性化展示与团队一致性之间的平衡',
               ],
             },
             {
@@ -355,13 +349,12 @@ export const workItemRefactorCaseStudy = {
           html: '<p>这次改版主要围绕 4 个目标展开：</p>',
         },
         {
-          type: 'list',
-          ordered: false,
+          type: 'textLines',
           items: [
-            '提升工作项详情的信息查找效率',
-            '让详情结构能够适配不同场景和角色需求',
-            '增强管理员配置能力，支撑复杂业务流程',
-            '为后续开放能力和第三方集成预留框架基础',
+            '1. 提升工作项详情的信息查找效率',
+            '2. 让详情结构能够适配不同场景和角色需求',
+            '3. 增强管理员配置能力，支撑复杂业务流程',
+            '4. 为后续开放能力和第三方集成预留框架基础',
           ],
         },
         {
@@ -433,19 +426,11 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-02.png',
-              alt: '自定义拖拽配置属性',
-              caption: '▵ 表单配置页面 - 自定义拖拽配置属性',
-              assetName: 'attachment:17235c4d-414a-44e0-ba37-5c82be330022:image.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-motion-search-resource.webp',
-              alt: '搜索资源并定位到对应的位置',
-              caption: '▵ 表单配置页面 - 搜索资源并定位到对应的位置',
-              assetName: 'attachment:750afc13-d3a7-4fc2-95c6-ae764d92f3f3:image.png',
-              kind: 'motion-placeholder',
-              format: 'webp',
+              src: '',
+              alt: '自定义拖拽配置属性+快速查找定位属性',
+              caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
+              kind: 'placeholder',
+              height: 568,
             },
           ],
         },
@@ -466,40 +451,11 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-motion-custom-tabs.webp',
-              alt: '自定义标签页',
-              caption: '表单配置页面-自定义标签页',
-              assetName: 'attachment:0cf6a81c-5855-4971-9474-c661e0701345:image.png',
-              kind: 'motion-placeholder',
-              format: 'webp',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-03.png',
-              alt: '标签页可见性',
-              caption: '▵ 自定义标签页-支持配置标签页的可见性，即对哪些成员/角色展示',
-              assetName: 'attachment:f7411857-826a-4606-a048-3fe2a8ac951d:image.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-04.png',
-              alt: '自定义标签页2',
-              caption: '▵ 表单配置页面-自定义标签页2',
-              assetName: 'attachment:0054c889-8807-4f4c-a5f5-570afbd8660e:image.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-05.png',
-              alt: '自定义拖拽分组',
-              caption: '▵ 表单配置页面-自定义拖拽分组',
-              assetName: 'attachment:b9b75b18-5afa-456d-ae90-2803f97d8aa7:image.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-06.png',
-              alt: '通过标签页与分组重组信息结构',
-              caption: '表单配置页面-右侧配置属性信息，通过标签页与分组重组信息结构，让页面组织方式更贴近真实业务语义',
-              assetName: 'attachment:f8991cc9-dda9-4f7e-866a-d7f446489a06:image.png',
+              src: '',
+              alt: '自定义标签页+自定义分组',
+              caption: '▵ 自定义标签页+自定义分组',
+              kind: 'placeholder',
+              height: 568,
             },
           ],
         },
@@ -523,11 +479,10 @@ export const workItemRefactorCaseStudy = {
               html: '<p>因此，我探索了将详情载体从原有模式中解耦，支持弹窗与抽屉两种方式并存。这样用户在连续处理任务时可以保留列表上下文，在深度阅读时也能获得更完整的信息空间。</p><p>这个方案本质上是在兼顾两类不同任务模式：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '连续处理任务时，需要保持上下文和操作连贯性',
-                '深度查看任务时，需要更沉浸的信息空间',
+                'a. 连续处理任务时，需要保持上下文和操作连贯性',
+                'b. 深度查看任务时，需要更沉浸的信息空间',
               ],
             },
             {
@@ -569,14 +524,13 @@ export const workItemRefactorCaseStudy = {
               html: '<p>在结构层调整之外，我也同步优化了高频使用过程中的关键细节，包括：</p>',
             },
             {
-              type: 'list',
-              ordered: false,
+              type: 'textLines',
               items: [
-                '优化属性区排版与视觉层级，降低查找难度',
-                '强化必填标识，提升填写效率',
-                '接入统一的 Wiki 编辑器，改善富文本编辑体验（已上线）',
-                '优化多语言场景下的信息布局与适配规则（已上线）',
-                '补足草稿与防误操作能力',
+                '1. 优化属性区排版与视觉层级，降低查找难度',
+                '2. 强化必填标识，提升填写效率（已上线）',
+                '3. 接入统一的 Wiki 编辑器，改善富文本编辑体验（已上线）',
+                '4. 优化多语言场景下的信息布局与适配规则（已上线）',
+                '5. 补足草稿与防误操作能力',
               ],
             },
           ],
@@ -588,8 +542,9 @@ export const workItemRefactorCaseStudy = {
       title: '六、项目结果与价值',
       blocks: [
         {
-          type: 'html',
-          html: '<p>这次项目没有采用一次性推翻重做的方式，而是按“先解决高频问题，再验证底层方向”的思路分阶段推进。从结果来看，这种推进方式是有效的：既保证了短期可落地，也为后续结构升级争取了验证空间。</p>',
+          type: 'callout',
+          icon: '💡',
+          html: '总结：从最终结果看，这次重构的意义，不在于一次性完成了所有底层升级，而在于通过分阶段推进，先解决了高频问题，也验证了后续结构演进的方向。',
         },
         {
           type: 'sectionTitle',
@@ -597,20 +552,7 @@ export const workItemRefactorCaseStudy = {
         },
         {
           type: 'html',
-          html: '<p>第一阶段，表单资源库、自定义标签页与分组、信息重组、必填标识优化、编辑器升级、多语言适配优化等能力已经上线，优先缓解了信息查找、配置效率和内容编辑上的高频问题。</p><p>第二阶段，围绕详情载体解耦、浏览方式优化、动态区域调整等方向完成了 Demo 设计与可用性验证。</p>',
-        },
-        {
-          type: 'list',
-          ordered: false,
-          items: [
-            '第一阶段关键能力已上线，覆盖配置、浏览与编辑等高频场景',
-            '第二阶段关键方向已完成 Demo 验证，为后续框架升级提供了依据',
-            '可用性测试中，Demo 评分由线上现状的 3.2 提升至 4.4',
-          ],
-        },
-        {
-          type: 'html',
-          html: '<p>从测试反馈来看，多数用户认可新方案在连续浏览、信息定位、结构清晰度和协作内容阅读空间上的改善，说明这次重构不只是“界面变了”，而是真正提高了复杂协作场景下的使用效率。</p>',
+          html: '<p>第一阶段，项目完成了配置组织、信息重组与编辑体验相关能力的上线，优先缓解了信息查找、配置效率和内容编辑上的高频问题。</p><p>第二阶段，围绕详情载体、浏览方式和协作区域调整等方向完成了 Demo 设计与可用性验证。</p><p>在可用性测试中，Demo 评分由线上现状的 <strong>3.2 提升至 4.4</strong>，说明新方案在连续浏览、信息定位和结构清晰度上都有明显改善。</p>',
         },
         {
           type: 'sectionTitle',
@@ -618,17 +560,19 @@ export const workItemRefactorCaseStudy = {
         },
         {
           type: 'html',
-          html: '<p>这个项目更重要的价值，不只是完成了一次详情页改版，而是重新定义了工作项详情在复杂业务场景中的角色。</p>',
+          html: '<p>这个项目更重要的价值，不只是优化了一个详情页，而是重新梳理了工作项详情在复杂业务场景中的角色。</p>',
         },
         {
-          type: 'list',
-          ordered: false,
+          type: 'textLines',
           items: [
-            '对用户来说，工作项详情从“信息堆叠的查看页”变成了更适合查找、阅读和连续处理任务的协作界面',
-            '对产品来说，这次重构补上了标签页、分组、配置组织、详情载体等关键能力，为后续复杂场景扩展提供了更清晰的框架基础',
-            '对项目推进来说，分阶段落地降低了改动风险，也让团队能够在上线与验证之间取得平衡',
-            '对我个人来说，这个项目体现了我从问题定义、研究分析到方案设计和可用性验证的完整推动能力，而不只是单点交互优化能力',
+            '1. 对用户而言，它从信息堆叠的查看页，变得更适合查找、阅读和连续处理任务',
+            '2. 对产品而言，这次重构补齐了标签页、分组、详情载体等关键能力，为后续复杂场景扩展提供了更清晰的框架基础',
+            '3. 对项目推进而言，分阶段落地也降低了整体改动风险，让团队能够在上线与验证之间取得平衡。',
           ],
+        },
+        {
+          type: 'html',
+          html: '<p>换句话说，这次重构真正推动的，不只是界面层面的改版，而是<strong>工作项详情从“信息展示容器”向“协作界面”的转变</strong>。</p>',
         },
       ],
     },
@@ -637,16 +581,198 @@ export const workItemRefactorCaseStudy = {
       title: '七、我的复盘',
       blocks: [
         {
-          type: 'html',
-          html: '<p>这次项目让我进一步确认，B 端复杂产品中的体验问题，往往不是通过单点交互优化解决的，而是要回到业务场景和信息结构本身。</p><p>相比优化某一个控件或某一块布局，这次项目更重要的价值在于：通过系统研究把分散问题收敛成结构性矛盾，再用分阶段策略推动方案落地。这不仅改善了当前体验，也重新定义了工作项详情作为“协作界面 + 配置框架 + 扩展基础”的产品角色。</p><p>如果继续推进下一阶段，我会重点关注两个问题：</p>',
+          type: 'callout',
+          icon: '💡',
+          html: '总结：这次项目让我进一步确认，B 端复杂产品中的体验问题，往往不是通过单点交互优化解决的，而是要回到业务场景和信息结构本身。',
         },
         {
-          type: 'list',
-          ordered: false,
+          type: 'html',
+          html: '<p>相比优化某一个控件或某一块布局，这次项目更重要的价值在于：通过系统研究把分散问题收敛成结构性矛盾，再用分阶段策略推动方案落地。这不仅改善了当前体验，也重新定义了工作项详情作为“协作界面 + 配置框架 + 扩展基础”的产品角色。</p><p>如果继续推进下一阶段，我会重点关注两个问题：</p>',
+        },
+        {
+          type: 'textLines',
           items: [
-            '如何在个性化配置与团队一致性之间建立更清晰的边界',
-            '如何让不同工作模式下的详情浏览方式更自然地适配用户任务',
+            '1. 如何在个性化配置与团队一致性之间建立更清晰的边界',
+            '2. 如何让不同工作模式下的详情浏览方式更自然地适配用户任务',
           ],
+        },
+      ],
+    },
+  ],
+};
+
+export const onesAssistantCaseStudy = {
+  label: 'Full Case Study',
+  introCallout:
+    '让 AI 真正嵌入研发管理流程,从感知上下文、调用工具，到将结果回传业务系统，而不只是一个聊天窗口。',
+  blocks: [
+    {
+      type: 'chapter',
+      title: '一、项目概览',
+      blocks: [
+        {
+          type: 'html',
+          html: '<p>在 ONES 的研发管理场景中，AI 需要成为能理解业务上下文、调用工具并推动任务完成的智能入口。</p><p>一阶段的设计目标，是搭建一个通用的 Agent 对话框架，让用户通过自然语言完成数据查询、内容生成、任务创建与结果回传，逐步形成从对话触发到业务落地的闭环。</p><p>我负责的核心工作是这套框架的体验架构设计,从入口形态、上下文感知机制，到结果回传路径和侧边栏交互层级，从 0 到 1 完成整体方案的梳理与验证。</p>',
+        },
+        {
+          type: 'callout',
+          icon: '💡',
+          html: '<em>不是聊天助手，是嵌入业务流程的 Agent</em>',
+        },
+        {
+          type: 'meta',
+          items: [
+            ['产品类型', 'B 端研发管理 AI Agent'],
+            ['服务对象', '企业产研协作团队'],
+            ['项目阶段', '一阶段框架设计0-1+二阶段能力扩展'],
+            ['项目角色', '体验架构设计（独立负责）'],
+            ['设计重点', '全局唤起 · 上下文感知 · 结果闭环'],
+          ],
+        },
+      ],
+    },
+    {
+      type: 'chapter',
+      title: '二、核心设计挑战与决策',
+      blocks: [
+        {
+          type: 'callout',
+          icon: '💡',
+          html: '<em>三个关键判断，决定了框架的形态</em>',
+        },
+        {
+          type: 'html',
+          html: '<p>这个项目最难的地方，不是设计一个 AI 对话框，而是让 AI 在对的时机、以对的形式，真正介入业务流程。</p><p>我把设计问题收敛为三个核心矛盾：</p>',
+        },
+        {
+          type: 'numberedCard',
+          number: '1.',
+          title: 'AI 在哪里“存在”？',
+          paragraphs: [
+            '如果 Agent 是一个独立页面，用户每次都要跳出当前任务才能使用，AI 就变成了打断流程的负担。',
+            '因此选择侧边栏形态作为主入口，且切换历史对话时主页面保持不变，用户的“现场”始终优先于 AI 会话。',
+          ],
+          highlight: '我的判断是：Agent 必须寄生在业务页面里，而不是与之并列。',
+          badge: '设计决策：侧边栏+现场优先原则',
+        },
+        {
+          type: 'numberedCard',
+          number: '2.',
+          title: '用户怎么说清楚“我在处理什么”？',
+          paragraphs: [
+            '研发管理场景的任务往往依赖结构化数据：某个筛选结果、某条 Wiki 页面、某组工作项。纯自然语言很难精准传递这些上下文。',
+            '我设计了指令变量机制，支持通过筛选、URL、数据引用等方式将 ONES 数据对象直接注入对话，让输入更接近“可控的任务配置”，而不是猜意图的自由对话。',
+          ],
+          badge: '设计决策：变量 tag 机制代替自由输入',
+        },
+        {
+          type: 'numberedCard',
+          number: '3.',
+          title: 'AI 生成了结果，然后呢？',
+          paragraphs: [
+            '这是 B 端 AI 产品最容易忽视的问题。如果输出只能停在聊天气泡里，它就没有业务价值。',
+            '方案中明确设计了结果回传路径：筛选指令可直接作用于当前组件，批量生成的工作项可写入视图，长文交付物依托 Wiki 编辑器承载并支持协作沉淀。',
+            '这让 Agent 真正形成了“触发-执行-落地”的闭环。',
+          ],
+          badge: '设计决策：结果回传到业务系统，而非停留对话层',
+        },
+      ],
+    },
+    {
+      type: 'chapter',
+      title: '三、设计方案',
+      blocks: [
+        {
+          type: 'callout',
+          icon: '💡',
+          html: '<em>三个场景，覆盖完整的交互弧</em>',
+        },
+        {
+          type: 'subchapter',
+          title: '场景一：侧边栏入口 · 上下文感知 + 指令变量（唤起阶段）',
+          blocks: [
+            {
+              type: 'html',
+              html: '<p>Agent 以侧边栏形态寄生在需求页面，自动识别当前模块语境，用户无需解释“我在哪”。输入框支持将 ONES 数据对象插入为变量 tag，复杂任务的表达门槛从“说清楚”降为“选对象”。</p>',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/ones-assistant/scene-1.png',
+              alt: 'ONES Assistant 场景一：侧边栏入口',
+              caption:
+                '1. 侧边栏形态不打断主页面，Agent 存在于业务语境内，而非并列于业务之外\n2. 输入框中的「调查性能问题 ×」是数据变量 tag，不是自由文本，精准传递结构化上下文\n3. 工具快捷入口（筛选需求 / 创建需求）为后续 Skill 复用能力预留体验基础',
+            },
+          ],
+        },
+        {
+          type: 'subchapter',
+          title: '场景二：全屏模式 · 历史对话与交互层级（深度使用阶段）',
+          blocks: [
+            {
+              type: 'html',
+              html: '<p>全屏仅在用户主动触发时出现，日常使用保持侧边栏形态，不打断业务流。历史对话以任务语言命名，强化“Agent 在帮你完成任务”而非“聊天记录”的心智。</p>',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/ones-assistant/scene-2.png',
+              alt: 'ONES Assistant 场景二：全屏模式',
+              caption:
+                '1. 全屏是主动进入的状态，而非默认态，切换历史对话不触发主页刷新，保护现场\n2. 历史条目用任务描述命名（“筛选出上周负责的已完成的设计需求...”），而非时间戳\n3. 输入框提示语「输入 @ 快捷插入上下文」引导用户使用变量机制，降低冷启动成本',
+            },
+          ],
+        },
+        {
+          type: 'subchapter',
+          title: '场景三：长文交付物 · 结果回传闭环（落地阶段）',
+          blocks: [
+            {
+              type: 'html',
+              html: '<p>长篇交付物依托 Wiki 编辑器承载，AI 输出不停留在对话气泡，而是直接进入协作系统。Agent 在执行前主动澄清参数，让推理过程对用户可见，建立可信的执行感。</p>',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/ones-assistant/scene-3.png',
+              alt: 'ONES Assistant 场景三：结果回传闭环',
+              caption:
+                '1. 右侧 Wiki 预览面板与对话并列，长文交付物不被压缩在气泡里，支持即时查阅\n2. 「跳转到 Wiki」是结果回传的入口，生成即可落地，无需复制粘贴，形成业务闭环\n3. Agent 在执行前主动确认页面组 + 标题，推理过程可见，用户对 AI 行为有掌控感',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'chapter',
+      title: '四、项目价值',
+      blocks: [
+        {
+          type: 'callout',
+          icon: '💡',
+          html: '<em>从对话到业务，三层能力递进</em>',
+        },
+        {
+          type: 'html',
+          html: '<p>这一阶段不只是交付了一个对话框架，更重要的是为后续场景化 Agent、Skill 复用、多步骤规划等能力预留了体验基础，入口、上下文、工具调用、结果回传，四个层次的体验逻辑在一阶段都得到了验证和落地。</p>',
+        },
+        {
+          type: 'numberedCard',
+          number: '1.',
+          title: '操作层',
+          paragraphs: ['降低查询、创建、分析等高频任务的操作门槛，复杂任务不再依赖手动逐步执行'],
+          compact: true,
+        },
+        {
+          type: 'numberedCard',
+          number: '2.',
+          title: '协作层',
+          paragraphs: ['建立跨模块的自动化闭环，AI 生成结果直接写入业务系统，Skill 可跨场景复用'],
+          compact: true,
+        },
+        {
+          type: 'numberedCard',
+          number: '3.',
+          title: '管理层',
+          paragraphs: ['为个人工作台、主动摘要、项目健康度洞察等管理者场景预留完整的体验入口'],
+          compact: true,
         },
       ],
     },
