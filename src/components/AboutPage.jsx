@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Navbar from './Navbar';
@@ -91,9 +92,22 @@ export default function AboutPage({
   preserveCaptureChrome = false,
 }) {
   const showChrome = !isCaptureMode || preserveCaptureChrome;
+  const pageContainerRef = useRef(null);
+
+  const handleBackToTop = () => {
+    const scrollTarget = pageContainerRef.current;
+
+    if (scrollTarget && typeof scrollTarget.scrollTo === 'function') {
+      scrollTarget.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <motion.div
+      ref={pageContainerRef}
       initial={{ x: '100%' }}
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
@@ -190,7 +204,7 @@ export default function AboutPage({
             <div className="mt-[100px]">
               <PageEndBar
                 meta={pageEndBar}
-                onBackToTop={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onBackToTop={handleBackToTop}
               />
             </div>
           </div>

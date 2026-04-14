@@ -24,18 +24,27 @@ function NextProjectBlock({ project, onOpenProject }) {
     <button
       type="button"
       onClick={() => onOpenProject(project)}
-      className="mt-[40px] w-full rounded-[2rem] border border-black/10 bg-white px-6 py-8 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10 md:px-8 md:py-10"
+      className="mt-[60px] w-full rounded-[32px] border border-black/10 bg-white px-8 py-10 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10"
     >
-      <p className="text-[10px] font-black uppercase tracking-[0.35em] text-neutral-400">
+      <p
+        className="text-[10px] font-black uppercase leading-[15px] tracking-[3.5px] text-[#A3A3A3]"
+        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+      >
         Next Project
       </p>
-      <h3 className="mt-4 text-3xl font-black leading-[1] tracking-[-0.05em] text-black md:text-[3rem]">
+      <h3
+        className="mt-4 text-[48px] font-black leading-[48px] tracking-[-2.4px] text-black"
+        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+      >
         {project.title}
       </h3>
-      <p className="mt-3 text-base leading-8 text-neutral-600 md:text-lg">
+      <p className="mt-4 text-[16px] leading-[32px] text-[#525252]">
         {project.coverSummary}
       </p>
-      <div className="mt-6 inline-flex items-center gap-3 text-sm font-black uppercase tracking-[0.22em] text-black">
+      <div
+        className="mt-8 inline-flex items-center gap-3 text-[14px] font-black uppercase leading-5 tracking-[3.08px] text-black"
+        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+      >
         <span>View Project</span>
         <ArrowRight size={16} />
       </div>
@@ -80,19 +89,24 @@ function ContentBlock({ block }) {
   if (block.type === 'html') {
     return (
       <div
-        className="[&_p]:m-0 [&_p+p]:mt-[5px] [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black [&_strong]:font-bold [&_strong]:text-black"
+        className="[&_p]:m-0 [&_p+p]:mt-[5px] [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black [&_strong]:font-bold [&_strong]:text-black [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ul]:my-0 [&_ul]:pl-6 [&_ul]:text-[16px] [&_ul]:leading-[24px] [&_li+li]:mt-0"
         dangerouslySetInnerHTML={{ __html: block.html }}
       />
     );
   }
 
   if (block.type === 'callout') {
+    const tone =
+      block.variant === 'danger'
+        ? 'border-red bg-[rgba(255,0,0,0.1)]'
+        : 'border-[#D4FF00]/35 bg-[rgba(212,255,0,0.1)]';
+
     return (
-      <div className="rounded-2xl border border-[#D4FF00]/35 bg-[#D4FF00]/10 px-5 py-5">
+      <div className={`rounded-[16px] border px-[21px] py-5 ${tone}`}>
         <div className="flex items-start gap-3">
-          <p className="text-[1.8rem] leading-none">{block.icon}</p>
+          <p className="w-[30px] text-[30px] leading-7 text-black">{block.icon}</p>
           <div
-            className="prose prose-neutral max-w-none prose-p:my-0 prose-p:text-[1rem] prose-p:leading-7 prose-strong:text-black prose-em:font-medium prose-em:text-neutral-700"
+            className="max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040]"
             dangerouslySetInnerHTML={{ __html: block.html }}
           />
         </div>
@@ -148,7 +162,14 @@ function ContentBlock({ block }) {
   }
 
   if (block.type === 'sectionTitle') {
-    return <h4 className="text-[1.35rem] font-black tracking-tight text-black">{block.text}</h4>;
+    return (
+      <h4
+        className="text-[20px] font-black leading-7 tracking-[-0.5px] text-black"
+        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+      >
+        {block.text}
+      </h4>
+    );
   }
 
   if (block.type === 'figure') {
@@ -180,13 +201,16 @@ function ContentBlock({ block }) {
 
   if (block.type === 'meta') {
     return (
-      <div className="grid gap-y-4 rounded-2xl border border-black/10 bg-white/80 p-6 md:grid-cols-2 md:gap-x-10">
+      <div className="grid gap-y-4 rounded-[16px] border border-black/10 bg-[rgba(255,255,255,0.65)] p-6 md:grid-cols-2 md:gap-x-10">
         {block.items.map(([label, value]) => (
           <div key={label} className="space-y-2">
-            <p className="text-[10px] font-black uppercase tracking-[0.32em] text-neutral-400">
+            <p
+              className="text-[10px] font-black uppercase leading-[15px] tracking-[3.2px] text-[#A3A3A3]"
+              style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+            >
               {label}
             </p>
-            <p className="text-base leading-7 text-neutral-700">{value}</p>
+            <p className="text-[16px] leading-7 text-[#404040]">{value}</p>
           </div>
         ))}
       </div>
@@ -196,6 +220,7 @@ function ContentBlock({ block }) {
   if (block.type === 'textLines') {
     return (
       <div className="space-y-[5px] text-[16px] leading-8 text-[#404040]">
+        {block.itemsTitle ? <p className="text-black">{block.itemsTitle}</p> : null}
         {block.items.map((item) => (
           <p key={item}>{item}</p>
         ))}
@@ -205,14 +230,15 @@ function ContentBlock({ block }) {
 
   if (block.type === 'table') {
     return (
-      <div className="overflow-x-auto rounded-2xl border border-black/10 bg-white">
+      <div className="overflow-x-auto rounded-[16px] border border-black/10 bg-[rgba(255,255,255,0.75)]">
         <table className="min-w-full border-collapse text-left">
           <thead className="bg-black/[0.03]">
             <tr>
               {block.headers.map((header) => (
                 <th
                   key={header}
-                  className="border-b border-black/10 px-4 py-3 text-sm font-black text-neutral-500"
+                  className="border-b border-black/10 px-4 py-3 text-[14px] font-black leading-5 text-[#737373]"
+                  style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
                 >
                   {header}
                 </th>
@@ -225,7 +251,7 @@ function ContentBlock({ block }) {
                 {row.map((cell, cellIndex) => (
                   <td
                     key={`${rowIndex}-${cellIndex}`}
-                    className="border-b border-black/10 px-4 py-4 text-sm leading-7 text-neutral-700"
+                    className="border-b border-black/10 px-4 py-4 text-[14px] leading-7 text-[#404040]"
                   >
                     {cell}
                   </td>
@@ -459,13 +485,19 @@ export default function ProjectDetail({
         >
           <div className="w-full max-w-[1024px] space-y-0">
             <div className="flex flex-col gap-5">
-              <p className="text-[15px] font-black uppercase tracking-[4.2px] text-[#737373]">
+              <p
+                className="text-[14px] font-black uppercase leading-[15px] tracking-[4.2px] text-[#737373]"
+                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+              >
                 {project.detailMeta ?? `${project.caseStudy.label} / ${project.year}`}
               </p>
-              <h1 className="text-[46px] font-black leading-[53.36px] tracking-[-2.32px] text-black">
+              <h1
+                className="text-[46.4px] font-black leading-[53.36px] tracking-[-2.32px] text-black"
+                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+              >
                 {project.title}
               </h1>
-              <div className="rounded-[16px] border border-[#D4FF00]/35 bg-[#D4FF00]/10 px-[21px] py-5">
+              <div className="rounded-[16px] border border-[#D4FF00]/35 bg-[rgba(212,255,0,0.1)] px-[21px] py-5">
                 <div className="flex items-start gap-3">
                   <p className="w-[30px] text-[30px] leading-7">🎯</p>
                   <p className="flex-1 text-[20px] leading-[30px] text-[#404040]">
