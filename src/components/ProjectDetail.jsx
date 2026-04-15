@@ -24,7 +24,7 @@ function NextProjectBlock({ project, onOpenProject }) {
     <button
       type="button"
       onClick={() => onOpenProject(project)}
-      className="mt-[60px] w-full rounded-[32px] border border-black/10 bg-white px-8 py-10 text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10"
+      className="flex min-h-[205px] w-full flex-col rounded-[32px] border border-black/10 bg-white px-[30px] py-[30px] text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10"
     >
       <p
         className="text-[10px] font-black uppercase leading-[15px] tracking-[3.5px] text-[#A3A3A3]"
@@ -33,16 +33,16 @@ function NextProjectBlock({ project, onOpenProject }) {
         Next Project
       </p>
       <h3
-        className="mt-4 text-[48px] font-black leading-[48px] tracking-[-2.4px] text-black"
+        className="text-[30px] font-black leading-[48px] tracking-[1px] text-black"
         style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
       >
         {project.title}
       </h3>
-      <p className="mt-4 text-[16px] leading-[32px] text-[#525252]">
+      <p className="mt-[10px] text-[14px] leading-[32px] text-[#525252]">
         {project.coverSummary}
       </p>
       <div
-        className="mt-8 inline-flex items-center gap-3 text-[14px] font-black uppercase leading-5 tracking-[3.08px] text-black"
+        className="mt-5 inline-flex items-center gap-3 text-[14px] font-black uppercase leading-5 tracking-[3.08px] text-black"
         style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
       >
         <span>View Project</span>
@@ -557,8 +557,9 @@ export default function ProjectDetail({
                   </section>
                 );
               })}
-
-              <NextProjectBlock project={nextProject} onOpenProject={onOpenProject} />
+              <div className="pt-[60px]">
+                <NextProjectBlock project={nextProject} onOpenProject={onOpenProject} />
+              </div>
             </div>
           </div>
 
