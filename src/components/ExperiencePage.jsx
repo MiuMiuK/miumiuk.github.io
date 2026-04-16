@@ -22,11 +22,11 @@ function ExperienceActionButton({ button, onNavigate }) {
     <button
       type="button"
       onClick={() => onNavigate(button.target)}
-      className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold transition ${
+        className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold transition ${
         isPrimary
           ? 'bg-[#D4FF00] text-black hover:bg-[#E7FF5F]'
           : isDark
-            ? 'bg-black text-[#D4FF00] hover:bg-neutral-900'
+            ? 'bg-black text-[#D4FF00] hover:bg-black/80'
             : 'bg-[#E2E2E2] text-black hover:bg-[#D6D6D6]'
       }`}
     >

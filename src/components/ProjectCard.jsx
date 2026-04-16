@@ -12,15 +12,17 @@ export default function ProjectCard({ project, onClick, index }) {
 
   return (
     <Wrapper
-      className={`group relative block w-full overflow-hidden border-b border-b-black/10 bg-white text-left ${borderClass} ${
-        isClickable ? 'cursor-pointer' : 'cursor-default'
+      className={`group relative block w-full overflow-hidden border-b border-b-black/10 bg-white text-left transition duration-200 ${borderClass} ${
+        isClickable
+          ? 'cursor-pointer hover:bg-black/[0.02]'
+          : 'cursor-default'
       }`}
       {...wrapperProps}
     >
       <div className="px-0 py-8 md:grid md:h-[729px] md:grid-cols-[756px_684px] md:items-start md:gap-0 md:py-0">
         <div className="px-5 md:px-0 md:pt-[100px]">
           <div
-            className="overflow-hidden md:h-[529px] md:w-[756px]"
+            className="overflow-hidden transition duration-200 md:h-[529px] md:w-[756px] md:group-hover:scale-[1.01]"
             style={{ background: project.imageBackground ?? '#ffffff' }}
           >
             <img
@@ -79,10 +81,10 @@ export default function ProjectCard({ project, onClick, index }) {
 
             <div className="pt-2 md:pt-0">
               <span
-                className="inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition group-hover:bg-neutral-900"
+                className="inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition duration-200 group-hover:bg-black/80"
                 style={{ width: hasTags ? '144px' : '144px' }}
               >
-                <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00]">
+                <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00] transition duration-200">
                   <span>阅读完整复盘</span>
                   <ArrowRight size={10} strokeWidth={2.5} />
                 </span>

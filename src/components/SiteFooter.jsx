@@ -53,7 +53,10 @@ export default function SiteFooter({ footerSection, onNavigate }) {
                         className="text-[1rem] font-bold leading-[1.9] text-black md:text-[14px] md:leading-[55px]"
                       >
                         {label === 'Email' ? (
-                          <a href={`mailto:${value}`} className="underline decoration-black underline-offset-4">
+                          <a
+                            href={`mailto:${value}`}
+                            className="underline decoration-black underline-offset-4 transition duration-200 hover:text-[#737373] hover:decoration-[#737373]"
+                          >
                             {value}
                           </a>
                         ) : (

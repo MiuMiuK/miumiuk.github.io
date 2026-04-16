@@ -57,6 +57,8 @@ function FigureBlock({ block }) {
   const captionLines = typeof block.caption === 'string' ? block.caption.split('\n').filter(Boolean) : [];
   const figureStyle = block.height ? { height: `${block.height}px` } : undefined;
   const figureAspectRatio = block.aspectRatio ? { aspectRatio: block.aspectRatio } : undefined;
+  const shouldFillFrame = Boolean(block.height || block.aspectRatio);
+  const imageClassName = shouldFillFrame ? 'h-full w-full object-cover' : 'h-auto w-full object-cover';
 
   return (
     <figure className="space-y-3">
@@ -66,12 +68,12 @@ function FigureBlock({ block }) {
           style={{ ...figureAspectRatio, ...figureStyle }}
         >
           {block.src ? (
-            <img src={block.src} alt={block.alt} className="h-full w-full object-cover opacity-0" />
+            <img src={block.src} alt={block.alt} className={`${imageClassName} opacity-0`} />
           ) : null}
         </div>
       ) : (
         <div className="overflow-hidden bg-white" style={{ ...figureAspectRatio, ...figureStyle }}>
-          <img src={block.src} alt={block.alt} className="h-full w-full object-cover" />
+          <img src={block.src} alt={block.alt} className={imageClassName} />
         </div>
       )}
       <figcaption className="space-y-[5px] text-[14px] leading-6 text-[#737373]">
@@ -85,11 +87,19 @@ function FigureBlock({ block }) {
   );
 }
 
-function ContentBlock({ block }) {
+function ContentBlock({ block, projectId }) {
+  const isWorkItemRefactor = projectId === 'spotify-live';
+
   if (block.type === 'html') {
+    const paragraphGapClass = block.paragraphGapClass ?? '[&_p+p]:mt-[5px]';
+    const paragraphClass = block.paragraphClass ?? '[&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black';
+    const strongClass = block.strongClass ?? '[&_strong]:font-bold [&_strong]:text-black';
+    const emClass = block.emClass ?? '[&_em]:font-medium [&_em]:italic [&_em]:text-[#404040]';
+    const ulClass = block.ulClass ?? '[&_ul]:my-0 [&_ul]:pl-6 [&_ul]:text-[16px] [&_ul]:leading-[24px] [&_li+li]:mt-0';
+
     return (
       <div
-        className="[&_p]:m-0 [&_p+p]:mt-[5px] [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black [&_strong]:font-bold [&_strong]:text-black [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ul]:my-0 [&_ul]:pl-6 [&_ul]:text-[16px] [&_ul]:leading-[24px] [&_li+li]:mt-0"
+        className={`${block.className ?? ''} [&_p]:m-0 ${paragraphGapClass} ${paragraphClass} ${strongClass} ${emClass} ${ulClass}`}
         dangerouslySetInnerHTML={{ __html: block.html }}
       />
     );
@@ -103,12 +113,73 @@ function ContentBlock({ block }) {
 
     return (
       <div className={`rounded-[16px] border px-[21px] py-5 ${tone}`}>
-        <div className="flex items-start gap-3">
+        <div className={`flex items-start ${isWorkItemRefactor ? 'gap-2' : 'gap-3'}`}>
           <p className="w-[30px] text-[30px] leading-7 text-black">{block.icon}</p>
           <div
-            className="max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040]"
+            className={
+              isWorkItemRefactor
+                ? "max-w-none text-[16px] leading-[30px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[30px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[30px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
+                : "max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[24px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
+            }
             dangerouslySetInnerHTML={{ __html: block.html }}
           />
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === 'keyConflictsCard') {
+    return (
+      <div className="space-y-[10px]">
+        <p className="text-[16px] leading-[24px] text-black">{block.intro}</p>
+        <div className="rounded-[6px] border-l-[6px] border-l-[#D5FF02] bg-white">
+          <div className="rounded-[6px] border border-[#DFE1E5] px-[25px] py-[25px]">
+            <div className="space-y-0">
+              {block.items.map((item) => (
+                <p key={item.title} className="text-[16px] leading-[30px] text-black">
+                  <strong className="font-bold text-black">{item.title}</strong>
+                  <span>{' → '}</span>
+                  <span>{item.detail}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === 'insightListCard') {
+    return (
+      <div className="relative overflow-hidden rounded-[6px] bg-white">
+        <div className="absolute inset-y-0 left-0 w-[6px] bg-[#D5FF02]" />
+        <div className="rounded-[6px] border border-[#DFE1E5] px-[25px] py-[25px]">
+          <ol className="list-decimal space-y-0 pl-6 text-[16px] text-black marker:font-normal marker:text-black">
+            {block.items.map((item) => (
+              <li key={item.title} className="leading-[30px]">
+                <strong className="font-bold text-black">{item.title}</strong>
+                <span>{` → ${item.detail}`}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === 'goalListCard') {
+    return (
+      <div className="relative overflow-hidden rounded-[6px] bg-white">
+        <div className="absolute inset-y-0 left-0 w-[6px] bg-[#D5FF02]" />
+        <div className="rounded-[6px] border border-[#DFE1E5] px-[35px] py-[35px]">
+          <div className="space-y-[5px] text-[16px] text-black">
+            <p className="font-bold leading-[32px] text-black">{block.title}</p>
+            {block.items.map((item) => (
+              <p key={item} className="leading-[40px] text-[#404040]">
+                {item}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -220,7 +291,7 @@ function ContentBlock({ block }) {
   if (block.type === 'textLines') {
     return (
       <div className="space-y-[5px] text-[16px] leading-8 text-[#404040]">
-        {block.itemsTitle ? <p className="text-black">{block.itemsTitle}</p> : null}
+        {block.itemsTitle ? <p className="leading-[24px] text-black">{block.itemsTitle}</p> : null}
         {block.items.map((item) => (
           <p key={item}>{item}</p>
         ))}
@@ -229,6 +300,44 @@ function ContentBlock({ block }) {
   }
 
   if (block.type === 'table') {
+    if (isWorkItemRefactor) {
+      return (
+        <div className="overflow-x-auto rounded-[32px] border border-black/10 bg-white">
+          <table className="min-w-full border-collapse text-left">
+            <thead className="bg-black/[0.03]">
+              <tr>
+                {block.headers.map((header) => (
+                  <th
+                    key={header}
+                    className="border-b border-black/10 px-7 py-6 text-[14px] font-black leading-[20px] text-[#737373]"
+                    style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, rowIndex) => (
+                <tr key={`${rowIndex}-${row[0]}`} className="align-top">
+                  {row.map((cell, cellIndex) => (
+                    <td
+                      key={`${rowIndex}-${cellIndex}`}
+                      className={`px-7 py-7 text-[14px] leading-[24px] text-[#525252] ${
+                        rowIndex === block.rows.length - 1 ? '' : 'border-b border-black/10'
+                      }`}
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
     return (
       <div className="overflow-x-auto rounded-[16px] border border-black/10 bg-[rgba(255,255,255,0.75)]">
         <table className="min-w-full border-collapse text-left">
@@ -265,14 +374,33 @@ function ContentBlock({ block }) {
   }
 
   if (block.type === 'details') {
+    if (isWorkItemRefactor) {
+      return (
+        <details className="group">
+          <summary className="flex cursor-pointer list-none items-center gap-2 text-[14px] font-black leading-5 tracking-[0.64px] text-black transition duration-200 hover:text-[#737373] [&::-webkit-details-marker]:hidden">
+            <ArrowRight
+              size={14}
+              className="transition duration-200 group-open:rotate-90"
+            />
+            <span>{block.summary}</span>
+          </summary>
+          <div className="mt-[14px] space-y-[14px]">
+            {block.blocks.map((child, index) => (
+              <ContentBlock key={`${block.summary}-${index}`} block={child} projectId={projectId} />
+            ))}
+          </div>
+        </details>
+      );
+    }
+
     return (
       <details className="rounded-2xl border border-black/10 bg-white p-5">
-        <summary className="cursor-pointer list-none text-[16px] leading-5 text-black">
+        <summary className="cursor-pointer list-none text-[16px] leading-5 text-black transition duration-200 hover:text-[#737373]">
           {block.summary}
         </summary>
         <div className="mt-5 space-y-5">
           {block.blocks.map((child, index) => (
-            <ContentBlock key={`${block.summary}-${index}`} block={child} />
+            <ContentBlock key={`${block.summary}-${index}`} block={child} projectId={projectId} />
           ))}
         </div>
       </details>
@@ -303,14 +431,14 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
               type="button"
               onClick={() => onNavigate(item.id)}
               className={`block w-full text-left transition ${
-                activeOutlineId === item.id ||
-                item.children.some((child) => child.id === activeOutlineId)
+              activeOutlineId === item.id ||
+              item.children.some((child) => child.id === activeOutlineId)
                   ? mobile
                     ? 'text-black text-sm font-bold leading-6'
                     : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black'
                   : mobile
                     ? 'text-neutral-600 text-sm font-bold leading-6 hover:text-black'
-                    : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black'
+                    : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black hover:text-[#737373]'
               }`}
             >
               {item.title}
@@ -335,7 +463,7 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
                           : 'text-[14px] leading-[30px] text-black'
                         : mobile
                           ? 'text-xs leading-5 text-neutral-500 hover:text-black'
-                          : 'text-[14px] leading-[30px] text-[#505050]'
+                          : 'text-[14px] leading-[30px] text-[#505050] hover:text-black'
                     }`}
                   >
                     {child.title}
@@ -498,9 +626,9 @@ export default function ProjectDetail({
                 {project.title}
               </h1>
               <div className="rounded-[16px] border border-[#D4FF00]/35 bg-[rgba(212,255,0,0.1)] px-[21px] py-5">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-2">
                   <p className="w-[30px] text-[30px] leading-7">🎯</p>
-                  <p className="flex-1 text-[20px] leading-[30px] text-[#404040]">
+                  <p className="flex-1 text-[16px] font-medium leading-[30px] text-[#404040]">
                     {project.caseStudy.introCallout}
                   </p>
                 </div>
@@ -519,7 +647,13 @@ export default function ProjectDetail({
             <div className="space-y-0">
               {project.caseStudy.blocks.map((block, index) => {
                 if (block.type !== 'chapter') {
-                  return <ContentBlock key={`${project.id}-case-${index}`} block={block} />;
+                  return (
+                    <ContentBlock
+                      key={`${project.id}-case-${index}`}
+                      block={block}
+                      projectId={project.id}
+                    />
+                  );
                 }
 
                 return (
@@ -546,13 +680,20 @@ export default function ProjectDetail({
                               <ContentBlock
                                 key={`${child.title}-${grandChildIndex}`}
                                 block={grandChild}
+                                projectId={project.id}
                               />
                             ))}
                           </section>
                         );
                       }
 
-                      return <ContentBlock key={`${block.title}-${childIndex}`} block={child} />;
+                      return (
+                        <ContentBlock
+                          key={`${block.title}-${childIndex}`}
+                          block={child}
+                          projectId={project.id}
+                        />
+                      );
                     })}
                   </section>
                 );

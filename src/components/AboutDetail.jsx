@@ -61,7 +61,7 @@ export default function AboutDetail({
           <button
             type="button"
             onClick={onBack}
-            className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-white/12 bg-black/70 p-2 text-xs font-black uppercase tracking-widest text-white backdrop-blur transition hover:border-[#D4FF00] hover:bg-[#D4FF00] hover:text-black md:left-12 md:p-3"
+            className="fixed left-6 top-4 z-[70] flex items-center gap-2 rounded-full border border-white/12 bg-black/70 p-2 text-xs font-black uppercase tracking-widest text-white backdrop-blur transition duration-200 hover:bg-black/80 md:left-12 md:p-3"
           >
             <ArrowRight size={14} className="rotate-180" />
             Back

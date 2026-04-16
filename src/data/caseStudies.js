@@ -9,7 +9,7 @@ export const workItemRefactorCaseStudy = {
       blocks: [
         {
           type: 'html',
-          html: '<p>这是一次 <strong>面向中大型企业客户</strong> 的工作项详情重构项目。</p><p>随着客户使用深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。</p><p>我在项目中主要负责问题定义、研究设计、竞品分析、核心交互方案输出与验证，协同产品、研发和业务团队推动方案分阶段落地。</p>',
+          html: '<p>这是一次 <strong>面向中大型企业客户</strong> 的工作项详情重构项目。随着客户使用深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。</p><p>我在项目中主要负责 <strong>问题定义、研究设计、竞品分析、核心交互方案输出与验证</strong>，协同产品、研发和业务团队推动方案分阶段落地。</p>',
         },
         {
           type: 'meta',
@@ -43,8 +43,22 @@ export const workItemRefactorCaseStudy = {
       title: '三、原有体验的核心问题是什么',
       blocks: [
         {
-          type: 'html',
-          html: '<p>经过前期梳理，我将原有工作项详情的问题收敛为三个核心矛盾，并通过后续研究验证了它们的优先级：</p><ul><li>信息查找效率是最高频问题，直接影响每日使用体验；</li><li>配置能力的欠缺则是客户续约和深度使用的关键卡点；</li><li>而结构灵活性不足是制约前两者改善的根本原因。</li></ul>',
+          type: 'keyConflictsCard',
+          intro: '经过前期梳理，我将原有工作项详情的问题收敛为三个核心矛盾，并通过后续研究验证了它们的优先级：',
+          items: [
+            {
+              title: '核心矛盾一：信息查找效率是最高频问题',
+              detail: '直接影响每日使用体验',
+            },
+            {
+              title: '核心矛盾二：配置能力欠缺',
+              detail: '这是客户续约和深度使用的关键卡点',
+            },
+            {
+              title: '核心矛盾三：结构灵活性不足',
+              detail: '这是制约前两者改善的根本原因',
+            },
+          ],
         },
         {
           type: 'subchapter',
@@ -152,27 +166,19 @@ export const workItemRefactorCaseStudy = {
           blocks: [
             {
               type: 'html',
-              html: '<p>为了理解不同角色在工作项中的实际使用方式，我设计并执行了多轮用户研究，覆盖产品经理、项目经理、研发、测试、运维等不同职能角色，并纳入不同权限层级和经验水平的样本。</p><p>研究中我主要采用了以下方式：</p>',
-            },
-            {
-              type: 'textLines',
-              items: [
-                'a. 情景观察与深度访谈：理解真实工作流中的查看、编辑和切换行为',
-                'b. 问卷调研：扩大样本范围，验证观察结论',
-              ],
+              html: '<p>为了理解不同角色在工作项中的实际使用方式，我设计并执行了多轮用户研究，覆盖产品经理、项目经理、研发、测试、运维等不同职能角色，并纳入不同权限层级和经验水平的样本。</p>',
             },
             {
               type: 'html',
-              html: '<p>通过这些研究，我确认了几个关键事实：</p>',
+              html: '<p>研究中我主要采用了以下方式：</p>',
             },
             {
-              type: 'textLines',
-              items: [
-                'a. 不同角色在同一工作项中关注的信息差异很大',
-                'b. 用户更关注成组的信息，而不是单个字段',
-                'c. 连续处理任务和聚焦阅读任务，对详情载体的需求不同',
-                'd. 动态区域的重要性会随着协作模式变化而变化',
-              ],
+              type: 'html',
+              paragraphGapClass: '[&_p+p]:mt-0',
+              paragraphClass:
+                '[&_p]:text-[16px] [&_p]:leading-[32px] [&_p]:text-[#404040]',
+              strongClass: '[&_strong]:font-bold [&_strong]:text-[#404040]',
+              html: '<p><strong>a. 情景观察与深度访谈：理解真实工作流中的查看、编辑和切换行为</strong></p>',
             },
             {
               type: 'figure',
@@ -182,12 +188,45 @@ export const workItemRefactorCaseStudy = {
               assetName: 'attachment:71e9bb91-736d-47d0-bec2-93b0aa96c14d:image.png',
             },
             {
+              type: 'html',
+              paragraphGapClass: '[&_p+p]:mt-0',
+              paragraphClass:
+                '[&_p]:text-[16px] [&_p]:leading-[32px] [&_p]:text-[#404040]',
+              strongClass: '[&_strong]:font-bold [&_strong]:text-[#404040]',
+              html: '<p><strong>b. 问卷调研：扩大样本范围，验证观察结论</strong></p>',
+            },
+            {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-research-02.png',
               alt: '通过多角色研究理解真实工作流，确认不同角色关注的信息与使用方式存在显著差异。',
               caption:
                 '▵ 通过多角色研究理解真实工作流，确认不同角色关注的信息与使用方式存在显著差异。',
               assetName: 'attachment:6e69c438-fd34-4bca-8ba8-30c0968fc7a8:2问卷调研.png',
+            },
+            {
+              type: 'html',
+              html: '<p>通过这些研究，我确认了几个关键事实，它们直接驱动了后续的设计决策：</p>',
+            },
+            {
+              type: 'insightListCard',
+              items: [
+                {
+                  title: '不同角色关注的信息差异很大',
+                  detail: '这是引入标签页可见性配置的核心依据',
+                },
+                {
+                  title: '用户更关注成组的信息，而非单个字段',
+                  detail: '这是引入属性分组能力的核心依据',
+                },
+                {
+                  title: '连续处理任务和聚焦阅读任务，对详情载体需求不同',
+                  detail: '这是探索抽屉+弹窗并存模式的核心依据',
+                },
+                {
+                  title: '动态区域的重要性会随协作模式变化',
+                  detail: '这是支持动态区域宽度可调节的核心依据',
+                },
+              ],
             },
           ],
         },
@@ -202,7 +241,7 @@ export const workItemRefactorCaseStudy = {
             {
               type: 'callout',
               icon: '💡',
-              html: '数据洞察：竞品分析让我确认，当前产品的问题不只是单点体验不足，而是整体详情框架已经落后于行业实践。多数成熟产品已经在以下方面建立了更强能力：<ul><li>更灵活的详情载体</li><li>更清晰的信息布局</li><li>属性分组与标签页能力</li><li>更强的个性化展示和编辑能力</li></ul>',
+              html: '数据洞察：竞品分析让我确认，当前产品的问题不只是单点体验不足，而是整体详情框架已经落后于行业实践。多数成熟产品已经在以下方面建立了更强能力：<ol><li>更灵活的详情载体</li><li>更清晰的信息布局</li><li>属性分组与标签页能力</li><li>更强的个性化展示和编辑能力</li></ol>',
             },
             {
               type: 'figure',
@@ -260,19 +299,11 @@ export const workItemRefactorCaseStudy = {
             {
               type: 'callout',
               icon: '🎉',
-              html: '用户评分：Demo <strong>4.4</strong> &gt; 线上现状 <strong>3.2</strong>',
+              html: '用户评分（5分制）：Demo <strong>4.4</strong> &gt; 线上现状 <strong>3.2</strong>，评分维度涵盖信息查找效率、结构清晰度和整体满意度。',
             },
             {
-              type: 'html',
-              html: '<p>测试结果显示，用户对 Demo 的整体评分达到 4.4，高于线上现状的 3.2，说明新的设计方向在连续浏览、信息查找和结构清晰度上具备明显优势。</p><p>同时，Demo 测试也帮助我识别出一些需要继续权衡的问题，例如：</p>',
-            },
-            {
-              type: 'textLines',
-              items: [
-                'a. 抽屉模式下对列表信息的遮挡',
-                'b. 瀑布流在高密度信息场景下的查找成本',
-                'c. 个性化展示与团队一致性之间的平衡',
-              ],
+              type: 'sectionTitle',
+              text: '可用性测试大纲',
             },
             {
               type: 'figure',
@@ -282,32 +313,44 @@ export const workItemRefactorCaseStudy = {
               assetName: 'attachment:d8c1dafb-0cba-4328-84f4-97e6d29940b5:5_可用性测试.png',
             },
             {
+              type: 'html',
+              html: '<p>测试结果验证了关键设计方向，同时也帮助我识别出后续需要继续权衡的问题：</p>',
+            },
+            {
+              type: 'textLines',
+              items: [
+                '问题一：抽屉模式下对列表信息的遮挡',
+                '问题二：瀑布流在高密度信息场景下的查找成本',
+                '问题三：个性化展示与团队一致性之间的平衡',
+              ],
+            },
+            {
               type: 'details',
               summary: '展开查看详细测试反馈',
               blocks: [
                 {
                   type: 'table',
-                  headers: ['测试点', 'Demo 做得好的', '需要调整策略的'],
+                  headers: ['测试点', '用户认可的点', '需要调整策略的点'],
                   rows: [
                     [
                       '新增抽屉载体 + 合并宽/窄详情',
-                      '终于能边看表格边看详情了，不用频繁切换视图了；支持自由调整宽度，查看内容很方便',
-                      '详情抽屉查看时，不应该遮挡列表上的关键属性；继续打开动态后界面元素太拥挤；70% 的用户对新列表布局和表格布局的差异感到困惑',
+                      '能边看表格边看详情，不用频繁切换视图；支持自由调整宽度',
+                      '详情抽屉不应遮挡列表关键属性；打开动态后界面元素过于拥挤；新列表布局与表格布局的差异令 70% 用户困惑',
                     ],
                     [
                       '优化现有详情弹窗尺寸',
-                      '弹窗尺寸变大后，不会频繁出现省略号，能展示更多信息了',
+                      '尺寸变大后省略号减少，能展示更多信息',
                       '-',
                     ],
                     [
-                      '支持详情内切换上/下工作（含快捷键）',
-                      '操作很流畅，沉浸式查看详情时不用再反复打开、关闭了',
-                      '如果能支持新窗口打开就更好了',
+                      '支持详情内切换上/下工作项',
+                      '操作流畅，沉浸式查看时无需反复打开关闭',
+                      '希望支持新窗口打开',
                     ],
                     [
-                      '调整信息展示策略 + 浏览方式',
-                      '不展示为空模块，详情信息精简很多',
-                      '变成瀑布流后，信息太多不好查找',
+                      '信息展示策略 + 瀑布流浏览',
+                      '不展示空模块，详情信息精简很多',
+                      '信息太多时瀑布流不好查找',
                     ],
                     [
                       '支持属性分组',
@@ -316,13 +359,13 @@ export const workItemRefactorCaseStudy = {
                     ],
                     [
                       '支持成员个人 Pin 属性',
-                      '可以只看自己关注的信息，有效解决查找困难的问题',
-                      '掌控感较强的管理员，不希望协作时出现信息不对齐问题',
+                      '只看自己关注的信息，有效解决查找困难',
+                      '管理员担心协作时出现信息不对齐',
                     ],
                     [
                       '支持调整动态区域宽度',
-                      '调整后展示空间很大，能够很好地阅读动态内容',
-                      '对于不依赖动态工作的场景，将动态区域调整到最小还是觉得占空间',
+                      '阅读空间大，动态内容阅读体验好',
+                      '不依赖动态工作的场景，调整到最小仍觉得占空间',
                     ],
                   ],
                 },
@@ -338,18 +381,15 @@ export const workItemRefactorCaseStudy = {
       blocks: [
         {
           type: 'html',
-          html: '<p>基于前期研究，我没有选择一次性全面改版，而是按<strong>「先解决高频效率问题，再逐步调整底层框架」</strong>的思路，分阶段推进方案。</p>',
+          html: '<p>基于前期研究，我没有选择一次性全面改版，而是按 <strong>「先解决高频效率问题，再逐步调整底层框架」</strong> 的思路分阶段推进方案。这样做的原因是：新方案对老用户使用习惯影响较大，分阶段上线能降低迁移风险，同时让每阶段的方案都可以通过真实数据快速验证。</p>',
         },
         {
           type: 'sectionTitle',
           text: '设计目标',
         },
         {
-          type: 'html',
-          html: '<p>这次改版主要围绕 4 个目标展开：</p>',
-        },
-        {
-          type: 'textLines',
+          type: 'goalListCard',
+          title: '这次改版主要围绕 4 个目标展开：',
           items: [
             '1. 提升工作项详情的信息查找效率',
             '2. 让详情结构能够适配不同场景和角色需求',
@@ -420,20 +460,20 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-01.png',
-              alt: '表单资源库',
-              caption: '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
-              assetName: 'attachment:8fb0ecc0-6930-4418-b12a-fe1e237c53f0:image.png',
-            },
-            {
-              type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-02.png',
-              alt: '自定义拖拽配置属性+快速查找定位属性',
-              caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
+              alt: '编辑表单配置',
+              caption: '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
             },
             {
               type: 'html',
               html: '<p>这个方案的核心是：让配置行为从"零散编辑"转变为"围绕业务结构进行组织"，也为后续布局和分组能力建立了基础。</p>',
+            },
+            {
+              type: 'figure',
+              kind: 'placeholder',
+              height: 568,
+              alt: '自定义拖拽配置属性+快速查找定位属性',
+              caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
             },
           ],
         },
@@ -459,7 +499,8 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-02.png',
+              kind: 'placeholder',
+              height: 568,
               alt: '自定义标签页+自定义分组',
               caption: '▵ 自定义标签页+自定义分组',
             },
@@ -504,17 +545,9 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-01.png',
-              alt: '拖拽自定义划分区域',
-              caption: '▵ 详情弹窗 -拖拽自定义划分区域',
-              assetName: 'attachment:430b3dd8-1910-4125-b13f-d212917d62a9:5悬停_2.png',
-            },
-            {
-              type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-02.png',
-              alt: '宽详情：平铺 ➡️ 抽屉',
-              caption: '▵ 宽详情：平铺 ➡️ 抽屉',
-              assetName: 'attachment:46df19c0-5986-4581-9d91-12135318b7f4:2宽详情展示.png',
+              alt: '详情页：平铺 ➡️ 抽屉',
+              caption: '▵ 详情页：平铺 ➡️ 抽屉',
             },
             {
               type: 'figure',
@@ -524,17 +557,23 @@ export const workItemRefactorCaseStudy = {
               assetName: 'attachment:46984a3b-2d6f-4f93-9bf9-431e42fbd554:3窄详情展示.png',
             },
             {
-              type: 'callout',
-              icon: '🤔',
-              variant: 'danger',
-              html: '<p>目前方案仍在验证阶段，主要待解决的问题是：抽屉打开时对列表内容的遮挡，以及同时展开动态区域后的空间拥挤问题。</p>',
-            },
-            {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-04.png',
               alt: '详情内快捷新建子任务',
               caption: '▵ 详情内快捷新建子任务',
               assetName: 'attachment:db109085-6bb7-48b6-a9d8-94b6a74191a8:4详情快捷新建子任务.png',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-05.png',
+              alt: '详情动态链接打开子任务',
+              caption: '▵ 详情动态链接打开子任务',
+            },
+            {
+              type: 'callout',
+              icon: '🤔',
+              variant: 'danger',
+              html: '<p>目前方案仍在验证阶段，主要待解决的问题是：抽屉打开时对列表内容的遮挡，以及同时展开动态区域后的空间拥挤问题。</p>',
             },
           ],
         },
@@ -583,7 +622,7 @@ export const workItemRefactorCaseStudy = {
         },
         {
           type: 'html',
-          html: '<p>这个项目更重要的价值，不只是优化了一个详情页，而是重新梳理了工作项详情在复杂业务场景中的角色。</p>',
+          html: '<p>这个项目更重要的价值，并不只是优化了一个详情页，而是重新梳理了工作项详情在复杂业务场景中的角色。</p>',
         },
         {
           type: 'textLines',

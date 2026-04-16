@@ -17,7 +17,7 @@ export default function Navbar({ brand, onNavigate, activeItem = null, className
     >
       <button
         type="button"
-        className="cursor-pointer text-left text-[0.94rem] font-semibold uppercase leading-none tracking-[-0.03em] text-black transition md:text-[1.18rem]"
+        className="group cursor-pointer text-left text-[0.94rem] font-semibold uppercase leading-none tracking-[-0.03em] text-black transition duration-200 hover:opacity-80 md:text-[1.18rem]"
         onClick={() => onNavigate('home')}
       >
         {parts.map((part, index) => (
@@ -25,8 +25,8 @@ export default function Navbar({ brand, onNavigate, activeItem = null, className
             key={part}
             className={
               index === parts.length - 1
-                ? 'ml-[0.14em] bg-black px-[0.22em] py-[0.16em] text-[#D4FF00]'
-                : 'text-black'
+                ? 'ml-[0.14em] bg-black px-[0.22em] py-[0.16em] text-[#D4FF00] transition duration-200 group-hover:bg-[#D4FF00] group-hover:text-black'
+                : 'text-black transition duration-200'
             }
           >
             {part}

@@ -266,7 +266,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => handleNavigate(heroSection.ctaTarget)}
-                        className="mt-8 inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition hover:bg-neutral-900 md:mt-[50px] md:w-[195px]"
+                        className="mt-8 inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition duration-200 hover:bg-black/80 md:mt-[50px] md:w-[195px]"
                       >
                         <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00]">
                           <span>{heroSection.ctaText}</span>
