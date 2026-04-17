@@ -1,16 +1,16 @@
 export const workItemRefactorCaseStudy = {
   label: 'Full Case Study',
   introCallout:
-    '面向复杂研发协作场景，重构工作项详情的信息结构与配置框架，提升多角色协作下的信息查找效率与任务处理效。',
+    '面向复杂研发协作场景，重构核心详情载体的信息结构与配置框架，提升多角色协作下的信息查找效率、配置灵活性与后续演进能力。',
   blocks: [
     {
       type: 'chapter',
       title: '一、项目概览',
       blocks: [
-        {
-          type: 'html',
-          html: '<p>这是一次 <strong>面向中大型企业客户</strong> 的工作项详情重构项目。随着客户使用深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。</p><p>我在项目中主要负责 <strong>问题定义、研究设计、竞品分析、核心交互方案输出与验证</strong>，协同产品、研发和业务团队推动方案分阶段落地。</p>',
-        },
+            {
+              type: 'html',
+              html: '<p>这是一次 <strong>面向中大型企业客户</strong> 的工作项详情重构项目。随着客户使用不断深入，工作项承载的信息持续增加，原有详情页在信息组织、跨角色协作和配置扩展能力上逐渐暴露问题，既影响日常使用效率，也限制了产品后续演进。</p><p>我在项目中主要负责 <strong>问题定义、研究设计、竞品分析、核心交互方案输出与验证</strong>，并协同产品、研发和业务团队推动方案分阶段落地。</p>',
+            },
         {
           type: 'meta',
           items: [
@@ -43,8 +43,12 @@ export const workItemRefactorCaseStudy = {
     },
     {
       type: 'chapter',
-      title: '三、原有体验的核心问题是什么',
+      title: '三、表面是信息错乱，实际是结构失效',
       blocks: [
+        {
+          type: 'html',
+          html: '<p>项目初期，大家感知到的问题主要是页面信息过多、查找困难、结构混乱，以及不同内容之间相互挤压。</p><p>但在进一步梳理后，我发现这些并不是彼此独立的问题，而是同一个结构性矛盾的不同表现：原有详情结构已经无法继续支撑多角色协作下不断增长的业务复杂度。</p><p>换句话说，问题不只是“页面太乱”，而是<strong>同一套结构正在硬扛越来越复杂的场景</strong>。</p>',
+        },
         {
           type: 'keyConflictsCard',
           intro:
@@ -130,6 +134,11 @@ export const workItemRefactorCaseStudy = {
                 'd. 动态、评论、关联内容等协作信息缺少合理空间',
               ],
             },
+            {
+              type: 'callout',
+              icon: '💡',
+              html: '总结：问题不只是信息越来越多，而是原有详情结构已经难以继续承接复杂业务场景下的协作和配置需求。',
+            },
           ],
         },
       ],
@@ -140,7 +149,7 @@ export const workItemRefactorCaseStudy = {
       blocks: [
         {
           type: 'html',
-          html: '<p>为了确认问题的广度、严重性和优先级，我从用户反馈、体验走查、用户研究、竞品分析和方案验证五个方向交叉分析。</p>',
+          html: '<p>为了确认问题的广度、严重性和优先级，我从用户反馈、体验走查、用户研究、竞品分析和可用性测试五个方向交叉分析。</p><p>这些工作不是为了证明“页面很乱”，而是为了确认这是不是一个局部体验问题，以及它为什么值得被优先解决。</p>',
         },
         {
           type: 'subchapter',
@@ -172,19 +181,7 @@ export const workItemRefactorCaseStudy = {
           blocks: [
             {
               type: 'html',
-              html: '<p>为了理解不同角色在工作项中的实际使用方式，我设计并执行了多轮用户研究，覆盖产品经理、项目经理、研发、测试、运维等不同职能角色，并纳入不同权限层级和经验水平的样本。</p>',
-            },
-            {
-              type: 'html',
-              html: '<p>研究中我主要采用了以下方式：</p>',
-            },
-            {
-              type: 'html',
-              paragraphGapClass: '[&_p+p]:mt-0',
-              paragraphClass:
-                '[&_p]:text-[16px] [&_p]:leading-[32px] [&_p]:text-[#404040]',
-              strongClass: '[&_strong]:font-bold [&_strong]:text-[#404040]',
-              html: '<p><strong>a. 情景观察与深度访谈：理解真实工作流中的查看、编辑和切换行为</strong></p>',
+              html: '<p>为了理解不同角色在工作项中的实际使用方式，我设计并执行了多轮用户研究，覆盖产品经理、项目经理、研发、测试、运维等不同职能角色，并纳入不同权限层级和经验水平的样本。</p><p>研究中，我结合情景观察、深度访谈和问卷调研去理解真实工作流中的查看、编辑和切换行为，重点确认不同角色到底在看什么、找什么，以及他们为什么会在同一详情页里频繁迷失。</p>',
             },
             {
               type: 'figure',
@@ -193,14 +190,6 @@ export const workItemRefactorCaseStudy = {
               caption: '▵ 用户研究图 1',
               assetName:
                 'attachment:71e9bb91-736d-47d0-bec2-93b0aa96c14d:image.png',
-            },
-            {
-              type: 'html',
-              paragraphGapClass: '[&_p+p]:mt-0',
-              paragraphClass:
-                '[&_p]:text-[16px] [&_p]:leading-[32px] [&_p]:text-[#404040]',
-              strongClass: '[&_strong]:font-bold [&_strong]:text-[#404040]',
-              html: '<p><strong>b. 问卷调研：扩大样本范围，验证观察结论</strong></p>',
             },
             {
               type: 'figure',
@@ -244,7 +233,7 @@ export const workItemRefactorCaseStudy = {
           blocks: [
             {
               type: 'html',
-              html: '<p>我对国内外 13 个相关产品的前台详情与后台配置能力进行了对比分析，包括 Jira、Tapd、ClickUp、Airtable、Asana、Linear 等。</p>',
+              html: '<p>我对国内外 13 个相关产品的前台详情与后台配置能力进行了对比分析，包括 Jira、Tapd、ClickUp、Airtable、Asana、Linear 等。竞品分析的目的，不是简单借鉴形式，而是帮助我判断：当前产品的问题到底是局部交互不足，还是整体详情框架已经落后于行业实践。</p>',
             },
             {
               type: 'callout',
@@ -304,7 +293,7 @@ export const workItemRefactorCaseStudy = {
           blocks: [
             {
               type: 'html',
-              html: '<p>在研究结论基础上，我围绕关键问题输出了多组 Demo 方案，并邀请用户进行可用性测试，重点验证详情载体、属性分组、信息浏览方式、动态区域调整等设计点。</p>',
+              html: '<p>在研究结论基础上，我围绕关键问题输出了多组 Demo 方案，并邀请用户进行可用性测试，重点验证详情载体、属性分组、信息浏览方式、动态区域调整等设计点。</p><p>这一步的重点不是验证“方案是否更好看”，而是确认新的结构方向是否真的能改善信息查找效率、结构清晰度和整体满意度。</p>',
             },
             {
               type: 'callout',
@@ -379,21 +368,22 @@ export const workItemRefactorCaseStudy = {
                 },
               ],
             },
+            {
+              type: 'callout',
+              icon: '💡',
+              html: '总结：用研验证了问题的广泛性，业务目标则决定了它的优先级。这也让我确认，这次改版不应该停留在局部优化，而应该回到结构能力本身。',
+            },
           ],
         },
       ],
     },
     {
       type: 'chapter',
-      title: '五、我怎么设计',
+      title: '五、我的设计目标',
       blocks: [
         {
           type: 'html',
-          html: '<p>基于前期研究，我没有选择一次性全面改版，而是按 <strong>「先解决高频效率问题，再逐步调整底层框架」</strong> 的思路分阶段推进方案。这样做的原因是：新方案对老用户使用习惯影响较大，分阶段上线能降低迁移风险，同时让每阶段的方案都可以通过真实数据快速验证。</p>',
-        },
-        {
-          type: 'sectionTitle',
-          text: '设计目标',
+          html: '<p>基于前期研究，我没有选择一次性全面改版，而是按 <strong>「先解决高频效率问题，再逐步调整底层框架」</strong> 的思路分阶段推进方案。这样做的原因是：新方案对老用户使用习惯影响较大，分阶段上线能降低迁移风险，同时让每阶段的方案都可以通过真实数据快速验证。</p><p>换句话说，这次设计不是追求一步到位，而是在统一结构与个性化配置之间寻找平衡，让详情页既服务当前效率，也具备继续演进的能力。</p>',
         },
         {
           type: 'goalListCard',
@@ -413,14 +403,183 @@ export const workItemRefactorCaseStudy = {
           assetName:
             'attachment:31e18245-3e3e-4ec6-b1e8-1a289e6cc677:Frame_16162.png',
         },
+      ],
+    },
+    {
+      type: 'chapter',
+      title: '六、关键设计取舍',
+      blocks: [
         {
-          type: 'details',
-          summary: '展开查看具体方案执行',
+          type: 'subchapter',
+          title: '1. 先重构表单配置能力，而不是继续堆叠局部配置项',
+          blocks: [
+            {
+              type: 'callout',
+              icon: '📊',
+              html: '<p>驱动依据：竞品分析和管理员访谈均显示，原有配置框架已成为业务定制化的最大瓶颈；</p><p>调研中 90% 竞品已支持属性分组配置，而我们的管理员只能做基础模块操作。</p>',
+            },
+            {
+              type: 'html',
+              html: '<p>原有配置方式难以围绕业务场景组织表单内容，也缺少顺手的配置入口。</p><p>我探索了多种方案后，选择引入"表单资源库"的设计，将属性和控件集中管理——这样既能让管理员搜索、拖拽和定位资源，也能在当前场景中快速新建属性，减少配置过程中的来回跳转。</p><p>另一个被排除的方向是"配置向导"模式，但测试发现向导步骤切割了管理员的配置上下文，反而增加了认知负担，因此最终保留了更直观的拖拽式布局。</p><p>这个方案的核心，不是单纯让配置更自由，而是让配置行为从"零散编辑"转变为"围绕业务结构进行组织"。</p>',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-config-before-after-01.png',
+              alt: '表单配置页面 - 前后对比',
+              caption: '▵ 表单配置页面 - 前后对比',
+              assetName:
+                'attachment:81e3d196-95b8-4475-aeb4-186c3e82201a:表单配置页面.png',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-02.png',
+              alt: '编辑表单配置',
+              caption:
+                '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
+            },
+            {
+              type: 'figure',
+              kind: 'placeholder',
+              height: 568,
+              alt: '自定义拖拽配置属性+快速查找定位属性',
+              caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
+            },
+          ],
+        },
+        {
+          type: 'subchapter',
+          title: '2. 通过标签页和分组重组信息，而不是继续用同一平铺结构承载所有角色',
+          blocks: [
+            {
+              type: 'callout',
+              icon: '📊',
+              html: '<p>驱动依据：用户研究发现，用户关注的通常不是单个属性，而是一组具备上下文关系的信息。</p><p>这条洞察明确指向了分组能力的优先级。</p>',
+            },
+            {
+              type: 'html',
+              html: '<p>原有平铺结构难以承载业务语义，也不利于团队快速理解信息。</p><p>因此，我将详情结构升级为支持标签页和分组的可配置模式。管理员可以根据业务线、角色或流程阶段组织信息，并设置不同成员的可见范围，减少无关信息干扰，让不同角色更快进入自己的任务上下文。</p>',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-01.png',
+              alt: '内容配置区域',
+              caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
+              assetName:
+                'attachment:3b9cde1d-627e-4457-9c03-75cf518a59a6:image.png',
+            },
+            {
+              type: 'figure',
+              kind: 'placeholder',
+              height: 568,
+              alt: '自定义标签页+自定义分组',
+              caption: '▵ 自定义标签页+自定义分组',
+            },
+            {
+              type: 'callout',
+              icon: '🤔',
+              variant: 'danger',
+              html: '<p><strong>方案二设计过程中主要权衡的问题是：如果管理员的分组配置不符合普通成员的实际需求，是否应该允许成员个人覆盖？</strong></p><p>最终决策是第一阶段仅开放管理员配置，个人 Pin 属性作为补充能力并行推进，两者共同解决信息查找问题，而不要让两套配置体系互相干扰。</p>',
+            },
+          ],
+        },
+        {
+          type: 'subchapter',
+          title: '3. 解耦详情载体与列表布局，用不同载体适配不同任务模式',
+          blocks: [
+            {
+              type: 'callout',
+              icon: '📊',
+              html: '<p>驱动依据：用户研究揭示了两类不同任务模式——连续处理任务时需要保持上下文，深度查看时需要更沉浸的信息空间。这两种需求在原有的强绑定结构下无法同时满足。</p>',
+            },
+            {
+              type: 'html',
+              html: '<p>原有详情查看方式与列表布局强绑定，用户在表格、看板等视图下打开和切换工作项时，容易丢失当前位置，难以连续浏览多个任务。</p><p>我探索了三种方向：全页面展开、侧边抽屉、弹窗与抽屉并存。可用性测试显示全页面展开模式破坏了列表上下文，用户在连续任务场景下明显不适应，因此最终选择弹窗与抽屉两种方式并存。这个方案本质上是在兼顾两类不同任务模式，而不是强行让所有场景使用同一种浏览方式：</p>',
+            },
+            {
+              type: 'textLines',
+              items: [
+                'a. 连续处理任务时，需要保持上下文和操作连贯性',
+                'b. 深度查看任务时，需要更沉浸的信息空间',
+              ],
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-detail-drawer-01.png',
+              alt: '弹窗与抽屉并存',
+              caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
+              assetName:
+                'attachment:3983c2fc-1a00-47fb-b210-83ffe64bccf3:1详情弹窗展示.png',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-02.png',
+              alt: '详情页：平铺 ➡️ 抽屉',
+              caption: '▵ 详情页：平铺 ➡️ 抽屉',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-03.png',
+              alt: '窄详情：平铺 ➡️ 抽屉',
+              caption: '▵ 窄详情：平铺 ➡️ 抽屉',
+              assetName:
+                'attachment:46984a3b-2d6f-4f93-9bf9-431e42fbd554:3窄详情展示.png',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-04.png',
+              alt: '详情内快捷新建子任务',
+              caption: '▵ 详情内快捷新建子任务',
+              assetName:
+                'attachment:db109085-6bb7-48b6-a9d8-94b6a74191a8:4详情快捷新建子任务.png',
+            },
+            {
+              type: 'figure',
+              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-05.png',
+              alt: '详情动态链接打开子任务',
+              caption: '▵ 详情动态链接打开子任务',
+            },
+            {
+              type: 'callout',
+              icon: '🤔',
+              variant: 'danger',
+              html: '<p>目前方案仍在验证阶段，主要待解决的问题是：抽屉打开时对列表内容的遮挡，以及同时展开动态区域后的空间拥挤问题。</p>',
+            },
+          ],
+        },
+        {
+          type: 'subchapter',
+          title: '4. 结构调整之外，继续优化高频编辑与浏览体验',
           blocks: [
             {
               type: 'html',
-              html: '<p>因为新方案对老用户使用习惯影响较大，所以后续会采取小步快跑的方式逐步上线。</p>',
+              html: '<p>在结构层调整之外，我也同步优化了高频使用过程中的关键细节。它们不是独立的“视觉优化”，而是在新的结构框架下继续提升高频任务的操作效率，包括：</p>',
             },
+            {
+              type: 'textLines',
+              items: [
+                '1. 优化属性区排版与视觉层级，降低查找难度（已上线）',
+                '2. 强化必填标识，提升填写效率（已上线）',
+                '3. 接入统一的 Wiki 编辑器，改善富文本编辑体验（已上线）',
+                '4. 优化多语言场景下的信息布局与适配规则（已上线）',
+                '5. 补足草稿与防误操作能力（规划中）',
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'chapter',
+      title: '七、方案落地与验证',
+      blocks: [
+        {
+          type: 'html',
+          html: '<p>因为新方案对老用户使用习惯影响较大，所以后续采取了小步快跑的方式逐步上线。这样做的目的，是在控制迁移风险的同时，让每一阶段的结构调整都能通过真实数据和用户反馈快速验证。</p>',
+        },
+        {
+          type: 'details',
+          summary: '展开查看分阶段推进计划',
+          blocks: [
             {
               type: 'table',
               headers: ['', '', '第一批已上线', '第二批规划中'],
@@ -514,192 +673,19 @@ export const workItemRefactorCaseStudy = {
           ],
         },
         {
-          type: 'subchapter',
-          title: '方案一：重构表单配置能力（已上线）',
-          blocks: [
-            {
-              type: 'callout',
-              icon: '📊',
-              html: '<p>驱动依据：竞品分析和管理员访谈均显示，原有配置框架已成为业务定制化的最大瓶颈；</p><p>调研中 90% 竞品已支持属性分组配置，而我们的管理员只能做基础模块操作。</p>',
-            },
-            {
-              type: 'html',
-              html: '<p>原有配置方式难以围绕业务场景组织表单内容，也缺少顺手的配置入口。</p>',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-config-before-after-01.png',
-              alt: '表单配置页面 - 前后对比',
-              caption: '▵ 表单配置页面 - 前后对比',
-              assetName:
-                'attachment:81e3d196-95b8-4475-aeb4-186c3e82201a:表单配置页面.png',
-            },
-            {
-              type: 'html',
-              html: '<p>我探索了多种方案后，选择引入"表单资源库"的设计，将属性和控件集中管理——这样既能让管理员搜索、拖拽和定位资源，也能在当前场景中快速新建属性，减少配置过程中的来回跳转。</p><p>另一个被排除的方向是"配置向导"模式，但测试发现向导步骤切割了管理员的配置上下文，反而增加了认知负担，因此最终保留了更直观的拖拽式布局。</p>',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-02.png',
-              alt: '编辑表单配置',
-              caption:
-                '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
-            },
-            {
-              type: 'html',
-              html: '<p>这个方案的核心是：让配置行为从"零散编辑"转变为"围绕业务结构进行组织"，也为后续布局和分组能力建立了基础。</p>',
-            },
-            {
-              type: 'figure',
-              kind: 'placeholder',
-              height: 568,
-              alt: '自定义拖拽配置属性+快速查找定位属性',
-              caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
-            },
-          ],
-        },
-        {
-          type: 'subchapter',
-          title: '方案二：支持自定义标签页和分组（已上线）',
-          blocks: [
-            {
-              type: 'callout',
-              icon: '📊',
-              html: '<p>驱动依据：用户研究发现，用户关注的通常不是单个属性，而是一组具备上下文关系的信息。</p><p>这条洞察明确指向了分组能力的优先级。</p>',
-            },
-            {
-              type: 'html',
-              html: '<p>原有平铺结构难以承载业务语义，也不利于团队快速理解信息。</p><p>因此，我将详情结构升级为支持标签页和分组的可配置模式。管理员可以根据业务线、角色或流程阶段组织信息，并设置不同成员的可见范围，减少无关信息干扰，让不同角色更快进入自己的任务上下文。</p>',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-01.png',
-              alt: '内容配置区域',
-              caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
-              assetName:
-                'attachment:3b9cde1d-627e-4457-9c03-75cf518a59a6:image.png',
-            },
-            {
-              type: 'figure',
-              kind: 'placeholder',
-              height: 568,
-              alt: '自定义标签页+自定义分组',
-              caption: '▵ 自定义标签页+自定义分组',
-            },
-            {
-              type: 'callout',
-              icon: '🤔',
-              variant: 'danger',
-              html: '<p><strong>方案二设计过程中主要权衡的问题是：如果管理员的分组配置不符合普通成员的实际需求，是否应该允许成员个人覆盖？</strong></p><p>最终决策是第一阶段仅开放管理员配置，个人 Pin 属性作为补充能力并行推进，两者共同解决信息查找问题，而不要让两套配置体系互相干扰。</p>',
-            },
-          ],
-        },
-        {
-          type: 'subchapter',
-          title: '方案三：解耦详情载体与列表布局（方案验证中）',
-          blocks: [
-            {
-              type: 'callout',
-              icon: '📊',
-              html: '<p>驱动依据：用户研究揭示了两类不同任务模式——连续处理任务时需要保持上下文，深度查看时需要更沉浸的信息空间。这两种需求在原有的强绑定结构下无法同时满足。</p>',
-            },
-            {
-              type: 'html',
-              html: '<p>原有详情查看方式与列表布局强绑定，用户在表格、看板等视图下打开和切换工作项时，容易丢失当前位置，难以连续浏览多个任务。</p>',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-detail-drawer-01.png',
-              alt: '弹窗与抽屉并存',
-              caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
-              assetName:
-                'attachment:3983c2fc-1a00-47fb-b210-83ffe64bccf3:1详情弹窗展示.png',
-            },
-            {
-              type: 'html',
-              html: '<p>我探索了三种方向：全页面展开、侧边抽屉、弹窗与抽屉并存。</p><p>可用性测试显示全页面展开模式破坏了列表上下文，用户在连续任务场景下明显不适应，因此最终选择弹窗与抽屉两种方式并存，这个方案本质上是在兼顾两类不同任务模式：</p>',
-            },
-            {
-              type: 'textLines',
-              items: [
-                'a. 连续处理任务时，需要保持上下文和操作连贯性',
-                'b. 深度查看任务时，需要更沉浸的信息空间',
-              ],
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-02.png',
-              alt: '详情页：平铺 ➡️ 抽屉',
-              caption: '▵ 详情页：平铺 ➡️ 抽屉',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-03.png',
-              alt: '窄详情：平铺 ➡️ 抽屉',
-              caption: '▵ 窄详情：平铺 ➡️ 抽屉',
-              assetName:
-                'attachment:46984a3b-2d6f-4f93-9bf9-431e42fbd554:3窄详情展示.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-04.png',
-              alt: '详情内快捷新建子任务',
-              caption: '▵ 详情内快捷新建子任务',
-              assetName:
-                'attachment:db109085-6bb7-48b6-a9d8-94b6a74191a8:4详情快捷新建子任务.png',
-            },
-            {
-              type: 'figure',
-              src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-05.png',
-              alt: '详情动态链接打开子任务',
-              caption: '▵ 详情动态链接打开子任务',
-            },
-            {
-              type: 'callout',
-              icon: '🤔',
-              variant: 'danger',
-              html: '<p>目前方案仍在验证阶段，主要待解决的问题是：抽屉打开时对列表内容的遮挡，以及同时展开动态区域后的空间拥挤问题。</p>',
-            },
-          ],
-        },
-        {
-          type: 'subchapter',
-          title: '方案四：优化高频编辑与浏览体验（部分已上线）',
-          blocks: [
-            {
-              type: 'html',
-              html: '<p>在结构层调整之外，我也同步优化了高频使用过程中的关键细节，包括：</p>',
-            },
-            {
-              type: 'textLines',
-              items: [
-                '1. 优化属性区排版与视觉层级，降低查找难度（已上线）',
-                '2. 强化必填标识，提升填写效率（已上线）',
-                '3. 接入统一的 Wiki 编辑器，改善富文本编辑体验（已上线）',
-                '4. 优化多语言场景下的信息布局与适配规则（已上线）',
-                '5. 补足草稿与防误操作能力（规划中）',
-              ],
-            },
-          ],
+          type: 'html',
+          html: '<p>第一阶段，项目完成了配置组织、信息重组与编辑体验相关能力的上线，优先缓解了信息查找、配置效率和内容编辑上的高频问题。</p><p>第二阶段，围绕详情载体、浏览方式和协作区域调整等方向完成了 Demo 设计与可用性验证。</p><p>在可用性测试中，Demo 评分（5分制）由线上现状的 <strong>3.2 提升至 4.4</strong>，说明新方案在连续浏览、信息定位和结构清晰度上都有明显改善。</p>',
         },
       ],
     },
     {
       type: 'chapter',
-      title: '六、项目结果与价值',
+      title: '八、项目价值与复盘',
       blocks: [
         {
           type: 'callout',
           icon: '💡',
-          html: '总结：从最终结果看，这次重构的意义，不在于一次性完成了所有底层升级，而在于通过分阶段推进，先解决了高频问题，也验证了后续结构演进的方向。',
-        },
-        {
-          type: 'sectionTitle',
-          text: '项目结果',
-        },
-        {
-          type: 'html',
-          html: '<p>第一阶段，项目完成了配置组织、信息重组与编辑体验相关能力的上线，优先缓解了信息查找、配置效率和内容编辑上的高频问题。</p><p>第二阶段，围绕详情载体、浏览方式和协作区域调整等方向完成了 Demo 设计与可用性验证。</p><p>在可用性测试中，Demo 评分（5分制）由线上现状的 <strong>3.2 提升至 4.4</strong>，说明新方案在连续浏览、信息定位和结构清晰度上都有明显改善。</p>',
+          html: '总结：这次重构的意义，不在于一次性完成所有底层升级，而在于通过分阶段推进，先解决高频问题，也验证后续结构演进的方向。',
         },
         {
           type: 'sectionTitle',
@@ -719,22 +705,15 @@ export const workItemRefactorCaseStudy = {
         },
         {
           type: 'html',
-          html: '<p>换句话说，这次重构真正推动的，不只是界面层面的改版，而是<strong>工作项详情从“信息展示容器”向“协作界面”的转变</strong>。</p>',
+          html: '<p>换句话说，这次重构真正推动的，不只是界面层面的改版，而是<strong>工作项详情从“信息展示容器”向“协作界面”的转变</strong>。</p><p>它让一个原本勉强承载复杂需求的核心界面，开始具备持续支撑多角色协作、复杂配置和后续业务演进的能力。</p>',
         },
-      ],
-    },
-    {
-      type: 'chapter',
-      title: '七、我的复盘',
-      blocks: [
         {
-          type: 'callout',
-          icon: '💡',
-          html: '总结：这次项目让我进一步确认，B 端复杂产品中的体验问题，往往不是通过单点交互优化解决的，而是要回到业务场景和信息结构本身。',
+          type: 'sectionTitle',
+          text: '我的复盘',
         },
         {
           type: 'html',
-          html: '<p>相比优化某一个控件或某一块布局，这次项目更重要的价值在于：通过系统研究把分散问题收敛成结构性矛盾，再用分阶段策略推动方案落地。这不仅改善了当前体验，也重新定义了工作项详情作为“协作界面 + 配置框架 + 扩展基础”的产品角色。</p>',
+          html: '<p>这次项目让我进一步确认，B 端复杂产品中的体验问题，往往不是通过单点交互优化解决的，而是要回到业务场景和信息结构本身。</p><p>相比优化某一个控件或某一块布局，这次项目更重要的价值在于：通过系统研究把分散问题收敛成结构性矛盾，再用分阶段策略推动方案落地。这不仅改善了当前体验，也重新定义了工作项详情作为“协作界面 + 配置框架 + 扩展基础”的产品角色。</p><p>对我来说，这个项目里最重要的设计价值，不只是产出方案，而是先把真正的问题定义清楚，让团队从局部修补转向结构性重构。</p>',
         },
         {
           type: 'callout',

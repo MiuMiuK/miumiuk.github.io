@@ -200,7 +200,7 @@ function ContentBlock({ block, projectId }) {
             {block.items.map((item) => (
               <p
                 key={item.title}
-                className="text-[14px] leading-[24px] tracking-[-0.01em] text-[#222222]"
+                className="text-[16px] leading-[24px] tracking-[-0.01em] text-[#222222]"
               >
                 <strong className="font-bold text-black">{item.title}</strong>
                 <span className="px-1 text-[#333333]">{'→'}</span>
@@ -217,7 +217,7 @@ function ContentBlock({ block, projectId }) {
     return (
       <HighlightSideCard>
         <div className="space-y-0">
-          <ol className="list-decimal space-y-0 pl-5 text-[14px] text-black marker:font-normal marker:text-black">
+          <ol className="list-decimal space-y-0 pl-5 text-[16px] text-black marker:font-normal marker:text-black">
             {block.items.map((item) => (
               <li key={item.title} className="leading-[24px]">
                 <strong className="font-bold text-black">{item.title}</strong>
@@ -233,7 +233,7 @@ function ContentBlock({ block, projectId }) {
   if (block.type === 'goalListCard') {
     return (
       <HighlightSideCard contentClassName="px-[20px] py-[18px] pl-[30px] md:px-[24px] md:py-[22px] md:pl-[36px]">
-        <div className="space-y-[4px] text-[14px] text-black">
+        <div className="space-y-[4px] text-[16px] text-black">
           <p className="font-bold leading-[24px] text-black">{block.title}</p>
           {block.items.map((item) => (
             <p key={item} className="leading-[24px] text-[#404040]">
@@ -249,13 +249,13 @@ function ContentBlock({ block, projectId }) {
     return (
       <HighlightSideCard>
         <div className={block.compact ? 'space-y-2' : 'space-y-3'}>
-          <h4 className="text-[14px] font-bold leading-[24px] text-black">
+          <h4 className="text-[16px] font-bold leading-[24px] text-black">
             {block.number} {block.title}
           </h4>
 
           <div className={`space-y-[6px] ${block.compact ? '' : 'pl-[12px]'}`}>
             {block.highlight ? (
-              <p className="text-[14px] leading-[24px] text-black">
+              <p className="text-[16px] leading-[24px] text-black">
                 {block.highlight.includes('：') ? (
                   <>
                     {block.highlight.split('：')[0]}：
@@ -272,7 +272,7 @@ function ContentBlock({ block, projectId }) {
             {block.paragraphs.map((paragraph) => (
               <p
                 key={paragraph}
-                className="text-[14px] leading-[24px] text-black"
+                className="text-[16px] leading-[24px] text-black"
               >
                 {paragraph}
               </p>
@@ -281,7 +281,7 @@ function ContentBlock({ block, projectId }) {
 
           {block.badge ? (
             <div className={block.compact ? '' : 'pl-[12px]'}>
-              <span className="inline-flex items-center rounded-[13.6px] border border-[#DAFF26] bg-[#F5FFC3] px-[13px] py-2 text-[14px] font-bold leading-5 tracking-[0.44px] text-black">
+              <span className="inline-flex items-center rounded-[13.6px] border border-[#DAFF26] bg-[#F5FFC3] px-[13px] py-2 text-[16px] font-bold leading-5 tracking-[0.44px] text-black">
                 {block.badge}
               </span>
             </div>
