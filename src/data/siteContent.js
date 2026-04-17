@@ -9,7 +9,7 @@ import {
 // 3. 新增项目时直接复制 projects 里任意一项即可
 
 export const heroSection = {
-  eyebrow: '产品设计师',
+  eyebrow: 'AI 产品设计师',
   navBrand: 'UX Design',
   name: 'MIAO KE',
   portrait: '/images/home/portrait.jpg',
@@ -19,7 +19,7 @@ export const heroSection = {
   intro: [
     '👋 Hi，我是柯苗，一名产品体验设计师。',
     '过去 9+ 年里，我一直在和复杂业务场景打交道，深耕 SaaS 企业服务领域 7 年，擅长企业级产品体验设计、设计系统搭建、复杂流程梳理与国际化适配，做过从 0-1 到 1-N 的产品设计。',
-    '同时也在持续探索如何借助 AI 与 vibe coding 提升原型设计和方案验证的效率。',
+    '同时也在持续推动 AI 在真实业务流程中的落地。',
   ],
   marqueeItems: ['Selected Works', 'Feature Projects', 'Case Studies'],
 };
