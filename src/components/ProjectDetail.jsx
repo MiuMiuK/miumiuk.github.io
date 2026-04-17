@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects } from '../data/siteContent';
@@ -28,13 +28,19 @@ function NextProjectBlock({ project, onOpenProject }) {
     >
       <p
         className="text-[10px] font-black uppercase leading-[15px] tracking-[3.5px] text-[#A3A3A3]"
-        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+        style={{
+          fontFamily:
+            '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+        }}
       >
         Next Project
       </p>
       <h3
         className="text-[30px] font-black leading-[48px] tracking-[1px] text-black"
-        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+        style={{
+          fontFamily:
+            '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+        }}
       >
         {project.title}
       </h3>
@@ -43,7 +49,10 @@ function NextProjectBlock({ project, onOpenProject }) {
       </p>
       <div
         className="mt-5 inline-flex items-center gap-3 text-[14px] font-black uppercase leading-5 tracking-[3.08px] text-black"
-        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+        style={{
+          fontFamily:
+            '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+        }}
       >
         <span>View Project</span>
         <ArrowRight size={16} />
@@ -53,12 +62,22 @@ function NextProjectBlock({ project, onOpenProject }) {
 }
 
 function FigureBlock({ block }) {
-  const isPlaceholder = block.kind === 'motion-placeholder' || block.kind === 'placeholder';
-  const captionLines = typeof block.caption === 'string' ? block.caption.split('\n').filter(Boolean) : [];
-  const figureStyle = block.height ? { height: `${block.height}px` } : undefined;
-  const figureAspectRatio = block.aspectRatio ? { aspectRatio: block.aspectRatio } : undefined;
+  const isPlaceholder =
+    block.kind === 'motion-placeholder' || block.kind === 'placeholder';
+  const captionLines =
+    typeof block.caption === 'string'
+      ? block.caption.split('\n').filter(Boolean)
+      : [];
+  const figureStyle = block.height
+    ? { height: `${block.height}px` }
+    : undefined;
+  const figureAspectRatio = block.aspectRatio
+    ? { aspectRatio: block.aspectRatio }
+    : undefined;
   const shouldFillFrame = Boolean(block.height || block.aspectRatio);
-  const imageClassName = shouldFillFrame ? 'h-full w-full object-cover' : 'h-auto w-full object-cover';
+  const imageClassName = shouldFillFrame
+    ? 'h-full w-full object-cover'
+    : 'h-auto w-full object-cover';
 
   return (
     <figure className="space-y-3">
@@ -68,12 +87,27 @@ function FigureBlock({ block }) {
           style={{ ...figureAspectRatio, ...figureStyle }}
         >
           {block.src ? (
-            <img src={block.src} alt={block.alt} className={`${imageClassName} opacity-0`} />
+            <img
+              src={block.src}
+              alt={block.alt}
+              loading="lazy"
+              decoding="async"
+              className={`${imageClassName} opacity-0`}
+            />
           ) : null}
         </div>
       ) : (
-        <div className="overflow-hidden bg-white" style={{ ...figureAspectRatio, ...figureStyle }}>
-          <img src={block.src} alt={block.alt} className={imageClassName} />
+        <div
+          className="overflow-hidden bg-white"
+          style={{ ...figureAspectRatio, ...figureStyle }}
+        >
+          <img
+            src={block.src}
+            alt={block.alt}
+            loading="lazy"
+            decoding="async"
+            className={imageClassName}
+          />
         </div>
       )}
       <figcaption className="space-y-[5px] text-[14px] leading-6 text-[#737373]">
@@ -110,10 +144,16 @@ function ContentBlock({ block, projectId }) {
 
   if (block.type === 'html') {
     const paragraphGapClass = block.paragraphGapClass ?? '[&_p+p]:mt-[5px]';
-    const paragraphClass = block.paragraphClass ?? '[&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black';
-    const strongClass = block.strongClass ?? '[&_strong]:font-bold [&_strong]:text-black';
-    const emClass = block.emClass ?? '[&_em]:font-medium [&_em]:italic [&_em]:text-[#404040]';
-    const ulClass = block.ulClass ?? '[&_ul]:my-0 [&_ul]:pl-6 [&_ul]:text-[16px] [&_ul]:leading-[24px] [&_li+li]:mt-0';
+    const paragraphClass =
+      block.paragraphClass ??
+      '[&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-black';
+    const strongClass =
+      block.strongClass ?? '[&_strong]:font-bold [&_strong]:text-black';
+    const emClass =
+      block.emClass ?? '[&_em]:font-medium [&_em]:italic [&_em]:text-[#404040]';
+    const ulClass =
+      block.ulClass ??
+      '[&_ul]:my-0 [&_ul]:pl-6 [&_ul]:text-[16px] [&_ul]:leading-[24px] [&_li+li]:mt-0';
 
     return (
       <div
@@ -129,12 +169,14 @@ function ContentBlock({ block, projectId }) {
         ? 'border-red bg-[rgba(255,0,0,0.1)]'
         : 'border-[#D4FF00]/35 bg-[rgba(212,255,0,0.1)]';
     const textClassName = isWorkItemRefactor
-      ? "max-w-none text-[16px] leading-[30px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[30px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[30px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
-      : "max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[24px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal";
+      ? 'max-w-none text-[16px] leading-[30px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[30px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[30px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal'
+      : 'max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[24px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal';
 
     return (
       <div className={`rounded-[16px] border px-[21px] py-5 ${tone}`}>
-        <div className={`flex items-start ${isWorkItemRefactor ? 'gap-3' : 'gap-3'}`}>
+        <div
+          className={`flex items-start ${isWorkItemRefactor ? 'gap-3' : 'gap-3'}`}
+        >
           <div className="flex h-[30px] w-[30px] shrink-0 items-start justify-center pt-[2px] text-[24px] leading-none text-black">
             <span aria-hidden="true">{block.icon}</span>
           </div>
@@ -217,7 +259,9 @@ function ContentBlock({ block, projectId }) {
                 {block.highlight.includes('：') ? (
                   <>
                     {block.highlight.split('：')[0]}：
-                    <strong>{block.highlight.split('：').slice(1).join('：')}</strong>
+                    <strong>
+                      {block.highlight.split('：').slice(1).join('：')}
+                    </strong>
                   </>
                 ) : (
                   <strong>{block.highlight}</strong>
@@ -226,7 +270,10 @@ function ContentBlock({ block, projectId }) {
             ) : null}
 
             {block.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-[14px] leading-[24px] text-black">
+              <p
+                key={paragraph}
+                className="text-[14px] leading-[24px] text-black"
+              >
                 {paragraph}
               </p>
             ))}
@@ -248,7 +295,10 @@ function ContentBlock({ block, projectId }) {
     return (
       <h4
         className="text-[20px] font-black leading-7 tracking-[-0.5px] text-black"
-        style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+        style={{
+          fontFamily:
+            '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+        }}
       >
         {block.text}
       </h4>
@@ -289,7 +339,10 @@ function ContentBlock({ block, projectId }) {
           <div key={label} className="space-y-2">
             <p
               className="text-[10px] font-black uppercase leading-[15px] tracking-[3.2px] text-[#A3A3A3]"
-              style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+              style={{
+                fontFamily:
+                  '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+              }}
             >
               {label}
             </p>
@@ -303,7 +356,9 @@ function ContentBlock({ block, projectId }) {
   if (block.type === 'textLines') {
     return (
       <div className="space-y-[5px] text-[16px] leading-8 text-[#404040]">
-        {block.itemsTitle ? <p className="leading-[24px] text-black">{block.itemsTitle}</p> : null}
+        {block.itemsTitle ? (
+          <p className="leading-[24px] text-black">{block.itemsTitle}</p>
+        ) : null}
         {block.items.map((item) => (
           <p key={item}>{item}</p>
         ))}
@@ -322,7 +377,10 @@ function ContentBlock({ block, projectId }) {
                   <th
                     key={header}
                     className="border-b border-black/10 px-7 py-6 text-[14px] font-black leading-[20px] text-[#737373]"
-                    style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                    style={{
+                      fontFamily:
+                        '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                    }}
                   >
                     {header}
                   </th>
@@ -336,7 +394,9 @@ function ContentBlock({ block, projectId }) {
                     <td
                       key={`${rowIndex}-${cellIndex}`}
                       className={`px-7 py-7 text-[14px] leading-[24px] text-[#525252] ${
-                        rowIndex === block.rows.length - 1 ? '' : 'border-b border-black/10'
+                        rowIndex === block.rows.length - 1
+                          ? ''
+                          : 'border-b border-black/10'
                       }`}
                     >
                       {cell}
@@ -359,7 +419,10 @@ function ContentBlock({ block, projectId }) {
                 <th
                   key={header}
                   className="border-b border-black/10 px-4 py-3 text-[14px] font-black leading-5 text-[#737373]"
-                  style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                  style={{
+                    fontFamily:
+                      '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                  }}
                 >
                   {header}
                 </th>
@@ -398,7 +461,11 @@ function ContentBlock({ block, projectId }) {
           </summary>
           <div className="mt-[14px] space-y-[14px]">
             {block.blocks.map((child, index) => (
-              <ContentBlock key={`${block.summary}-${index}`} block={child} projectId={projectId} />
+              <ContentBlock
+                key={`${block.summary}-${index}`}
+                block={child}
+                projectId={projectId}
+              />
             ))}
           </div>
         </details>
@@ -412,7 +479,11 @@ function ContentBlock({ block, projectId }) {
         </summary>
         <div className="mt-5 space-y-5">
           {block.blocks.map((child, index) => (
-            <ContentBlock key={`${block.summary}-${index}`} block={child} projectId={projectId} />
+            <ContentBlock
+              key={`${block.summary}-${index}`}
+              block={child}
+              projectId={projectId}
+            />
           ))}
         </div>
       </details>
@@ -443,8 +514,8 @@ function Outline({ outline, activeOutlineId, onNavigate, mobile = false }) {
               type="button"
               onClick={() => onNavigate(item.id)}
               className={`block w-full text-left transition ${
-              activeOutlineId === item.id ||
-              item.children.some((child) => child.id === activeOutlineId)
+                activeOutlineId === item.id ||
+                item.children.some((child) => child.id === activeOutlineId)
                   ? mobile
                     ? 'text-black text-sm font-bold leading-6'
                     : 'font-bold text-[14px] leading-[30px] tracking-[1px] text-black'
@@ -500,6 +571,7 @@ export default function ProjectDetail({
   preserveCaptureChrome = false,
 }) {
   const containerRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const showChrome = !isCaptureMode || preserveCaptureChrome;
   const desktopOutlineStyle = {
     top: showChrome ? '121px' : '30px',
@@ -507,9 +579,13 @@ export default function ProjectDetail({
     width: '276px',
     maxHeight: showChrome ? 'calc(100vh - 141px)' : 'calc(100vh - 70px)',
   };
-  const currentProjectIndex = projects.findIndex((item) => item.id === project.id);
+  const currentProjectIndex = projects.findIndex(
+    (item) => item.id === project.id
+  );
   const nextProject =
-    currentProjectIndex === -1 ? null : projects[(currentProjectIndex + 1) % projects.length];
+    currentProjectIndex === -1
+      ? null
+      : projects[(currentProjectIndex + 1) % projects.length];
 
   const outline = useMemo(
     () =>
@@ -529,6 +605,32 @@ export default function ProjectDetail({
   );
 
   const [activeOutlineId, setActiveOutlineId] = useState(outline[0]?.id ?? '');
+  const shellMotionProps = prefersReducedMotion
+    ? {
+        initial: false,
+        animate: { opacity: 1 },
+        exit: { opacity: 1 },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: overlayTransition,
+      };
+  const contentMotionProps = prefersReducedMotion
+    ? {
+        initial: false,
+        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        exit: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: 18, filter: 'blur(10px)' },
+        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        exit: { opacity: 0, y: 12, filter: 'blur(8px)' },
+        transition: contentTransition,
+      };
 
   useEffect(() => {
     const container = containerRef.current;
@@ -537,7 +639,10 @@ export default function ProjectDetail({
       return;
     }
 
-    const targetIds = outline.flatMap((item) => [item.id, ...item.children.map((child) => child.id)]);
+    const targetIds = outline.flatMap((item) => [
+      item.id,
+      ...item.children.map((child) => child.id),
+    ]);
 
     const updateActiveOutline = () => {
       let currentId = outline[0].id;
@@ -560,7 +665,9 @@ export default function ProjectDetail({
     };
 
     updateActiveOutline();
-    container.addEventListener('scroll', updateActiveOutline, { passive: true });
+    container.addEventListener('scroll', updateActiveOutline, {
+      passive: true,
+    });
     window.addEventListener('scroll', updateActiveOutline, { passive: true });
 
     return () => {
@@ -580,10 +687,10 @@ export default function ProjectDetail({
   return (
     <motion.div
       ref={containerRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={overlayTransition}
+      initial={shellMotionProps.initial}
+      animate={shellMotionProps.animate}
+      exit={shellMotionProps.exit}
+      transition={shellMotionProps.transition}
       className={
         isCaptureMode
           ? 'relative min-h-screen bg-white'
@@ -617,23 +724,30 @@ export default function ProjectDetail({
         ) : null}
 
         <motion.div
-          initial={{ opacity: 0, y: 18, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          exit={{ opacity: 0, y: 12, filter: 'blur(8px)' }}
-          transition={contentTransition}
+          initial={contentMotionProps.initial}
+          animate={contentMotionProps.animate}
+          exit={contentMotionProps.exit}
+          transition={contentMotionProps.transition}
           className="relative lg:pr-[336px]"
         >
           <div className="w-full max-w-[1024px] space-y-0">
             <div className="flex flex-col gap-5">
               <p
                 className="text-[14px] font-black uppercase leading-[15px] tracking-[4.2px] text-[#737373]"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                style={{
+                  fontFamily:
+                    '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                }}
               >
-                {project.detailMeta ?? `${project.caseStudy.label} / ${project.year}`}
+                {project.detailMeta ??
+                  `${project.caseStudy.label} / ${project.year}`}
               </p>
               <h1
                 className="text-[46.4px] font-black leading-[53.36px] tracking-[-2.32px] text-black"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                style={{
+                  fontFamily:
+                    '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                }}
               >
                 {project.title}
               </h1>
@@ -711,16 +825,20 @@ export default function ProjectDetail({
                 );
               })}
               <div className="pt-[60px]">
-                <NextProjectBlock project={nextProject} onOpenProject={onOpenProject} />
+                <NextProjectBlock
+                  project={nextProject}
+                  onOpenProject={onOpenProject}
+                />
               </div>
             </div>
           </div>
-
         </motion.div>
 
         <aside
           className={
-            isCaptureMode && !preserveCaptureChrome ? 'hidden' : 'pointer-events-none hidden lg:block'
+            isCaptureMode && !preserveCaptureChrome
+              ? 'hidden'
+              : 'pointer-events-none hidden lg:block'
           }
         >
           <div

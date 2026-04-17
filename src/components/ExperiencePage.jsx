@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Navbar from './Navbar';
 import PageEndBar from './PageEndBar';
@@ -22,7 +22,7 @@ function ExperienceActionButton({ button, onNavigate }) {
     <button
       type="button"
       onClick={() => onNavigate(button.target)}
-        className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold transition ${
+      className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold transition ${
         isPrimary
           ? 'bg-[#D4FF00] text-black hover:bg-[#E7FF5F]'
           : isDark
@@ -31,7 +31,9 @@ function ExperienceActionButton({ button, onNavigate }) {
       }`}
     >
       <span className="inline-flex items-center gap-5">
-        {isDark ? <ArrowRight className="rotate-180" size={17} strokeWidth={2.5} /> : null}
+        {isDark ? (
+          <ArrowRight className="rotate-180" size={17} strokeWidth={2.5} />
+        ) : null}
         <span>{button.label}</span>
         {isDark ? null : <ArrowRight size={17} strokeWidth={2.5} />}
       </span>
@@ -66,7 +68,9 @@ function FeaturedJobArticle({ job }) {
             ))}
           </div>
         </div>
-        <p className="pt-[6px] text-[14px] font-bold tracking-[0.14em] text-black">{job.period}</p>
+        <p className="pt-[6px] text-[14px] font-bold tracking-[0.14em] text-black">
+          {job.period}
+        </p>
       </div>
 
       <div className="space-y-8">
@@ -77,7 +81,10 @@ function FeaturedJobArticle({ job }) {
             </h4>
             <ul className="space-y-[10px]">
               {section.items.map((item) => (
-                <li key={item} className="ml-6 list-disc text-[16px] leading-8 text-black">
+                <li
+                  key={item}
+                  className="ml-6 list-disc text-[16px] leading-8 text-black"
+                >
                   {item}
                 </li>
               ))}
@@ -108,7 +115,9 @@ function CompactJobArticle({ job }) {
             ))}
           </div>
         </div>
-        <p className="pt-[6px] text-[14px] font-bold tracking-[0.14em] text-black">{job.period}</p>
+        <p className="pt-[6px] text-[14px] font-bold tracking-[0.14em] text-black">
+          {job.period}
+        </p>
       </div>
 
       {job.sections ? (
@@ -120,7 +129,10 @@ function CompactJobArticle({ job }) {
               </h4>
               <ul className="space-y-[10px]">
                 {section.items.map((item) => (
-                  <li key={item} className="ml-6 list-disc text-[16px] leading-8 text-black">
+                  <li
+                    key={item}
+                    className="ml-6 list-disc text-[16px] leading-8 text-black"
+                  >
                     {item}
                   </li>
                 ))}
@@ -135,7 +147,9 @@ function CompactJobArticle({ job }) {
           {job.summary.map((item) => (
             <section key={item} className="space-y-[5px]">
               <ul className="space-y-[10px]">
-                <li className="ml-6 list-disc text-[16px] leading-8 text-black">{item}</li>
+                <li className="ml-6 list-disc text-[16px] leading-8 text-black">
+                  {item}
+                </li>
               </ul>
             </section>
           ))}
@@ -158,6 +172,20 @@ export default function ExperiencePage({
 }) {
   const showChrome = !isCaptureMode || preserveCaptureChrome;
   const pageContainerRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
+  const pageMotionProps = prefersReducedMotion
+    ? {
+        initial: false,
+        animate: { x: 0 },
+        exit: { x: 0 },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { x: '100%' },
+        animate: { x: 0 },
+        exit: { x: '100%' },
+        transition: overlayTransition,
+      };
 
   const handleBackToTop = () => {
     const scrollTarget = pageContainerRef.current;
@@ -176,40 +204,45 @@ export default function ExperiencePage({
     );
     const pattern = new RegExp(`(${escapedPhrases.join('|')})`, 'gi');
 
-    return text.split(pattern).filter(Boolean).map((segment, index) => {
-      const isHighlight = heroHighlights.some(
-        (phrase) => phrase.toLowerCase() === segment.toLowerCase()
-      );
-
-      if (isHighlight) {
-        return (
-          <mark
-            key={`${segment}-${index}`}
-            className="rounded-[0.2rem] bg-[#D4FF00]/85 px-1 py-[0.08rem] font-semibold text-black"
-          >
-            {segment}
-          </mark>
+    return text
+      .split(pattern)
+      .filter(Boolean)
+      .map((segment, index) => {
+        const isHighlight = heroHighlights.some(
+          (phrase) => phrase.toLowerCase() === segment.toLowerCase()
         );
-      }
 
-      return <span key={`${segment}-${index}`}>{segment}</span>;
-    });
+        if (isHighlight) {
+          return (
+            <mark
+              key={`${segment}-${index}`}
+              className="rounded-[0.2rem] bg-[#D4FF00]/85 px-1 py-[0.08rem] font-semibold text-black"
+            >
+              {segment}
+            </mark>
+          );
+        }
+
+        return <span key={`${segment}-${index}`}>{segment}</span>;
+      });
   };
 
   return (
     <motion.div
       ref={pageContainerRef}
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '100%' }}
-      transition={overlayTransition}
+      initial={pageMotionProps.initial}
+      animate={pageMotionProps.animate}
+      exit={pageMotionProps.exit}
+      transition={pageMotionProps.transition}
       className={
         isCaptureMode
           ? 'relative min-h-screen bg-white text-black'
           : 'fixed inset-0 z-[60] overflow-y-auto bg-white text-black'
       }
     >
-      {showChrome ? <Navbar brand={brand} onNavigate={onNavigate} activeItem="experience" /> : null}
+      {showChrome ? (
+        <Navbar brand={brand} onNavigate={onNavigate} activeItem="experience" />
+      ) : null}
 
       <div className={showChrome ? 'pt-[72px] md:pt-[91px]' : ''}>
         {showChrome ? (
@@ -243,6 +276,8 @@ export default function ExperiencePage({
                   <img
                     src={heroSection.portrait}
                     alt={heroSection.portraitAlt}
+                    loading="eager"
+                    decoding="async"
                     className="h-full w-full rounded-full object-cover"
                   />
                 </div>
@@ -276,16 +311,26 @@ export default function ExperiencePage({
             <div>
               {jobs.map((job, index) =>
                 index === 0 ? (
-                  <FeaturedJobArticle key={`${job.company}-${job.period}`} job={job} />
+                  <FeaturedJobArticle
+                    key={`${job.company}-${job.period}`}
+                    job={job}
+                  />
                 ) : (
-                  <CompactJobArticle key={`${job.company}-${job.period}`} job={job} />
+                  <CompactJobArticle
+                    key={`${job.company}-${job.period}`}
+                    job={job}
+                  />
                 )
               )}
             </div>
 
             <div className="grid gap-[60px] pb-[100px] pt-[50px] md:grid-cols-2 md:gap-[60px]">
               {experiencePage.ctaButtons.map((button) => (
-                <ExperienceActionButton key={button.label} button={button} onNavigate={onNavigate} />
+                <ExperienceActionButton
+                  key={button.label}
+                  button={button}
+                  onNavigate={onNavigate}
+                />
               ))}
             </div>
 

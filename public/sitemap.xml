@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://miumiuk.github.io/</loc>
+  </url>
+  <url>
+    <loc>https://miumiuk.github.io/?overlay=about</loc>
+  </url>
+  <url>
+    <loc>https://miumiuk.github.io/?overlay=experience</loc>
+  </url>
+  <url>
+    <loc>https://miumiuk.github.io/?project=spotify-live</loc>
+  </url>
+  <url>
+    <loc>https://miumiuk.github.io/?project=ones-assistant</loc>
+  </url>
+</urlset>

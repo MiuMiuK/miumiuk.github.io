@@ -22,18 +22,23 @@ function HighlightedPoint({ text }) {
   );
   const pattern = new RegExp(`(${escapedPhrases.join('|')})`, 'g');
 
-  return text.split(pattern).filter(Boolean).map((segment, index) => {
-    const isHighlight = pointHighlights.includes(segment);
+  return text
+    .split(pattern)
+    .filter(Boolean)
+    .map((segment, index) => {
+      const isHighlight = pointHighlights.includes(segment);
 
-    return (
-      <span
-        key={`${segment}-${index}`}
-        className={isHighlight ? 'font-semibold text-[#D4FF00]' : 'text-neutral-400'}
-      >
-        {segment}
-      </span>
-    );
-  });
+      return (
+        <span
+          key={`${segment}-${index}`}
+          className={
+            isHighlight ? 'font-semibold text-[#D4FF00]' : 'text-neutral-400'
+          }
+        >
+          {segment}
+        </span>
+      );
+    });
 }
 
 export default function AboutDetail({
@@ -69,7 +74,9 @@ export default function AboutDetail({
         )}
 
         <div className="mb-14 flex items-center gap-4 border-b border-white/10 pb-6">
-          <span className="text-[2.2rem] leading-none md:text-[2.9rem]">{aboutSection.icon}</span>
+          <span className="text-[2.2rem] leading-none md:text-[2.9rem]">
+            {aboutSection.icon}
+          </span>
           <div>
             <h2 className="text-[2.6rem] font-black tracking-[-0.06em] md:text-[3.6rem]">
               {aboutSection.title}
@@ -118,7 +125,9 @@ export default function AboutDetail({
 
         <section className="mt-24 border-t border-white/10 pt-12">
           <div className="mb-10 flex items-center gap-4">
-            <span className="text-[2.2rem] leading-none md:text-[2.9rem]">💼</span>
+            <span className="text-[2.2rem] leading-none md:text-[2.9rem]">
+              💼
+            </span>
             <h3 className="text-[2.6rem] font-black tracking-[-0.06em] md:text-[3.6rem]">
               {workExperience.title}
             </h3>
@@ -132,7 +141,9 @@ export default function AboutDetail({
               >
                 <div className="mb-8 grid gap-3 border-b border-white/10 pb-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
                   <div>
-                    <h4 className="text-2xl font-black tracking-tight">{job.company}</h4>
+                    <h4 className="text-2xl font-black tracking-tight">
+                      {job.company}
+                    </h4>
                     <p className="mt-2 text-sm font-medium uppercase tracking-[0.24em] text-neutral-400">
                       {job.role}
                     </p>
@@ -153,7 +164,7 @@ export default function AboutDetail({
                           {section.items.map((item) => (
                             <li
                               key={item}
-                            className="text-base leading-8 text-neutral-200"
+                              className="text-base leading-8 text-neutral-200"
                             >
                               {item}
                             </li>
@@ -182,7 +193,10 @@ export default function AboutDetail({
                 {job.summary ? (
                   <ul className="space-y-3">
                     {job.summary.map((item) => (
-                      <li key={item} className="text-base leading-8 text-neutral-200">
+                      <li
+                        key={item}
+                        className="text-base leading-8 text-neutral-200"
+                      >
                         {item}
                       </li>
                     ))}

@@ -5,7 +5,12 @@ const navItems = [
   ['Contact', 'contact'],
 ];
 
-export default function Navbar({ brand, onNavigate, activeItem = null, className = '' }) {
+export default function Navbar({
+  brand,
+  onNavigate,
+  activeItem = null,
+  className = '',
+}) {
   const parts = brand.split(' ');
 
   return (

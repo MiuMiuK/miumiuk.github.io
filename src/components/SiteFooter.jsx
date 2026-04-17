@@ -37,21 +37,20 @@ export default function SiteFooter({ footerSection, onNavigate }) {
               <div className="space-y-8">
                 <p
                   className="text-[0.82rem] font-black uppercase tracking-[0.46em] text-[#737373] md:text-[12px] md:leading-[15px] md:tracking-[4.2px]"
-                  style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                  style={{
+                    fontFamily:
+                      '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                  }}
                 >
                   {footerSection.informationLabel}
                 </p>
                 <div className="grid grid-cols-[6rem_minmax(0,1fr)] gap-x-4 gap-y-3 md:grid-cols-[94px_271px] md:gap-x-[10px] md:gap-y-0">
                   {footerSection.fields.map(([label, value]) => (
                     <div key={label} className="contents">
-                      <p
-                        className="text-[1rem] leading-[1.9] text-[#9D9D9D] md:text-[12px] md:leading-[55px]"
-                      >
+                      <p className="text-[1rem] leading-[1.9] text-[#9D9D9D] md:text-[12px] md:leading-[55px]">
                         {label}
                       </p>
-                      <p
-                        className="text-[1rem] font-bold leading-[1.9] text-black md:text-[14px] md:leading-[55px]"
-                      >
+                      <p className="text-[1rem] font-bold leading-[1.9] text-black md:text-[14px] md:leading-[55px]">
                         {label === 'Email' ? (
                           <a
                             href={`mailto:${value}`}
@@ -71,7 +70,10 @@ export default function SiteFooter({ footerSection, onNavigate }) {
               <div className="space-y-8">
                 <p
                   className="text-[0.82rem] font-black uppercase tracking-[0.46em] text-[#737373] md:text-[12px] md:leading-[15px] md:tracking-[4.2px]"
-                  style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                  style={{
+                    fontFamily:
+                      '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                  }}
                 >
                   {footerSection.navigationLabel}
                 </p>
@@ -86,27 +88,33 @@ export default function SiteFooter({ footerSection, onNavigate }) {
                   ))}
                 </div>
               </div>
-              </div>
-            </div>
-
-            <div className="mt-12 flex flex-col gap-4 border-t border-[#DFE1E5] py-8 md:mt-[4.5rem] md:flex-row md:items-center md:justify-between md:py-[50px]">
-              <p
-                className="text-[12px] font-black uppercase tracking-[4.2px] text-[#737373] md:leading-[15px]"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
-              >
-                {footerSection.copyright}
-              </p>
-              <button
-                type="button"
-                onClick={() => onNavigate('home')}
-                className="inline-flex items-center gap-[10px] self-start text-[12px] font-black uppercase tracking-[4.2px] text-[#737373] transition hover:text-black md:leading-[15px]"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
-              >
-                <span>{footerSection.backToTop}</span>
-                <span aria-hidden="true">↑</span>
-              </button>
             </div>
           </div>
+
+          <div className="mt-12 flex flex-col gap-4 border-t border-[#DFE1E5] py-8 md:mt-[4.5rem] md:flex-row md:items-center md:justify-between md:py-[50px]">
+            <p
+              className="text-[12px] font-black uppercase tracking-[4.2px] text-[#737373] md:leading-[15px]"
+              style={{
+                fontFamily:
+                  '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+              }}
+            >
+              {footerSection.copyright}
+            </p>
+            <button
+              type="button"
+              onClick={() => onNavigate('home')}
+              className="inline-flex items-center gap-[10px] self-start text-[12px] font-black uppercase tracking-[4.2px] text-[#737373] transition hover:text-black md:leading-[15px]"
+              style={{
+                fontFamily:
+                  '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+              }}
+            >
+              <span>{footerSection.backToTop}</span>
+              <span aria-hidden="true">↑</span>
+            </button>
+          </div>
+        </div>
       </div>
     </footer>
   );

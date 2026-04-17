@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f3f4f6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect x="64" y="64" width="1072" height="502" rx="36" fill="#111111" />
+  <circle cx="935" cy="188" r="88" fill="#d4ff00" />
+  <circle cx="1005" cy="258" r="18" fill="#ffffff" fill-opacity="0.32" />
+  <text x="112" y="206" fill="#d4ff00" font-family="Arial Black, Arial, sans-serif" font-size="34" letter-spacing="8">UX DESIGN</text>
+  <text x="112" y="316" fill="#ffffff" font-family="Arial Black, Arial, sans-serif" font-size="112">MIAO KE</text>
+  <text x="112" y="392" fill="#d1d5db" font-family="Arial, sans-serif" font-size="34">Product experience designer focused on SaaS, design systems,</text>
+  <text x="112" y="438" fill="#d1d5db" font-family="Arial, sans-serif" font-size="34">complex workflows, and AI-assisted product experiences.</text>
+  <text x="112" y="522" fill="#ffffff" font-family="Arial, sans-serif" font-size="28">miumiuk.github.io</text>
+</svg>

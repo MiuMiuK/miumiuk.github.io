@@ -1,9 +1,12 @@
 import { ArrowRight } from 'lucide-react';
 
 export default function ProjectCard({ project, onClick, index }) {
-  const isClickable = typeof onClick === 'function' && Boolean(project.caseStudy);
+  const isClickable =
+    typeof onClick === 'function' && Boolean(project.caseStudy);
   const borderClass =
-    index === 0 ? 'border-t-[3px] border-t-[#D4FF00]' : 'border-t border-t-black/10';
+    index === 0
+      ? 'border-t-[3px] border-t-[#D4FF00]'
+      : 'border-t border-t-black/10';
   const hasTags = (project.coverTags ?? []).length > 0;
   const Wrapper = isClickable ? 'button' : 'div';
   const wrapperProps = isClickable
@@ -13,9 +16,7 @@ export default function ProjectCard({ project, onClick, index }) {
   return (
     <Wrapper
       className={`group relative block w-full overflow-hidden border-b border-b-black/10 bg-white text-left transition duration-200 ${borderClass} ${
-        isClickable
-          ? 'cursor-pointer hover:bg-black/[0.02]'
-          : 'cursor-default'
+        isClickable ? 'cursor-pointer hover:bg-black/[0.02]' : 'cursor-default'
       }`}
       {...wrapperProps}
     >
@@ -28,21 +29,35 @@ export default function ProjectCard({ project, onClick, index }) {
             <img
               src={project.coverImage}
               alt={project.coverAlt}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-contain"
             />
           </div>
         </div>
 
-        <div className="px-5 md:pt-0" style={{ paddingTop: project.coverTopOffset ?? '149.5px' }}>
-          <div className="flex flex-col gap-8 md:px-[60px]" style={{ gap: '60px' }}>
-            <div className="space-y-6 md:space-y-0" style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}>
+        <div
+          className="px-5 md:pt-0"
+          style={{ paddingTop: project.coverTopOffset ?? '149.5px' }}
+        >
+          <div
+            className="flex flex-col gap-8 md:px-[60px]"
+            style={{ gap: '60px' }}
+          >
+            <div
+              className="space-y-6 md:space-y-0"
+              style={{ gap: '20px', display: 'flex', flexDirection: 'column' }}
+            >
               <p className="text-[0.7rem] font-black uppercase tracking-[0.24em] text-[#737373] md:text-[16px] md:leading-[15px] md:tracking-[4.2px]">
                 {project.coverMeta}
               </p>
 
               <div
                 className="text-black"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                style={{
+                  fontFamily:
+                    '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                }}
               >
                 {project.titleLines?.length ? (
                   project.titleLines.map((line) => (

@@ -17,7 +17,10 @@ export const workItemRefactorCaseStudy = {
             ['产品类型', 'B 端项目管理协作工具'],
             ['服务对象', '中大型企业产研团队'],
             ['项目角色', '交互设计主导'],
-            ['我的职责', '问题定义、用户研究、竞品分析、交互方案设计、可用性验证'],
+            [
+              '我的职责',
+              '问题定义、用户研究、竞品分析、交互方案设计、可用性验证',
+            ],
             ['协作对象', '产品、研发、业务、解决方案专家'],
           ],
         },
@@ -44,7 +47,8 @@ export const workItemRefactorCaseStudy = {
       blocks: [
         {
           type: 'keyConflictsCard',
-          intro: '经过前期梳理，我将原有工作项详情的问题收敛为三个核心矛盾，并通过后续研究验证了它们的优先级：',
+          intro:
+            '经过前期梳理，我将原有工作项详情的问题收敛为三个核心矛盾，并通过后续研究验证了它们的优先级：',
           items: [
             {
               title: '核心矛盾一：信息查找效率是最高频问题',
@@ -155,8 +159,10 @@ export const workItemRefactorCaseStudy = {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-feedback-01.png',
               alt: '从用户反馈与体验走查中确认，详情页问题已持续影响核心客户体验。',
-              caption: '▵ 从用户反馈与体验走查中确认，详情页问题已持续影响核心客户体验。',
-              assetName: 'attachment:5bcc38bb-156f-4f88-8737-9602faa68edc:0_工单反馈.png',
+              caption:
+                '▵ 从用户反馈与体验走查中确认，详情页问题已持续影响核心客户体验。',
+              assetName:
+                'attachment:5bcc38bb-156f-4f88-8737-9602faa68edc:0_工单反馈.png',
             },
           ],
         },
@@ -185,7 +191,8 @@ export const workItemRefactorCaseStudy = {
               src: '/images/projects/work-item-refactor/work-item-refactor-research-01.png',
               alt: '用户研究图 1',
               caption: '▵ 用户研究图 1',
-              assetName: 'attachment:71e9bb91-736d-47d0-bec2-93b0aa96c14d:image.png',
+              assetName:
+                'attachment:71e9bb91-736d-47d0-bec2-93b0aa96c14d:image.png',
             },
             {
               type: 'html',
@@ -201,7 +208,8 @@ export const workItemRefactorCaseStudy = {
               alt: '通过多角色研究理解真实工作流，确认不同角色关注的信息与使用方式存在显著差异。',
               caption:
                 '▵ 通过多角色研究理解真实工作流，确认不同角色关注的信息与使用方式存在显著差异。',
-              assetName: 'attachment:6e69c438-fd34-4bca-8ba8-30c0968fc7a8:2问卷调研.png',
+              assetName:
+                'attachment:6e69c438-fd34-4bca-8ba8-30c0968fc7a8:2问卷调研.png',
             },
             {
               type: 'html',
@@ -247,8 +255,10 @@ export const workItemRefactorCaseStudy = {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-competitor-01.png',
               alt: '竞品分析显示，成熟产品已在详情载体、信息布局和配置能力上形成更完整实践。',
-              caption: '▵ 竞品分析显示，成熟产品已在详情载体、信息布局和配置能力上形成更完整实践。',
-              assetName: 'attachment:7a3523bb-9ad1-4f0f-ae57-ccf522d64e61:3竞品分析.png',
+              caption:
+                '▵ 竞品分析显示，成熟产品已在详情载体、信息布局和配置能力上形成更完整实践。',
+              assetName:
+                'attachment:7a3523bb-9ad1-4f0f-ae57-ccf522d64e61:3竞品分析.png',
             },
             {
               type: 'details',
@@ -309,8 +319,10 @@ export const workItemRefactorCaseStudy = {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-usability-test-01.png',
               alt: '可用性测试验证了关键设计方向，也帮助识别出后续需要继续权衡的问题。',
-              caption: '▵ 可用性测试验证了关键设计方向，也帮助识别出后续需要继续权衡的问题。',
-              assetName: 'attachment:d8c1dafb-0cba-4328-84f4-97e6d29940b5:5_可用性测试.png',
+              caption:
+                '▵ 可用性测试验证了关键设计方向，也帮助识别出后续需要继续权衡的问题。',
+              assetName:
+                'attachment:d8c1dafb-0cba-4328-84f4-97e6d29940b5:5_可用性测试.png',
             },
             {
               type: 'html',
@@ -352,11 +364,7 @@ export const workItemRefactorCaseStudy = {
                       '不展示空模块，详情信息精简很多',
                       '信息太多时瀑布流不好查找',
                     ],
-                    [
-                      '支持属性分组',
-                      '比线上清晰很多，属性关联性也更强了',
-                      '-',
-                    ],
+                    ['支持属性分组', '比线上清晰很多，属性关联性也更强了', '-'],
                     [
                       '支持成员个人 Pin 属性',
                       '只看自己关注的信息，有效解决查找困难',
@@ -402,7 +410,8 @@ export const workItemRefactorCaseStudy = {
           src: '/images/projects/work-item-refactor/work-item-refactor-design-goals-01.png',
           alt: '设计目标图',
           caption: '▵ 设计目标图',
-          assetName: 'attachment:31e18245-3e3e-4ec6-b1e8-1a289e6cc677:Frame_16162.png',
+          assetName:
+            'attachment:31e18245-3e3e-4ec6-b1e8-1a289e6cc677:Frame_16162.png',
         },
         {
           type: 'details',
@@ -416,20 +425,90 @@ export const workItemRefactorCaseStudy = {
               type: 'table',
               headers: ['', '', '第一批已上线', '第二批规划中'],
               rows: [
-                ['⛳ O1：增强详情框架灵活性 & 扩展性', 'KR 1：解耦详情载体和列表布局的绑定关系', '', '✅'],
-                ['⛳ O1：增强详情框架灵活性 & 扩展性', 'KR 2：增强 Layout 能力，支持管理员自定义内容放置区域', '✅', ''],
-                ['⛳ O1：增强详情框架灵活性 & 扩展性', 'KR 3：开辟新的插槽位，承载更多开放能力', '', '✅'],
-                ['⛳ O2：强化业务场景感知', 'KR 1：基于最佳实践定义初始布局配置，让用户开箱即用', '', '✅'],
-                ['⛳ O2：强化业务场景感知', 'KR 2：基于工作场景定义工作项类型对应的快捷操作，提高快捷能力使用率', '', '✅'],
-                ['⛳ O3：提高用户查找信息的效率', 'KR 1：信息重组，提供清晰的内容分区', '✅', ''],
-                ['⛳ O3：提高用户查找信息的效率', 'KR 2：调整信息展示策略，渐进式呈递', '', '✅'],
-                ['⛳ O3：提高用户查找信息的效率', 'KR 3：提供多种浏览方式，满足不同用户的使用偏好', '', '✅'],
-                ['⛳ O3：提高用户查找信息的效率', 'KR 4：解决属性太多，难以查找的问题', '✅', ''],
-                ['⛳ O3：提高用户查找信息的效率', 'KR 5：优化信息视觉样式，视觉减负', '✅', ''],
-                ['⛳ O4：提升用户编辑信息的体验', 'KR 1：必填标识可视，提高填写效率', '✅', ''],
-                ['⛳ O4：提升用户编辑信息的体验', 'KR 2：接入 Wiki 编辑器，统一交互体验', '✅', ''],
-                ['⛳ O4：提升用户编辑信息的体验', 'KR 3：提供草稿能力，避免误操作', '', '✅'],
-                ['⛳ O5：保证多语言体验', 'KR 1：优化信息布局以及适配规则，保证信息完整性', '✅', ''],
+                [
+                  '⛳ O1：增强详情框架灵活性 & 扩展性',
+                  'KR 1：解耦详情载体和列表布局的绑定关系',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O1：增强详情框架灵活性 & 扩展性',
+                  'KR 2：增强 Layout 能力，支持管理员自定义内容放置区域',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O1：增强详情框架灵活性 & 扩展性',
+                  'KR 3：开辟新的插槽位，承载更多开放能力',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O2：强化业务场景感知',
+                  'KR 1：基于最佳实践定义初始布局配置，让用户开箱即用',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O2：强化业务场景感知',
+                  'KR 2：基于工作场景定义工作项类型对应的快捷操作，提高快捷能力使用率',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O3：提高用户查找信息的效率',
+                  'KR 1：信息重组，提供清晰的内容分区',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O3：提高用户查找信息的效率',
+                  'KR 2：调整信息展示策略，渐进式呈递',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O3：提高用户查找信息的效率',
+                  'KR 3：提供多种浏览方式，满足不同用户的使用偏好',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O3：提高用户查找信息的效率',
+                  'KR 4：解决属性太多，难以查找的问题',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O3：提高用户查找信息的效率',
+                  'KR 5：优化信息视觉样式，视觉减负',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O4：提升用户编辑信息的体验',
+                  'KR 1：必填标识可视，提高填写效率',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O4：提升用户编辑信息的体验',
+                  'KR 2：接入 Wiki 编辑器，统一交互体验',
+                  '✅',
+                  '',
+                ],
+                [
+                  '⛳ O4：提升用户编辑信息的体验',
+                  'KR 3：提供草稿能力，避免误操作',
+                  '',
+                  '✅',
+                ],
+                [
+                  '⛳ O5：保证多语言体验',
+                  'KR 1：优化信息布局以及适配规则，保证信息完整性',
+                  '✅',
+                  '',
+                ],
               ],
             },
           ],
@@ -452,7 +531,8 @@ export const workItemRefactorCaseStudy = {
               src: '/images/projects/work-item-refactor/work-item-refactor-config-before-after-01.png',
               alt: '表单配置页面 - 前后对比',
               caption: '▵ 表单配置页面 - 前后对比',
-              assetName: 'attachment:81e3d196-95b8-4475-aeb4-186c3e82201a:表单配置页面.png',
+              assetName:
+                'attachment:81e3d196-95b8-4475-aeb4-186c3e82201a:表单配置页面.png',
             },
             {
               type: 'html',
@@ -462,7 +542,8 @@ export const workItemRefactorCaseStudy = {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-1-02.png',
               alt: '编辑表单配置',
-              caption: '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
+              caption:
+                '▵ 高亮为表单资源库-通过引入表单资源库，将零散编辑转为围绕业务结构进行组织，提升管理员配置效率。',
             },
             {
               type: 'html',
@@ -495,7 +576,8 @@ export const workItemRefactorCaseStudy = {
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-2-01.png',
               alt: '内容配置区域',
               caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
-              assetName: 'attachment:3b9cde1d-627e-4457-9c03-75cf518a59a6:image.png',
+              assetName:
+                'attachment:3b9cde1d-627e-4457-9c03-75cf518a59a6:image.png',
             },
             {
               type: 'figure',
@@ -530,7 +612,8 @@ export const workItemRefactorCaseStudy = {
               src: '/images/projects/work-item-refactor/work-item-refactor-detail-drawer-01.png',
               alt: '弹窗与抽屉并存',
               caption: '▵ 表单配置页面 - 高亮部分为内容配置区域',
-              assetName: 'attachment:3983c2fc-1a00-47fb-b210-83ffe64bccf3:1详情弹窗展示.png',
+              assetName:
+                'attachment:3983c2fc-1a00-47fb-b210-83ffe64bccf3:1详情弹窗展示.png',
             },
             {
               type: 'html',
@@ -554,14 +637,16 @@ export const workItemRefactorCaseStudy = {
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-03.png',
               alt: '窄详情：平铺 ➡️ 抽屉',
               caption: '▵ 窄详情：平铺 ➡️ 抽屉',
-              assetName: 'attachment:46984a3b-2d6f-4f93-9bf9-431e42fbd554:3窄详情展示.png',
+              assetName:
+                'attachment:46984a3b-2d6f-4f93-9bf9-431e42fbd554:3窄详情展示.png',
             },
             {
               type: 'figure',
               src: '/images/projects/work-item-refactor/work-item-refactor-solution-3-04.png',
               alt: '详情内快捷新建子任务',
               caption: '▵ 详情内快捷新建子任务',
-              assetName: 'attachment:db109085-6bb7-48b6-a9d8-94b6a74191a8:4详情快捷新建子任务.png',
+              assetName:
+                'attachment:db109085-6bb7-48b6-a9d8-94b6a74191a8:4详情快捷新建子任务.png',
             },
             {
               type: 'figure',
@@ -826,21 +911,27 @@ export const onesAssistantCaseStudy = {
           type: 'numberedCard',
           number: '1.',
           title: '操作层',
-          paragraphs: ['降低查询、创建、分析等高频任务的操作门槛，复杂任务不再依赖手动逐步执行'],
+          paragraphs: [
+            '降低查询、创建、分析等高频任务的操作门槛，复杂任务不再依赖手动逐步执行',
+          ],
           compact: true,
         },
         {
           type: 'numberedCard',
           number: '2.',
           title: '协作层',
-          paragraphs: ['建立跨模块的自动化闭环，AI 生成结果直接写入业务系统，Skill 可跨场景复用'],
+          paragraphs: [
+            '建立跨模块的自动化闭环，AI 生成结果直接写入业务系统，Skill 可跨场景复用',
+          ],
           compact: true,
         },
         {
           type: 'numberedCard',
           number: '3.',
           title: '管理层',
-          paragraphs: ['为个人工作台、主动摘要、项目健康度洞察等管理者场景预留完整的体验入口'],
+          paragraphs: [
+            '为个人工作台、主动摘要、项目健康度洞察等管理者场景预留完整的体验入口',
+          ],
           compact: true,
         },
       ],
@@ -886,7 +977,10 @@ export const onesAiAgentCaseStudy = {
           items: [
             ['产品类型', 'B 端研发管理 AI Agent'],
             ['服务对象', '企业产研协作团队'],
-            ['项目阶段', '阶段一：全局对话框架；阶段二：范围化、结构化、可复用能力'],
+            [
+              '项目阶段',
+              '阶段一：全局对话框架；阶段二：范围化、结构化、可复用能力',
+            ],
             ['项目角色', '交互设计'],
             ['设计重点', '上下文理解、输入降本、结果回传、能力沉淀'],
           ],

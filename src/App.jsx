@@ -8,6 +8,8 @@ import ProjectDetail from './components/ProjectDetail';
 import AboutPage from './components/AboutPage';
 import ExperiencePage from './components/ExperiencePage';
 import SiteFooter from './components/SiteFooter';
+import { trackPageview } from './lib/analytics';
+import { applySiteMetadata } from './lib/siteMetadata';
 import {
   aboutPage,
   aboutSection,
@@ -55,7 +57,8 @@ const getOverlayStateFromHash = () => {
   }
 
   if (projectIdFromQuery) {
-    const matchedProject = projects.find((project) => project.id === projectIdFromQuery) ?? null;
+    const matchedProject =
+      projects.find((project) => project.id === projectIdFromQuery) ?? null;
     return { selectedProject: matchedProject, activePage: null };
   }
 
@@ -71,18 +74,74 @@ const getOverlayStateFromHash = () => {
 
   if (hash.startsWith('#project=')) {
     const projectId = decodeURIComponent(hash.replace('#project=', ''));
-    const matchedProject = projects.find((project) => project.id === projectId) ?? null;
+    const matchedProject =
+      projects.find((project) => project.id === projectId) ?? null;
     return { selectedProject: matchedProject, activePage: null };
   }
 
   return { selectedProject: null, activePage: null };
 };
 
+const buildOverlayPath = ({ projectId = null, page = null } = {}) => {
+  const searchParams = new URLSearchParams();
+
+  if (projectId) {
+    searchParams.set('project', projectId);
+  } else if (page) {
+    searchParams.set('overlay', page);
+  }
+
+  const search = searchParams.toString();
+
+  return search ? `/?${search}` : '/';
+};
+
+const getPageMetadata = ({ selectedProject, activePage }) => {
+  if (selectedProject) {
+    return {
+      title: `${selectedProject.title} | Miao Ke Portfolio`,
+      description: selectedProject.description || selectedProject.coverSummary,
+      path: buildOverlayPath({ projectId: selectedProject.id }),
+      image: selectedProject.coverImage,
+    };
+  }
+
+  if (activePage === 'about') {
+    return {
+      title: 'About | Miao Ke Portfolio',
+      description:
+        '了解 Miao Ke 的设计背景、方法论，以及在企业服务与 AI 产品中的实践经验。',
+      path: buildOverlayPath({ page: 'about' }),
+    };
+  }
+
+  if (activePage === 'experience') {
+    return {
+      title: 'Experience | Miao Ke Portfolio',
+      description:
+        '查看 Miao Ke 的职业经历、设计系统建设经验与跨团队协作实践。',
+      path: buildOverlayPath({ page: 'experience' }),
+    };
+  }
+
+  return {
+    title: 'Miao Ke Portfolio',
+    description:
+      'Miao Ke 的产品体验设计作品集，聚焦企业服务、设计系统、复杂流程设计与 AI 协作体验。',
+    path: '/',
+    image: '/og-cover.svg',
+  };
+};
+
 export default function App() {
-  const [overlayState, setOverlayState] = useState(() => getOverlayStateFromHash());
+  const [overlayState, setOverlayState] = useState(() =>
+    getOverlayStateFromHash()
+  );
   const { selectedProject, activePage } = overlayState;
   const isCaptureMode =
-    typeof window !== 'undefined' ? isFigmaCaptureHash(window.location.hash) : false;
+    typeof window !== 'undefined'
+      ? isFigmaCaptureHash(window.location.hash)
+      : false;
   const preserveCaptureChrome =
     typeof window !== 'undefined'
       ? new URL(window.location.href).searchParams.get('captureChrome') === '1'
@@ -96,9 +155,11 @@ export default function App() {
     };
 
     window.addEventListener('hashchange', syncOverlayFromHash);
+    window.addEventListener('popstate', syncOverlayFromHash);
 
     return () => {
       window.removeEventListener('hashchange', syncOverlayFromHash);
+      window.removeEventListener('popstate', syncOverlayFromHash);
     };
   }, []);
 
@@ -106,17 +167,40 @@ export default function App() {
     if (!selectedProject && !activePage && shouldRestoreScrollRef.current) {
       shouldRestoreScrollRef.current = false;
       window.requestAnimationFrame(() => {
-        window.scrollTo({ top: homeScrollPositionRef.current, behavior: 'auto' });
+        window.scrollTo({
+          top: homeScrollPositionRef.current,
+          behavior: 'auto',
+        });
       });
     }
   }, [selectedProject, activePage]);
 
-  const updateHash = (nextHash) => {
-    if (window.location.hash === nextHash) {
+  useEffect(() => {
+    const metadata = getPageMetadata({ selectedProject, activePage });
+    applySiteMetadata(metadata);
+    trackPageview(window.location.href);
+  }, [selectedProject, activePage]);
+
+  const updateOverlayLocation = ({ projectId = null, page = null } = {}) => {
+    const url = new URL(window.location.href);
+    const nextSearchParams = new URLSearchParams();
+    const preservedHash = isFigmaCaptureHash(url.hash) ? url.hash : '';
+
+    if (projectId) {
+      nextSearchParams.set('project', projectId);
+    } else if (page) {
+      nextSearchParams.set('overlay', page);
+    }
+
+    const nextSearch = nextSearchParams.toString();
+    const nextUrl = `${url.pathname}${nextSearch ? `?${nextSearch}` : ''}${preservedHash}`;
+
+    if (`${url.pathname}${url.search}${url.hash}` === nextUrl) {
       return;
     }
 
-    window.location.hash = nextHash;
+    window.history.pushState({}, '', nextUrl);
+    setOverlayState(getOverlayStateFromHash());
   };
 
   const rememberHomeScrollPosition = () => {
@@ -134,7 +218,7 @@ export default function App() {
   const openProject = (project) => {
     if (!project.caseStudy) {
       shouldRestoreScrollRef.current = false;
-      updateHash('');
+      updateOverlayLocation();
       window.requestAnimationFrame(() => {
         scrollToSection('work');
       });
@@ -142,22 +226,22 @@ export default function App() {
     }
 
     rememberHomeScrollPosition();
-    updateHash(`#project=${encodeURIComponent(project.id)}`);
+    updateOverlayLocation({ projectId: project.id });
   };
 
   const closeOverlay = () => {
     shouldRestoreScrollRef.current = true;
-    updateHash('');
+    updateOverlayLocation();
   };
 
   const closeOverlayWithoutRestore = () => {
     shouldRestoreScrollRef.current = false;
-    updateHash('');
+    updateOverlayLocation();
   };
 
   const openPage = (page) => {
     rememberHomeScrollPosition();
-    updateHash(page === 'experience' ? '#experience' : '#about');
+    updateOverlayLocation({ page });
   };
 
   const navigateHomeSection = (sectionId) => {
@@ -202,24 +286,27 @@ export default function App() {
     );
     const pattern = new RegExp(`(${escapedPhrases.join('|')})`, 'gi');
 
-    return text.split(pattern).filter(Boolean).map((segment, index) => {
-      const isHighlight = heroHighlights.some(
-        (phrase) => phrase.toLowerCase() === segment.toLowerCase()
-      );
-
-      if (isHighlight) {
-        return (
-          <mark
-            key={`${segment}-${index}`}
-            className="rounded-[0.2rem] bg-[#D4FF00]/85 px-1 py-[0.08rem] font-semibold text-black"
-          >
-            {segment}
-          </mark>
+    return text
+      .split(pattern)
+      .filter(Boolean)
+      .map((segment, index) => {
+        const isHighlight = heroHighlights.some(
+          (phrase) => phrase.toLowerCase() === segment.toLowerCase()
         );
-      }
 
-      return <span key={`${segment}-${index}`}>{segment}</span>;
-    });
+        if (isHighlight) {
+          return (
+            <mark
+              key={`${segment}-${index}`}
+              className="rounded-[0.2rem] bg-[#D4FF00]/85 px-1 py-[0.08rem] font-semibold text-black"
+            >
+              {segment}
+            </mark>
+          );
+        }
+
+        return <span key={`${segment}-${index}`}>{segment}</span>;
+      });
   };
 
   return (
@@ -281,6 +368,9 @@ export default function App() {
                       <img
                         src={heroSection.portrait}
                         alt={heroSection.portraitAlt}
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                         className="h-full w-full rounded-full object-cover"
                       />
                     </div>
@@ -300,7 +390,10 @@ export default function App() {
             <div className="relative h-[14.5rem] px-5 pt-10 md:h-[267px] md:px-[3.75rem] md:pt-[100px]">
               <h2
                 className="relative z-10 max-w-[32.5rem] text-[3.15rem] font-black uppercase leading-[0.88] tracking-[-0.02em] text-black md:text-[5rem] md:leading-[90px] md:tracking-[1px]"
-                style={{ fontFamily: '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif' }}
+                style={{
+                  fontFamily:
+                    '"Arial Black", "Helvetica Neue", "Arial Narrow", "Noto Sans SC", Arial, sans-serif',
+                }}
               >
                 <span className="block">SELECTED</span>
                 <span className="block text-[#D4FF00]">PROJECTS.</span>
@@ -318,21 +411,29 @@ export default function App() {
           </div>
         </section>
 
-        <section id="thinking" className="border-t-[3px] border-t-[#D4FF00] bg-black">
+        <section
+          id="thinking"
+          className="border-t-[3px] border-t-[#D4FF00] bg-black"
+        >
           <div className="mx-auto max-w-[1440px] px-5 py-16 md:px-[3.75rem] md:py-[6.25rem]">
             <div className="flex flex-col gap-12 md:gap-[2.875rem]">
               <h2 className="w-full max-w-[30rem] text-[4rem] font-black uppercase leading-[0.9] tracking-[-0.06em] text-white md:text-[5rem] md:leading-[5.625rem] md:tracking-[0.0125em]">
-                {(thinkingSection.titleLines ?? [thinkingSection.title]).map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
+                {(thinkingSection.titleLines ?? [thinkingSection.title]).map(
+                  (line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  )
+                )}
               </h2>
 
               <div className="grid gap-10 md:grid-cols-[34rem_42.5rem] md:items-end md:justify-between">
                 <div className="grid gap-10 md:grid-cols-2 md:grid-rows-2 md:gap-x-12 md:gap-y-[3.25rem]">
                   {thinkingSection.capabilities.map((capability) => (
-                    <div key={capability.labelZh} className="w-full max-w-[14rem] space-y-[0.3125rem]">
+                    <div
+                      key={capability.labelZh}
+                      className="w-full max-w-[14rem] space-y-[0.3125rem]"
+                    >
                       <p className="text-[0.875rem] font-black uppercase leading-[0.9375rem] tracking-[0.2625rem] text-[#D5FF02]">
                         {capability.labelZh}
                       </p>

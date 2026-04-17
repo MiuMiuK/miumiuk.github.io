@@ -1,4 +1,7 @@
-import { onesAssistantCaseStudy, workItemRefactorCaseStudy } from './caseStudies';
+import {
+  onesAssistantCaseStudy,
+  workItemRefactorCaseStudy,
+} from './caseStudies';
 
 // 以后主要维护这个文件：
 // 1. 改首页介绍、关于我、联系方式
@@ -123,11 +126,20 @@ export const pageEndBar = {
 };
 
 export const profileTags = [
-  { label: '设计体系负责人', color: 'border-[#F87171]/30 bg-[#F87171] text-white' },
-  { label: 'UED 团队管理', color: 'border-[#FB923C]/30 bg-[#FB923C] text-white' },
+  {
+    label: '设计体系负责人',
+    color: 'border-[#F87171]/30 bg-[#F87171] text-white',
+  },
+  {
+    label: 'UED 团队管理',
+    color: 'border-[#FB923C]/30 bg-[#FB923C] text-white',
+  },
   { label: '规范制定者', color: 'border-[#EAB308]/30 bg-[#EAB308] text-white' },
   { label: '跨团队支撑', color: 'border-[#C084FC]/30 bg-[#C084FC] text-white' },
-  { label: '问题解决能力', color: 'border-[#60A5FA]/30 bg-[#60A5FA] text-white' },
+  {
+    label: '问题解决能力',
+    color: 'border-[#60A5FA]/30 bg-[#60A5FA] text-white',
+  },
   { label: '决策能力', color: 'border-[#F472B6]/30 bg-[#F472B6] text-white' },
   { label: 'Owner 意识', color: 'border-[#FB7185]/30 bg-[#FB7185] text-white' },
   { label: '执行力强', color: 'border-[#38BDF8]/30 bg-[#38BDF8] text-white' },
@@ -158,7 +170,9 @@ export const aboutPage = {
     [
       { text: '我专注于将 ' },
       { text: 'AI 协作', highlight: true },
-      { text: ' 融入产品设计研发工作流，并在直觉与数据之间寻找设计的最佳平衡。' },
+      {
+        text: ' 融入产品设计研发工作流，并在直觉与数据之间寻找设计的最佳平衡。',
+      },
     ],
   ],
   backLabel: 'Back',
@@ -193,9 +207,18 @@ export const workExperience = {
             '作为设计驱动「产品升级专项」的 PO，制定路线图，主导并推动了升级专项发布，该专项包含「全球化-解决多语言适配问题」、「全局导航和 Wiki 升级」、「UI 全面升级」。',
           ],
           links: [
-            { label: '工作项改造', href: 'https://www.notion.so/e2178a86f9404a728ed20629f789b5b6?pvs=21' },
-            { label: '全球化-解决多语言适配问题', href: 'https://www.notion.so/e4031e54f8b2436890dd09aae89aacfc?pvs=21' },
-            { label: 'UI 全面升级', href: 'https://www.notion.so/ONES-UI-5a7202cc998446c985bb61f1bfca9689?pvs=21' },
+            {
+              label: '工作项改造',
+              href: 'https://www.notion.so/e2178a86f9404a728ed20629f789b5b6?pvs=21',
+            },
+            {
+              label: '全球化-解决多语言适配问题',
+              href: 'https://www.notion.so/e4031e54f8b2436890dd09aae89aacfc?pvs=21',
+            },
+            {
+              label: 'UI 全面升级',
+              href: 'https://www.notion.so/ONES-UI-5a7202cc998446c985bb61f1bfca9689?pvs=21',
+            },
           ],
         },
         {
@@ -205,7 +228,10 @@ export const workExperience = {
             '作为设计负责人，跨团队把控 ONES 旗下产品「Tower」和「WizNote」两个设计团队的工作节奏，根据团队对应的工作情况调整管理方法，协调设计资源，并参与关键项目的产品交互评审工作，确保各项目稳定进行。',
           ],
           links: [
-            { label: 'ONES.cn 新官网', href: 'https://www.notion.so/ONES-cn-2477f34ba76b804db5c5dd4b159d7445?pvs=21' },
+            {
+              label: 'ONES.cn 新官网',
+              href: 'https://www.notion.so/ONES-cn-2477f34ba76b804db5c5dd4b159d7445?pvs=21',
+            },
           ],
         },
         {

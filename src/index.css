@@ -21,11 +21,7 @@ body {
   background: #ffffff;
   color: #111111;
   font-family:
-    "Helvetica Neue",
-    "Arial Narrow",
-    "Noto Sans SC",
-    Arial,
-    sans-serif;
+    'Helvetica Neue', 'Arial Narrow', 'Noto Sans SC', Arial, sans-serif;
 }
 
 button,

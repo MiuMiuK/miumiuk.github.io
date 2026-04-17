@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Navbar from './Navbar';
 import PageEndBar from './PageEndBar';
@@ -30,19 +30,29 @@ function renderPoint(text) {
   );
   const pattern = new RegExp(`(${escapedPhrases.join('|')})`, 'g');
 
-  return text.split(pattern).filter(Boolean).map((segment, index) => (
-    <span
-      key={`${segment}-${index}`}
-      className={pointHighlights.includes(segment) ? 'font-bold text-black' : 'font-medium text-black'}
-    >
-      {segment}
-    </span>
-  ));
+  return text
+    .split(pattern)
+    .filter(Boolean)
+    .map((segment, index) => (
+      <span
+        key={`${segment}-${index}`}
+        className={
+          pointHighlights.includes(segment)
+            ? 'font-bold text-black'
+            : 'font-medium text-black'
+        }
+      >
+        {segment}
+      </span>
+    ));
 }
 
 function renderHeroParagraph(line, index) {
   return (
-    <p key={index} className="text-[1.65rem] font-light leading-[2.55rem] text-[#C4C4C4] md:text-[30px] md:leading-[55px]">
+    <p
+      key={index}
+      className="text-[1.65rem] font-light leading-[2.55rem] text-[#C4C4C4] md:text-[30px] md:leading-[55px]"
+    >
       {line.map((segment, segmentIndex) => (
         <span
           key={`${segment.text}-${segmentIndex}`}
@@ -63,7 +73,7 @@ function ActionButton({ button, onNavigate }) {
     <button
       type="button"
       onClick={() => onNavigate(button.target)}
-        className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[20px] font-bold transition ${
+      className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[20px] font-bold transition ${
         isPrimary
           ? 'bg-[#D4FF00] text-black hover:bg-[#E7FF5F]'
           : isDark
@@ -72,7 +82,9 @@ function ActionButton({ button, onNavigate }) {
       }`}
     >
       <span className="inline-flex items-center gap-5">
-        {isDark ? <ArrowRight className="rotate-180" size={17} strokeWidth={2.5} /> : null}
+        {isDark ? (
+          <ArrowRight className="rotate-180" size={17} strokeWidth={2.5} />
+        ) : null}
         <span>{button.label}</span>
         {isDark ? null : <ArrowRight size={17} strokeWidth={2.5} />}
       </span>
@@ -93,6 +105,20 @@ export default function AboutPage({
 }) {
   const showChrome = !isCaptureMode || preserveCaptureChrome;
   const pageContainerRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
+  const pageMotionProps = prefersReducedMotion
+    ? {
+        initial: false,
+        animate: { x: 0 },
+        exit: { x: 0 },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { x: '100%' },
+        animate: { x: 0 },
+        exit: { x: '100%' },
+        transition: overlayTransition,
+      };
 
   const handleBackToTop = () => {
     const scrollTarget = pageContainerRef.current;
@@ -108,17 +134,19 @@ export default function AboutPage({
   return (
     <motion.div
       ref={pageContainerRef}
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '100%' }}
-      transition={overlayTransition}
+      initial={pageMotionProps.initial}
+      animate={pageMotionProps.animate}
+      exit={pageMotionProps.exit}
+      transition={pageMotionProps.transition}
       className={
         isCaptureMode
           ? 'relative min-h-screen bg-white text-black'
           : 'fixed inset-0 z-[60] overflow-y-auto bg-white text-black'
       }
     >
-      {showChrome ? <Navbar brand={brand} onNavigate={onNavigate} activeItem="about" /> : null}
+      {showChrome ? (
+        <Navbar brand={brand} onNavigate={onNavigate} activeItem="about" />
+      ) : null}
 
       <div className={showChrome ? 'pt-[72px] md:pt-[91px]' : ''}>
         {showChrome ? (
@@ -157,7 +185,9 @@ export default function AboutPage({
         <section className="border-t-[3px] border-t-[#D4FF00] bg-white">
           <div className="mx-auto max-w-[1440px] px-5 pb-10 pt-[30px] md:px-[3.75rem] md:pb-0 md:pt-[50px]">
             <div className="flex items-center gap-4">
-              <span className="text-[2.9rem] leading-none">{aboutSection.icon}</span>
+              <span className="text-[2.9rem] leading-none">
+                {aboutSection.icon}
+              </span>
               <h2 className="text-[3.6rem] font-black tracking-[-0.06em] text-black">
                 About me
               </h2>
@@ -186,7 +216,10 @@ export default function AboutPage({
                 </h3>
                 <ol className="mt-[30px] space-y-4">
                   {aboutSection.points.map((point, index) => (
-                    <li key={point} className="text-[16px] leading-[30px] tracking-[0.01em] text-black">
+                    <li
+                      key={point}
+                      className="text-[16px] leading-[30px] tracking-[0.01em] text-black"
+                    >
                       <span className="mr-1.5 font-semibold">{index + 1}.</span>
                       {renderPoint(point)}
                     </li>
@@ -197,15 +230,16 @@ export default function AboutPage({
 
             <div className="mt-[100px] grid gap-[60px] md:grid-cols-2 md:gap-[60px]">
               {aboutPage.ctaButtons.map((button) => (
-                <ActionButton key={button.label} button={button} onNavigate={onNavigate} />
+                <ActionButton
+                  key={button.label}
+                  button={button}
+                  onNavigate={onNavigate}
+                />
               ))}
             </div>
 
             <div className="mt-[100px]">
-              <PageEndBar
-                meta={pageEndBar}
-                onBackToTop={handleBackToTop}
-              />
+              <PageEndBar meta={pageEndBar} onBackToTop={handleBackToTop} />
             </div>
           </div>
         </section>
