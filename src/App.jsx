@@ -371,7 +371,7 @@ export default function App() {
                         loading="eager"
                         decoding="async"
                         fetchPriority="high"
-                        className="h-full w-full rounded-full object-cover"
+                        className="h-full w-full scale-[1.22] rounded-full object-cover object-[center_18%]"
                       />
                     </div>
                   </div>

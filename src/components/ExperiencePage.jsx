@@ -278,7 +278,7 @@ export default function ExperiencePage({
                     alt={heroSection.portraitAlt}
                     loading="eager"
                     decoding="async"
-                    className="h-full w-full rounded-full object-cover"
+                    className="h-full w-full scale-[1.22] rounded-full object-cover object-[center_18%]"
                   />
                 </div>
               </div>
