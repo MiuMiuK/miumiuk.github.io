@@ -87,6 +87,24 @@ function FigureBlock({ block }) {
   );
 }
 
+function HighlightSideCard({
+  children,
+  className = '',
+  contentClassName = 'px-[20px] py-[18px] pl-[30px] md:px-[24px] md:py-[22px] md:pl-[36px]',
+  barClassName = '',
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[8px] border border-[#E6E7EB] bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04)] ${className}`}
+    >
+      <div
+        className={`pointer-events-none absolute inset-y-0 left-0 w-[6px] bg-[#D5FF02] ${barClassName}`}
+      />
+      <div className={contentClassName}>{children}</div>
+    </div>
+  );
+}
+
 function ContentBlock({ block, projectId }) {
   const isWorkItemRefactor = projectId === 'spotify-live';
 
@@ -110,19 +128,22 @@ function ContentBlock({ block, projectId }) {
       block.variant === 'danger'
         ? 'border-red bg-[rgba(255,0,0,0.1)]'
         : 'border-[#D4FF00]/35 bg-[rgba(212,255,0,0.1)]';
+    const textClassName = isWorkItemRefactor
+      ? "max-w-none text-[16px] leading-[30px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[30px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[30px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
+      : "max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[24px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal";
 
     return (
       <div className={`rounded-[16px] border px-[21px] py-5 ${tone}`}>
-        <div className={`flex items-start ${isWorkItemRefactor ? 'gap-2' : 'gap-3'}`}>
-          <p className="w-[30px] text-[30px] leading-7 text-black">{block.icon}</p>
-          <div
-            className={
-              isWorkItemRefactor
-                ? "max-w-none text-[16px] leading-[30px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[30px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[30px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
-                : "max-w-none text-[16px] leading-[24px] text-[#404040] [&_p]:my-0 [&_p+p]:mt-0 [&_p]:text-[16px] [&_p]:leading-[24px] [&_p]:text-[#404040] [&_strong]:font-bold [&_strong]:text-[#404040] [&_em]:font-medium [&_em]:italic [&_em]:text-[#404040] [&_ol]:my-0 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:text-[16px] [&_ol]:text-[#404040] [&_li]:leading-[24px] [&_li]:marker:text-[#404040] [&_li]:marker:font-normal"
-            }
-            dangerouslySetInnerHTML={{ __html: block.html }}
-          />
+        <div className={`flex items-start ${isWorkItemRefactor ? 'gap-3' : 'gap-3'}`}>
+          <div className="flex h-[30px] w-[30px] shrink-0 items-start justify-center pt-[2px] text-[24px] leading-none text-black">
+            <span aria-hidden="true">{block.icon}</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <div
+              className={textClassName}
+              dangerouslySetInnerHTML={{ __html: block.html }}
+            />
+          </div>
         </div>
       </div>
     );
@@ -132,103 +153,94 @@ function ContentBlock({ block, projectId }) {
     return (
       <div className="space-y-[10px]">
         <p className="text-[16px] leading-[24px] text-black">{block.intro}</p>
-        <div className="rounded-[6px] border-l-[6px] border-l-[#D5FF02] bg-white">
-          <div className="rounded-[6px] border border-[#DFE1E5] px-[25px] py-[25px]">
-            <div className="space-y-0">
-              {block.items.map((item) => (
-                <p key={item.title} className="text-[16px] leading-[30px] text-black">
-                  <strong className="font-bold text-black">{item.title}</strong>
-                  <span>{' → '}</span>
-                  <span>{item.detail}</span>
-                </p>
-              ))}
-            </div>
+        <HighlightSideCard>
+          <div className="space-y-[4px] md:space-y-[6px]">
+            {block.items.map((item) => (
+              <p
+                key={item.title}
+                className="text-[14px] leading-[24px] tracking-[-0.01em] text-[#222222]"
+              >
+                <strong className="font-bold text-black">{item.title}</strong>
+                <span className="px-1 text-[#333333]">{'→'}</span>
+                <span className="text-[#3F3F46]">{item.detail}</span>
+              </p>
+            ))}
           </div>
-        </div>
+        </HighlightSideCard>
       </div>
     );
   }
 
   if (block.type === 'insightListCard') {
     return (
-      <div className="relative overflow-hidden rounded-[6px] bg-white">
-        <div className="absolute inset-y-0 left-0 w-[6px] bg-[#D5FF02]" />
-        <div className="rounded-[6px] border border-[#DFE1E5] px-[25px] py-[25px]">
-          <ol className="list-decimal space-y-0 pl-6 text-[16px] text-black marker:font-normal marker:text-black">
+      <HighlightSideCard>
+        <div className="space-y-0">
+          <ol className="list-decimal space-y-0 pl-5 text-[14px] text-black marker:font-normal marker:text-black">
             {block.items.map((item) => (
-              <li key={item.title} className="leading-[30px]">
+              <li key={item.title} className="leading-[24px]">
                 <strong className="font-bold text-black">{item.title}</strong>
                 <span>{` → ${item.detail}`}</span>
               </li>
             ))}
           </ol>
         </div>
-      </div>
+      </HighlightSideCard>
     );
   }
 
   if (block.type === 'goalListCard') {
     return (
-      <div className="relative overflow-hidden rounded-[6px] bg-white">
-        <div className="absolute inset-y-0 left-0 w-[6px] bg-[#D5FF02]" />
-        <div className="rounded-[6px] border border-[#DFE1E5] px-[35px] py-[35px]">
-          <div className="space-y-[5px] text-[16px] text-black">
-            <p className="font-bold leading-[32px] text-black">{block.title}</p>
-            {block.items.map((item) => (
-              <p key={item} className="leading-[40px] text-[#404040]">
-                {item}
-              </p>
-            ))}
-          </div>
+      <HighlightSideCard contentClassName="px-[20px] py-[18px] pl-[30px] md:px-[24px] md:py-[22px] md:pl-[36px]">
+        <div className="space-y-[4px] text-[14px] text-black">
+          <p className="font-bold leading-[24px] text-black">{block.title}</p>
+          {block.items.map((item) => (
+            <p key={item} className="leading-[24px] text-[#404040]">
+              {item}
+            </p>
+          ))}
         </div>
-      </div>
+      </HighlightSideCard>
     );
   }
 
   if (block.type === 'numberedCard') {
     return (
-      <div className="rounded-[6px] border-l-[6px] border-l-[#D5FF02] bg-white">
-        <div
-          className={`rounded-[6px] border border-[#DFE1E5] px-[25px] ${
-            block.compact ? 'py-[25px]' : 'py-[25px]'
-          }`}
-        >
-          <div className={block.compact ? 'space-y-3' : 'space-y-5'}>
-            <h4 className="text-[20px] font-black leading-7 tracking-[-0.5px] text-black">
-              {block.number} {block.title}
-            </h4>
+      <HighlightSideCard>
+        <div className={block.compact ? 'space-y-2' : 'space-y-3'}>
+          <h4 className="text-[14px] font-bold leading-[24px] text-black">
+            {block.number} {block.title}
+          </h4>
 
-            <div className={`space-y-[10px] ${block.compact ? '' : 'pl-[18px]'}`}>
-              {block.highlight ? (
-                <p className="text-[16px] leading-6 text-black">
-                  {block.highlight.includes('：') ? (
-                    <>
-                      {block.highlight.split('：')[0]}：
-                      <strong>{block.highlight.split('：').slice(1).join('：')}</strong>
-                    </>
-                  ) : (
-                    <strong>{block.highlight}</strong>
-                  )}
-                </p>
-              ) : null}
-
-              {block.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="text-[16px] leading-6 text-black">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {block.badge ? (
-              <div className={block.compact ? '' : 'pl-[18px]'}>
-                <span className="inline-flex items-center rounded-[13.6px] border border-[#DAFF26] bg-[#F5FFC3] px-[13px] py-2 text-[14px] font-bold leading-5 tracking-[0.44px] text-black">
-                  {block.badge}
-                </span>
-              </div>
+          <div className={`space-y-[6px] ${block.compact ? '' : 'pl-[12px]'}`}>
+            {block.highlight ? (
+              <p className="text-[14px] leading-[24px] text-black">
+                {block.highlight.includes('：') ? (
+                  <>
+                    {block.highlight.split('：')[0]}：
+                    <strong>{block.highlight.split('：').slice(1).join('：')}</strong>
+                  </>
+                ) : (
+                  <strong>{block.highlight}</strong>
+                )}
+              </p>
             ) : null}
+
+            {block.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="text-[14px] leading-[24px] text-black">
+                {paragraph}
+              </p>
+            ))}
           </div>
+
+          {block.badge ? (
+            <div className={block.compact ? '' : 'pl-[12px]'}>
+              <span className="inline-flex items-center rounded-[13.6px] border border-[#DAFF26] bg-[#F5FFC3] px-[13px] py-2 text-[14px] font-bold leading-5 tracking-[0.44px] text-black">
+                {block.badge}
+              </span>
+            </div>
+          ) : null}
         </div>
-      </div>
+      </HighlightSideCard>
     );
   }
 
