@@ -10,29 +10,30 @@ const navItems = [
 export default function Navbar({
   brand,
   onNavigate,
+  getHref = () => '/',
   activeItem = null,
   className = '',
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const parts = brand.split(' ');
 
-  const handleNavigate = (id) => {
+  const handleNavigate = (id, event) => {
     setIsMobileMenuOpen(false);
-    onNavigate(id);
+    onNavigate(id, event);
   };
 
   return (
     <nav
       className={
         className ||
-        'fixed left-0 top-0 z-50 w-full border-b border-black/10 bg-white/95 px-5 py-5 backdrop-blur md:px-16 md:py-7'
+        'fixed left-0 top-0 z-50 flex h-[91px] w-full items-center border-b border-black/10 bg-white/95 px-5 py-5 backdrop-blur md:px-[60px] md:py-7'
       }
     >
-      <div className="flex items-center justify-between gap-4">
-        <button
-          type="button"
+      <div className="flex w-full items-center justify-between gap-4">
+        <a
+          href={getHref('home')}
           className="group cursor-pointer text-left text-[0.94rem] font-semibold uppercase leading-none tracking-[-0.03em] text-black transition duration-200 hover:opacity-80 md:text-[1.18rem]"
-          onClick={() => handleNavigate('home')}
+          onClick={(event) => handleNavigate('home', event)}
         >
           {parts.map((part, index) => (
             <span
@@ -46,7 +47,7 @@ export default function Navbar({
               {part}
             </span>
           ))}
-        </button>
+        </a>
 
         <button
           type="button"
@@ -69,12 +70,13 @@ export default function Navbar({
         </button>
       </div>
 
-      <div className="hidden flex-wrap justify-end gap-x-1 gap-y-1 text-[0.72rem] font-black tracking-[0.08em] md:flex md:gap-2 md:text-[0.95rem]">
+      <div className="ml-auto hidden items-center justify-end gap-2 whitespace-nowrap text-[0.72rem] font-black tracking-[0.08em] md:flex md:text-[0.95rem]">
         {navItems.map(([label, id]) => (
-          <button
+          <a
             key={id}
-            type="button"
-            onClick={() => handleNavigate(id)}
+            href={getHref(id)}
+            onClick={(event) => handleNavigate(id, event)}
+            aria-current={activeItem === id ? 'page' : undefined}
             className={`rounded-full border px-3 py-1.5 uppercase transition md:px-4 md:py-2 ${
               activeItem === id
                 ? 'border-[#DFE1E5] bg-[#D4FF00] text-black'
@@ -82,17 +84,18 @@ export default function Navbar({
             }`}
           >
             {label}
-          </button>
+          </a>
         ))}
       </div>
 
       {isMobileMenuOpen ? (
         <div className="mt-4 grid gap-2 border-t border-black/10 pt-4 md:hidden">
           {navItems.map(([label, id]) => (
-            <button
+            <a
               key={id}
-              type="button"
-              onClick={() => handleNavigate(id)}
+              href={getHref(id)}
+              onClick={(event) => handleNavigate(id, event)}
+              aria-current={activeItem === id ? 'page' : undefined}
               className={`flex w-full items-center justify-between rounded-[3px] border px-4 py-3 text-left text-[0.9rem] font-black uppercase tracking-[0.08em] transition ${
                 activeItem === id
                   ? 'border-[#DFE1E5] bg-[#D4FF00] text-black'
@@ -101,7 +104,7 @@ export default function Navbar({
             >
               <span>{label}</span>
               <span aria-hidden="true">+</span>
-            </button>
+            </a>
           ))}
         </div>
       ) : null}

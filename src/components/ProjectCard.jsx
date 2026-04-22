@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 
-export default function ProjectCard({ project, onClick, index }) {
+export default function ProjectCard({ project, href, onClick, index }) {
   const isClickable =
     typeof onClick === 'function' && Boolean(project.caseStudy);
   const borderClass =
@@ -8,9 +8,9 @@ export default function ProjectCard({ project, onClick, index }) {
       ? 'border-t-[3px] border-t-[#D4FF00]'
       : 'border-t border-t-black/10';
   const hasTags = (project.coverTags ?? []).length > 0;
-  const Wrapper = isClickable ? 'button' : 'div';
+  const Wrapper = isClickable ? 'a' : 'div';
   const wrapperProps = isClickable
-    ? { type: 'button', onClick: () => onClick(project) }
+    ? { href, onClick: (event) => onClick(project, event) }
     : {};
 
   return (

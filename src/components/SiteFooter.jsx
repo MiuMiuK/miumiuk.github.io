@@ -1,16 +1,16 @@
-function FooterNavButton({ label, target, onNavigate }) {
+function FooterNavLink({ label, target, href, onNavigate }) {
   return (
-    <button
-      type="button"
-      onClick={() => onNavigate(target)}
+    <a
+      href={href}
+      onClick={(event) => onNavigate(target, event)}
       className="text-left text-[1.3rem] font-bold leading-[2.2] text-black transition hover:text-[#737373] md:text-[14px] md:leading-[55px]"
     >
       {label}
-    </button>
+    </a>
   );
 }
 
-export default function SiteFooter({ footerSection, onNavigate }) {
+export default function SiteFooter({ footerSection, onNavigate, getHref }) {
   const navigateTargets = {
     Home: 'home',
     About: 'about',
@@ -79,10 +79,11 @@ export default function SiteFooter({ footerSection, onNavigate }) {
                 </p>
                 <div className="flex flex-col items-start">
                   {footerSection.navigationItems.map((item) => (
-                    <FooterNavButton
+                    <FooterNavLink
                       key={item}
                       label={item}
                       target={navigateTargets[item]}
+                      href={getHref(navigateTargets[item])}
                       onNavigate={onNavigate}
                     />
                   ))}

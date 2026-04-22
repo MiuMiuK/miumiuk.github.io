@@ -19,9 +19,9 @@ function ExperienceActionButton({ button, onNavigate }) {
   const isDark = button.variant === 'secondary-dark';
 
   return (
-    <button
-      type="button"
-      onClick={() => onNavigate(button.target)}
+    <a
+      href={button.href}
+      onClick={(event) => onNavigate(button.target, event)}
       className={`flex h-[100px] w-full items-center justify-center rounded-[3px] text-[1.25rem] font-bold transition ${
         isPrimary
           ? 'bg-[#D4FF00] text-black hover:bg-[#E7FF5F]'
@@ -37,7 +37,7 @@ function ExperienceActionButton({ button, onNavigate }) {
         <span>{button.label}</span>
         {isDark ? null : <ArrowRight size={17} strokeWidth={2.5} />}
       </span>
-    </button>
+    </a>
   );
 }
 
@@ -167,6 +167,7 @@ export default function ExperiencePage({
   pageEndBar,
   onBack,
   onNavigate,
+  getHref,
   isCaptureMode = false,
   preserveCaptureChrome = false,
 }) {
@@ -176,15 +177,32 @@ export default function ExperiencePage({
   const pageMotionProps = prefersReducedMotion
     ? {
         initial: false,
-        animate: { x: 0 },
-        exit: { x: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 1 },
         transition: { duration: 0 },
       }
     : {
-        initial: { x: '100%' },
-        animate: { x: 0 },
-        exit: { x: '100%' },
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
         transition: overlayTransition,
+      };
+  const contentMotionProps = prefersReducedMotion
+    ? {
+        initial: false,
+        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        exit: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        transition: { duration: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: 18, filter: 'blur(10px)' },
+        animate: { opacity: 1, y: 0, filter: 'blur(0px)' },
+        exit: { opacity: 0, y: 12, filter: 'blur(8px)' },
+        transition: {
+          duration: 0.42,
+          ease: [0.22, 1, 0.36, 1],
+          delay: 0.04,
+        },
       };
 
   const handleBackToTop = () => {
@@ -241,15 +259,26 @@ export default function ExperiencePage({
       }
     >
       {showChrome ? (
-        <Navbar brand={brand} onNavigate={onNavigate} activeItem="experience" />
+        <Navbar
+          brand={brand}
+          onNavigate={onNavigate}
+          getHref={getHref}
+          activeItem="experience"
+        />
       ) : null}
 
-      <div className={showChrome ? 'pt-[72px] md:pt-[91px]' : ''}>
+      <motion.div
+        initial={contentMotionProps.initial}
+        animate={contentMotionProps.animate}
+        exit={contentMotionProps.exit}
+        transition={contentMotionProps.transition}
+        className={showChrome ? 'pt-[91px]' : ''}
+      >
         {showChrome ? (
           <button
             type="button"
             onClick={onBack}
-            className="fixed left-5 top-[6.5rem] z-[70] flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white px-[16px] text-[12px] font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00] md:left-[3.75rem] md:top-[121px]"
+            className="fixed left-5 top-[121px] z-[70] flex h-[43px] w-[108px] items-center justify-center gap-2 rounded-full border border-[#c2bfbf] bg-white px-[16px] text-[12px] font-bold text-black transition hover:border-[#D4FF00] hover:bg-[#D4FF00] md:left-[3.75rem]"
           >
             <ArrowRight className="rotate-180" size={14} strokeWidth={2.5} />
             <span>Back</span>
@@ -341,7 +370,7 @@ export default function ExperiencePage({
             />
           </div>
         </section>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

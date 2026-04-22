@@ -2,6 +2,11 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { projects } from '../data/siteContent';
+import {
+  getNavigationHref,
+  getProjectHref,
+  shouldHandleClientNavigation,
+} from '../lib/navigation';
 import Navbar from './Navbar';
 
 const overlayTransition = {
@@ -21,9 +26,16 @@ function NextProjectBlock({ project, onOpenProject }) {
   }
 
   return (
-    <button
-      type="button"
-      onClick={() => onOpenProject(project)}
+    <a
+      href={getProjectHref(project.id)}
+      onClick={(event) => {
+        if (!shouldHandleClientNavigation(event)) {
+          return;
+        }
+
+        event.preventDefault();
+        onOpenProject(project);
+      }}
       className="flex min-h-[205px] w-full flex-col rounded-[32px] border border-black/10 bg-white px-[30px] py-[30px] text-left transition hover:border-[#D4FF00] hover:bg-[#D4FF00]/10"
     >
       <p
@@ -57,7 +69,7 @@ function NextProjectBlock({ project, onOpenProject }) {
         <span>View Project</span>
         <ArrowRight size={16} />
       </div>
-    </button>
+    </a>
   );
 }
 
@@ -718,6 +730,7 @@ export default function ProjectDetail({
         <Navbar
           brand={brand}
           onNavigate={onNavigate}
+          getHref={getNavigationHref}
           className="fixed left-0 top-0 z-50 flex h-[91px] w-full items-center justify-between border-b border-black/10 bg-white/95 px-5 py-5 backdrop-blur md:px-[60px] md:py-7"
         />
       ) : null}

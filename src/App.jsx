@@ -11,6 +11,12 @@ import SiteFooter from './components/SiteFooter';
 import { trackPageview } from './lib/analytics';
 import { applySiteMetadata } from './lib/siteMetadata';
 import {
+  getNavigationHref,
+  getProjectHref,
+  navigationTargets,
+  shouldHandleClientNavigation,
+} from './lib/navigation';
+import {
   aboutPage,
   aboutSection,
   experiencePage,
@@ -256,28 +262,38 @@ export default function App() {
     });
   };
 
-  const handleNavigate = (id) => {
-    if (id === 'about') {
-      openPage('about');
+  const handleNavigationIntent = (target) => {
+    const destination = navigationTargets[target];
+
+    if (!destination) {
+      navigateHomeSection('home');
       return;
     }
 
-    if (id === 'experience') {
-      openPage('experience');
+    if (destination.type === 'overlay-page') {
+      openPage(destination.page);
       return;
     }
 
-    if (id === 'projects') {
-      navigateHomeSection('work');
+    navigateHomeSection(destination.sectionId);
+  };
+
+  const handleNavigate = (target, event) => {
+    if (!shouldHandleClientNavigation(event)) {
       return;
     }
 
-    if (id === 'contact') {
-      navigateHomeSection('contact');
+    event?.preventDefault();
+    handleNavigationIntent(target);
+  };
+
+  const handleProjectNavigate = (project, event) => {
+    if (!shouldHandleClientNavigation(event)) {
       return;
     }
 
-    navigateHomeSection('home');
+    event?.preventDefault();
+    openProject(project);
   };
 
   const renderHighlightedIntro = (text) => {
@@ -311,9 +327,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-black antialiased selection:bg-[#D4FF00] selection:text-black">
-      <Navbar brand={heroSection.navBrand} onNavigate={handleNavigate} />
+      <Navbar
+        brand={heroSection.navBrand}
+        onNavigate={handleNavigate}
+        getHref={getNavigationHref}
+      />
 
-      <main className="pt-[72px] md:pt-[91px]">
+      <main className="pt-[91px]">
         <section id="home" className="relative overflow-hidden">
           <div className="mx-auto max-w-[1440px] px-5 md:px-[3.75rem]">
             <div className="flex flex-col">
@@ -350,16 +370,18 @@ export default function App() {
                         </div>
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => handleNavigate(heroSection.ctaTarget)}
+                      <a
+                        href={getNavigationHref(heroSection.ctaTarget)}
+                        onClick={(event) =>
+                          handleNavigate(heroSection.ctaTarget, event)
+                        }
                         className="mt-8 inline-flex h-[42px] items-center justify-end rounded-[3px] bg-black px-[20px] py-[10px] transition duration-200 hover:bg-black/80 md:mt-[50px] md:w-[195px]"
                       >
                         <span className="inline-flex items-center gap-[10px] text-center text-[14px] font-bold text-[#D4FF00]">
                           <span>{heroSection.ctaText}</span>
                           <ArrowRight size={10} strokeWidth={2.5} />
                         </span>
-                      </button>
+                      </a>
                     </div>
                   </div>
 
@@ -405,7 +427,8 @@ export default function App() {
                 key={project.id}
                 index={index}
                 project={project}
-                onClick={openProject}
+                href={getProjectHref(project.id)}
+                onClick={handleProjectNavigate}
               />
             ))}
           </div>
@@ -452,23 +475,33 @@ export default function App() {
                     {thinkingSection.description}
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={() => handleNavigate(thinkingSection.ctaTarget)}
+                  <a
+                    href={getNavigationHref(thinkingSection.ctaTarget)}
+                    onClick={(event) =>
+                      handleNavigate(thinkingSection.ctaTarget, event)
+                    }
                     className="inline-flex items-center justify-end gap-[0.3125rem] rounded-[3px] bg-[#D4FF00] px-5 py-2.5 text-[0.875rem] font-bold leading-[1.375rem] text-black transition hover:bg-[#E7FF5F]"
                   >
                     <span>{thinkingSection.ctaText}</span>
                     <span aria-hidden="true">→</span>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <SiteFooter footerSection={footerSection} onNavigate={handleNavigate} />
+        <SiteFooter
+          footerSection={footerSection}
+          onNavigate={handleNavigate}
+          getHref={getNavigationHref}
+        />
       </main>
 
+      {/*
+        Overlay pages still use the existing URL state model; cta hrefs are
+        injected here so the page components stay presentation-focused.
+      */}
       <AnimatePresence initial={false}>
         {selectedProject ? (
           <ProjectDetail
@@ -485,12 +518,19 @@ export default function App() {
         {activePage === 'about' ? (
           <AboutPage
             brand={heroSection.navBrand}
-            aboutPage={aboutPage}
+            aboutPage={{
+              ...aboutPage,
+              ctaButtons: aboutPage.ctaButtons.map((button) => ({
+                ...button,
+                href: getNavigationHref(button.target),
+              })),
+            }}
             aboutSection={aboutSection}
             profileTags={profileTags}
             pageEndBar={pageEndBar}
             onBack={closeOverlay}
             onNavigate={handleNavigate}
+            getHref={getNavigationHref}
             isCaptureMode={isCaptureMode}
             preserveCaptureChrome={preserveCaptureChrome}
           />
@@ -499,11 +539,18 @@ export default function App() {
           <ExperiencePage
             brand={heroSection.navBrand}
             heroSection={heroSection}
-            experiencePage={experiencePage}
+            experiencePage={{
+              ...experiencePage,
+              ctaButtons: experiencePage.ctaButtons.map((button) => ({
+                ...button,
+                href: getNavigationHref(button.target),
+              })),
+            }}
             jobs={workExperience.items}
             pageEndBar={pageEndBar}
             onBack={closeOverlay}
             onNavigate={handleNavigate}
+            getHref={getNavigationHref}
             isCaptureMode={isCaptureMode}
             preserveCaptureChrome={preserveCaptureChrome}
           />
