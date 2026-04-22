@@ -32,3 +32,18 @@ a {
 img {
   display: block;
 }
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  will-change: transform;
+  animation: marquee-scroll 24s linear infinite;
+}

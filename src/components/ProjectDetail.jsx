@@ -64,6 +64,11 @@ function NextProjectBlock({ project, onOpenProject }) {
 function FigureBlock({ block }) {
   const isPlaceholder =
     block.kind === 'motion-placeholder' || block.kind === 'placeholder';
+  const isVideo =
+    block.kind === 'motion-placeholder' ||
+    block.src?.endsWith('.mp4') ||
+    block.src?.endsWith('.mov') ||
+    block.src?.endsWith('.webm');
   const captionLines =
     typeof block.caption === 'string'
       ? block.caption.split('\n').filter(Boolean)
@@ -86,7 +91,19 @@ function FigureBlock({ block }) {
           className="w-full overflow-hidden bg-[#EDEFF2]"
           style={{ ...figureAspectRatio, ...figureStyle }}
         >
-          {block.src ? (
+          {isVideo && block.src ? (
+            <video
+              src={block.src}
+              aria-label={block.alt}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              className={imageClassName}
+            />
+          ) : block.src ? (
             <img
               src={block.src}
               alt={block.alt}

@@ -439,8 +439,9 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              kind: 'placeholder',
+              kind: 'motion-placeholder',
               height: 568,
+              src: '/images/projects/work-item-refactor/work-item-refactor-motion-search-resource.mov',
               alt: '自定义拖拽配置属性+快速查找定位属性',
               caption: '▵ 自定义拖拽配置属性+快速查找定位属性',
             },
@@ -469,8 +470,9 @@ export const workItemRefactorCaseStudy = {
             },
             {
               type: 'figure',
-              kind: 'placeholder',
+              kind: 'motion-placeholder',
               height: 568,
+              src: '/images/projects/work-item-refactor/work-item-refactor-motion-custom-tabs.mov',
               alt: '自定义标签页+自定义分组',
               caption: '▵ 自定义标签页+自定义分组',
             },

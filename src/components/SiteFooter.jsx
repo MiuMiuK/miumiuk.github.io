@@ -22,7 +22,7 @@ export default function SiteFooter({ footerSection, onNavigate }) {
     <footer id="contact" className="relative overflow-hidden bg-white">
       <div className="relative z-10">
         <div className="border-y-[3px] border-black bg-[#D4FF00] px-5 py-3 md:px-[3.75rem] md:py-[1.15rem]">
-          <p className="text-[1.45rem] font-black uppercase leading-none tracking-[-0.06em] text-black md:text-[3.35rem]">
+          <p className="text-[1.45rem] font-black uppercase leading-none tracking-[-0.06em] text-black md:text-[36px]">
             {footerSection.marqueeText}
           </p>
         </div>
